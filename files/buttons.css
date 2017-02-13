@@ -1,0 +1,19 @@
+.btn-default {
+    border: none;
+}
+.facebook-button {
+    background-color: #3a5896;
+    border-radius: 3px;
+    box-shadow: 0 3px 0 #c4cbda;
+    text-transform: uppercase;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color:#ffffff;
+}
+.facebook-button:hover {
+    background-color: #4470b8;
+    box-shadow: 0 3px 0 #a4abba;
+    color: #ffffff;
+}

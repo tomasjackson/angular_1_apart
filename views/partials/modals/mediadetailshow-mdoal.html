@@ -1,0 +1,153 @@
+<div class="photo-video-modal" id="video-modal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
+    <div class="modal-dialog details-media">
+        <div class="modal-content">
+            <div class="media-container comments-active">
+                <div class="modal-title">Title of video<span class="fr location-modal">Someplace</span><span class="time-modal fr">12 April, 2016 04:44 PM</span></div>
+                <div class="anime-div-wrapper">
+                    <div class="left-side-panel">
+                        <div class="image-ram">
+                            <span data-dismiss="modal" class="full-screen-resize"><i class="fa fa-expand" aria-hidden="true"></i></span>
+                            <a id="crop-photo-modal" data-target="#crop-photo" data-dismiss="modal" data-toggle="modal"><i class="fa fa-crop"></i> Crop</a>
+                            <div id="myCarousel" data-interval="false" class="carousel slide" data-ride="carousel">
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active"><div class="single-st-img"><img src="assets/img/gallery-img-01.png" height=100% alt="photo"></div></div>
+                                    <div class="item"><div class="single-st-img"><img src="assets/img/modal-img-2.jpg" height=100% alt="gallery img"></div></div>
+                                    <div class="item"><div class="single-st-img"><img src="assets/img/gallery-img-0.jpg" height=100% alt="gallery img"></div></div>
+                                    <div class="item"><div class="single-st-img"><img src="assets/img/gallery-img-02.png" height=100% alt="gallery img"></div></div>
+                                    <div class="item"><div class="single-st-img"><img src="assets/img/gallery-img-04.jpg" height=100% alt="gallery img"></div></div>
+                                </div><!-- carousel-inner -->
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="note-gal-arrow arrow-left"></span></a>
+                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span class="note-gal-arrow arrow-right"></span></a>
+                            </div><!-- myCarousel -->
+                        </div><!-- image-ram -->
+                        <div class="media-cont-footer">
+                            <div class="uploaded-by fl">
+                                <!--<img class="fl" src="assets/img/avatar-upload-1.png" alt="avatar"> used only when the user has uploaded a photo-->
+                                <i class= "fa fa-user fl" aria-hidden="true"></i>
+                                <span class="up-by">Uploaded by</span>
+                                <span class="up-by-username">username</span>
+                            </div>
+                            <div class="stars-numb fr">
+                                <span class="like-number">50 <i></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="media-notes" class="right-side-panel">
+                        <h3>Notes on this video
+                            <button class="fr journal-story-button btn-story-that-light" data-toggle="modal" data-dismiss="modal" data-target="#add-note-1"><i class="fa fa-comment-o" aria-hidden="true"></i> Add Note</button>
+                        </h3>
+                        <div class="media-notes-inner">
+                            <div data-reply="medianote1" class="media-notes-box">
+                                <p class="media-note-head">
+                                    <img src="assets/img/avatar-upload-1mini.png" alt="">
+                                    <span>username</span>
+                                    <span class="date">Thu. 14 Dec 2013  2:22</span>
+                                    <button class="toggle-note fr"><i class="notes-arrow-collapse"></i></button>
+                                </p>
+                                <div class="comment-body">
+                                    <p>This is a note on the video by some other user. The user can hide notes from stories, photos and videos. He can also edit or delete the note.<br/>
+                                        Notice line breaks?</p>
+                                    <div class="gall-footer-options">
+                                        <a href="#" class="gl-comment fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></a>
+                                        <a href="#" class="gl-delete fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                        <div class="stars-numb fr">
+                                            <span class="like-number">2<i></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- comment-1 -->
+                            <div class="medianote1 media-notes-box comment-reply">
+                                <p class="media-note-head"><img src="assets/img/note-user-girl1.png" alt="user"><span>Dennis</span>
+                                <span class="date">Thu. 14 Dec 2013  2:22</span></p>
+                                <div class="comment-body">
+                                    <p>This is a note on the photo by the author. The user can make the note private, or edit or delete the note.</p>
+                                    <div class="gall-footer-options">
+                                        <a href="#" class="gl-edit fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        <a href="#" class="gl-locker fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Manage Privacy"><i class="fa fa-lock" aria-hidden="true"></i></a>
+                                        <a href="#" class="gl-delete fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                        <div class="stars-numb fr">
+                                            <span class="like-number">2<i></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- comment-reply -->
+                            <div data-reply="medianote2" class="media-notes-box">
+                                <p class="media-note-head">
+                                    <img src="assets/img/avatar-upload-1mini.png" alt="">
+                                    <span>username</span>
+                                    <span class="date">Thu. 14 Dec 2013  2:22</span>
+                                    <button class="toggle-note fr"><i class="notes-arrow-collapse"></i></button>
+                                </p>
+                                <div class="comment-body">
+                                    <p>This is a note on the video by some other user. The user can hide notes from stories, photos and videos. He can also edit or delete the note.<br/>
+                                        Notice line breaks?</p>
+                                    <div class="gall-footer-options">
+                                        <a href="#" class="gl-comment fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></a>
+                                        <a href="#" class="gl-delete fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                        <div class="stars-numb fr">
+                                            <span class="like-number">2<i></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- comment-1 -->
+                            <div class="medianote2 media-notes-box comment-reply">
+                                <p class="media-note-head"><img src="assets/img/note-user-girl1.png" alt="user"><span>Dennis</span>
+                                <span class="date">Thu. 14 Dec 2013  2:22</span></p>
+                                <div class="comment-body">
+                                    <p>This is a note on the video by the author. The user can make the note private, or edit or delete the note.</p>
+                                    <div class="gall-footer-options">
+                                        <a href="#" class="gl-edit fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        <a href="#" class="gl-locker fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Manage Privacy"><i class="fa fa-lock" aria-hidden="true"></i></a>
+                                        <a href="#" class="gl-delete fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                        <div class="stars-numb fr">
+                                            <span class="like-number">2<i></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- comment-reply -->
+                        </div><!-- media-notes-inner -->
+                    </div> <!-- media-notes -->
+
+                    <div id="about-media" class="right-side-panel owner">
+                        <h3>About </h3>
+                        <hr class="dashed-line">
+
+                        <button class="journal-story-button btn-story-that-light pull-right" data-toggle="modal" data-dismiss="modal" data-target="#edit-media"><i class="fa fa-pencil-square-o"></i>Edit</button>
+
+                        <div class="content-box">
+                            <div class="content-body">
+                                <p>Now were up in the big leagues getting' our turn at bat., It's a beautiful day in this neighborhood a beautiful day for a neighbor. Would you be mine? Could you be mine? Its a neighborly day in this beautywood a neighborly day for a beauty. Would you be mine? Could you be mine.<br/>Goodbye gray sky hello blue. There's nothing can hold me when I hold you. Feels so right it cant be wrong. Rockin' and rollin' all week long.<br/><br/>
+
+                                Were gonna do it. Give us any chance well take it. Give us any rule we'll break it. We're gonna make our dreams come true. The mate was a mighty sailin' man the Skipper brave and sure. <br/><br/>Five passengers set sail that day for a three hour tour a three hour tour. A man is born he's a man of means. Then along come two they got nothin' but their jeans? Wouldn't you like to get away? Sometimes you want to go where everybody knows your name. And they're always glad you came.
+                                </p>
+                                <form id="add-keyword-form">
+                                    <hr class="dashed-line">
+                                    <input class="std-input" type="text" placeholder="Add keywords">
+                                </form>
+                            </div>
+                        </div>
+                        <p class="note-keywords">
+                            <span>keyword1<a href="#" title="Removing tag"></a></span>
+                            <span>keyword 2<a href="#" title="Removing tag"></a></span>
+                            <span>key word 3<a href="#" title="Removing tag"></a></span>
+                        </p>
+                        <p class="share-down-modal-btn">
+                            <button class="journal-story-button btn-story-that-light" data-toggle="modal" data-dismiss="modal" data-target="#manage-privacy-media"><i class="fa fa-unlock-alt"></i>Manage Privacy</button>
+                            <button class="journal-story-button btn-story-that-light" data-toggle="modal" data-dismiss="modal" data-target="#share-media"><i class="fa fa-share-alt" aria-hidden="true"></i>Share</button>
+                            <button class="journal-story-button btn-story-that-light"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                        </p>
+                    </div>
+                </div>
+            </div><!-- media container -->
+            <div id="photo-video-nav">
+                <button class="close-modal-dialog" data-dismiss="modal" ><i class="fa fa-times" aria-hidden="true"></i></button>
+                <button class="default-view active" data-toggle="tooltip" data-original-title="Photo/Video"><i class="fa fa-picture-o" aria-hidden="true"></i></button>
+                <button class="about-view" data-toggle="tooltip" data-original-title="About" data-show="edit-photo"><i class="fa fa-fa-file-text-o" aria-hidden="true"></i></button>
+                <button class="comment-view" data-toggle="tooltip" data-original-title="Notes" data-show="media-notes" ><i class="fa fa-comment-o" aria-hidden="true"></i></button>
+                <a href="#" class="image-download"><i class="fa fa-download"></i></a>
+            </div><!-- photo-video-nav -->
+        </div> <!-- modal-content -->
+    </div> <!-- modal-dialog details-media -->
+</div><!-- video-modal -->

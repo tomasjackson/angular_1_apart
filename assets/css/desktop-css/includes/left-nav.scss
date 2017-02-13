@@ -1,0 +1,178 @@
+.calendar-hover-tpl{
+    border-radius: 0px!important;
+    background: #85c2de;
+    color: #1e4f7e;
+    box-shadow: 0px 4px 8px 2px #286f94 inset;
+    border-color: #e5e5e5;
+    text-shadow: 1px 1px 2px #ffffff;
+}
+
+#sidebar{
+    min-height: 700px;
+    padding: 0px !important;
+    background-color: #FFFFFF;
+    border-right: 1px solid #ebeae9;
+}
+
+.left-navigation{
+    h4{
+        margin: 0 auto;
+        width:100%;
+        font-style:italic;
+        font-size: 14px;
+        color:#8c8c8c;
+        line-height:50px;
+        text-align: center;
+    }
+}
+
+#calendar{
+    padding: 0 6px;
+    .datepicker {
+        font-size: 20px;
+        width: 100%;
+    }
+}
+
+.calendar-nav-left{
+    font-size: 14px;
+
+    table{
+        border-collapse: collapse;
+        border-style: hidden;
+        thead{ //Table Header
+
+            th{ //navigation
+                &.prev{ //navigation left
+                    &:hover{
+                        border-radius:none;
+                        background-color: #c7dae5 !important;
+                    }
+                    span {
+                        position:relative;
+                        top:3px;
+                    }
+                }
+
+                &.next{ //navigation right
+                    &:hover{
+                        border-radius:none;
+                        background-color: #c7dae5 !important;
+                    }
+                    span {
+                        position:relative;
+                        top:3px;
+                        left:6px;
+                    }
+                }
+
+                &.datepicker-switch{
+                    color:#4a4a49;
+                    font-size: 16px;
+                    text-transform: uppercase;
+                    text-align: center;
+                    line-height: 40px;
+
+                    .calendar-small-icon{
+                        position: relative;
+                        top: 4px;
+                        left: 8px;
+                    }
+
+                    &:hover{
+                        background-color: #c7dae5 !important;
+                    }
+                }
+                &.dow{
+                    font-weight: 200;
+                    color: #d1d1d1;
+                }
+            }
+        }
+
+        tbody{ //table body styling
+            tr{
+                border: 1px solid #e5e5e5;
+                &:last-child{
+                    border-bottom: none;
+                }
+                &:first-child{
+                    border-top: none;
+                }
+            }
+
+            td{//Table Cell
+                &.day{ //regular unselected day
+                    font-size: 14px;
+                    color: #8c8c8c;
+                    text-align: center;
+                    font-weight: 600;
+                    border-left: 1px solid #e5e5e5;
+
+                    vertical-align: middle;
+                    &:hover{// hover over days in calendar
+                        @extend .calendar-hover-tpl;
+                    }
+
+                    &.active{ //default active fix.
+                        @extend .calendar-hover-tpl;
+                        &:hover{// hover over ACTIVE days in calendar
+                            @extend .calendar-hover-tpl;
+                        }
+                    }
+
+                    &.today{ //today's date styling
+                        color:#389bd0;
+                        background: none !important;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+.calendar-gradient-bottom{
+    @include box-shadow(1px, 1px, 1px, #edeceb) ;
+    height: 25px;
+    border-bottom: 2px solid #FFFFFF;
+}
+
+ul.left-nav-menu{
+   margin-top: 20px;
+   list-style: none;
+   padding-left: 20px;
+
+   li{
+       width: 100%;
+       height: 35px;
+
+       a{
+           font-size: 16px;
+           color: #a0a09f;
+
+           &:visited,&:link,&:active{
+               color: #a0a09f;
+               text-decoration: none;
+           }
+
+           i{//navigation icon default
+               position: relative;
+               top: 4px;
+           }
+
+           &:hover{ //navigation icons hover state.
+               text-decoration: none;
+               color: #4a4a49;
+               i{//navigation icon hover
+                   &.my-journal-icon{ @extend .my-journal-icon-hover;}
+                   &.shared-stories-icon{ @extend .shared-stories-icon-hover;}
+                   &.nav-gallery-icon{ @extend .nav-gallery-icon-hover;}
+                   &.my-contacts-and-groups-icon{ @extend .my-contacts-and-groups-icon-hover;}
+                   &.my-account-icon{ @extend .my-account-icon-hover;}
+                   &.mid-dots{ @include content-loop(100);}
+               }
+           }
+       }
+   }
+}

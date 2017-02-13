@@ -1,0 +1,185 @@
+<div tabindex="-1" id="login-modal" role="dialog" aria-labelledby="login-modal" aria-hidden="true" ng-keydown="onKeyDown($event)">
+        <div class="modal-content login-modal">
+            <button type="button" class="close-modal" aria-hidden="true" ng-click="$ctrl.closeModal()">×</button>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="login" role="tab" data-toggle="tab">LOGIN</a></li>
+                <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">SIGN UP</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content" ng-init="$ctrl.onLoading()">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <div class="login-default">
+                        <div class="modal-body">
+
+                            <div class="validation-wrap">
+                                <p class="error-message" ng-hide="$ctrl.loginErrorMessage === ''">{{$ctrl.loginErrorMessage}} </p>
+                                <p class="success-message" ng-hide="$ctrl.loginSuccessMessage === ''">{{$ctrl.loginSuccessMessage}} </p>                                
+                            </div>
+
+    <!--                            <form role="form" action="my_journal.html"> -->
+                                <input type="text" class="modals-input" placeholder="Email or Username" ng-model="$ctrl.login.email" ng-focus="$ctrl.lostFocusLoginEmail()">
+                                <input type="password" class="modals-input" placeholder="Password" ng-model="$ctrl.login.password" ng-focus="$ctrl.lostFocusLoginPassword()">
+
+                                <div class="login-links">
+                                    <label class="st-checkbox" for="remember" ng-class="{'checked': $ctrl.flag_RememberMe}"><i class="checkbox-icon"></i> <span>Remember Me</span></label>
+                                    <input class="hide" type="checkbox" name="remember" id="remember" ng-model="$ctrl.flag_RememberMe">
+                                    <a href="#" class="forgot-password" ng-click="$ctrl.forgot()">Forgot password?</a>
+                                </div>
+
+                                <button class="login-button" ng-click="$ctrl.doLogin()">LOGIN</button>
+<!--                            </form> -->
+                        </div>
+                        <div class="modal-footer login-footer">
+                            <button type="button" class="mail-register" ng-click="$ctrl.signInGmail()">SIGN IN WITH GMAIL</button>
+                            <br/>
+                            <button type="button" class="facebook-button" ng-click="$ctrl.signInFB()">SIGN IN WITH FACEBOOK</button>
+
+                        </div>
+                    </div>
+                    <!-- login default -->
+                    <div class="forgot-password-reset text-center hide">
+                        <div class="modal-body">
+                            <h3>Forgot your password?</h3>
+                            <br/>
+<!--                            <form role="form" action="my_journal.html"> -->
+                                <div class="form-group">
+                                    <label for="">Submit your email address and we’ll send you a code to reset your password.</label>
+                                    <br/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="modals-input" placeholder="Email " id="code-reset-email" ng-model="$ctrl.forgot.email" ng-change="$ctrl.resetPassHideErr()">
+                                    <div class="validation-wrap">
+                                        <p class="validation-ok"><i class="glyphicon glyphicon-ok"></i></p>
+                                        <p class="validation-wrong">{{$ctrl.resetErrorMessage}}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="login-button" id="reset-password" ng-click="$ctrl.resetPassSubmit()">Submit</button>
+
+                                </div>
+                                <div><a id="back-to-login" ng-click="$ctrl.backToLogin()">Back to Login</a>
+                                </div>
+<!--                            </form> -->
+                        </div>
+
+                    </div>
+                    <!-- reset password -->
+                    <div class="enter-code hide">
+                        <div class="modal-body ">
+                            <h3>Enter the code we emailed you</h3>
+                            <br/>
+                            <div class="form-group">
+                                <input type="text" class="modals-input"  placeholder="Code" ng-model="$ctrl.resetcode">
+                                <div class="validation-wrap">
+                                    <p class="validation-wrong">{{$ctrl.codeErrorMessage}}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button id="sign-in-code" class="login-button" ng-click="$ctrl.signInCode()">Enter</button>
+                            </div>
+                            <div class="form-group">
+                                <button id="cancel-reset" class="login-button" ng-click="$ctrl.cancelReset()">Cancel</button>
+                            </div>
+                            <a href="#" ng-click="$ctrl.forgot()">Please send a new security code.</a>
+
+                        </div><!-- modal body -->
+
+                    </div><!-- code resend -->
+                    <div class="password-reset-form hide">
+
+                        <div class="modal-body ">
+                            <h3>Reset your password</h3>
+                            <br/>
+                            <div class="form-group">
+                                <input id="new-pass-input" type="password" class="modals-input"  placeholder="New Password" ng-keyup="$ctrl.newPassInput()" ng-model="$ctrl.newPassword1">
+                                <div class="validation-wrap">
+
+                                    <p class="new-password-validation validation-wrong">Password must be at least 8 characters.</p>
+                                </div>
+                                <div class="pass-strength-bar-cont">
+                                    <div id="pass-strength-bar"></div>
+                                    <div id="pass-strength-word"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input id="new-pass-input-confirm" type="password" class="modals-input"  placeholder="Confirm Password" ng-model="$ctrl.newPassword2">
+                                <div class="validation-wrap">
+                                    <p class="new-password-success validation-ok">{{$ctrl.resetPasswordSuccessMessage}}</p>
+                                    <p  class="new-password-confirm-validation validation-wrong">{{$ctrl.resetPasswordErrorMessage}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button id="reset-password-btn" class="login-button" ng-click="$ctrl.resetPasswordBtn()">Reset</button>
+                            </div>
+                            <div class="form-group">
+                                <button id="cancel-reset" class="login-button" ng-click="$ctrl.cancelReset()">Cancel</button>
+                            </div>
+                        </div><!-- modal body -->
+                    </div><!-- password reset form -->
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="register">
+                    <div class="modal-body">
+                        <form role="form " class="register-form">
+
+                            <div class="form-group" id="registrationEmail">
+                                <input type="text" class="modals-input" id="registerEmail" placeholder="Email" ng-model="$ctrl.registration.email" ng-blur="$ctrl.registrationEmailValidate($event)">
+                                <div class="validation-wrap" ng-show="$ctrl.registration.email != ''">
+                                    <p class="validation-ok"><i class="glyphicon glyphicon-ok"></i></p>
+                                    <p class="validation-wrong">{{$ctrl.registrationEmailErrorMessage}}</p>
+                                    <p class="error-message" ng-show="$ctrl.email_existing">This email already in use. Try to login or use <a ng-click="$ctrl.forgot()">Forgot password?</a> to reset password.</p>
+                                
+                                </div>
+                            </div>
+                            <div class="form-group" id="registrationUsername">
+                                <input type="text" class="modals-input" id="registerUsername" placeholder="Username" ng-model="$ctrl.registration.username" ng-blur="$ctrl.registrationUsernameValidate($event)">
+
+                                <div class="validation-wrap" ng-show="$ctrl.registration.username != ''">
+                                    <p class="validation-ok"><i class="glyphicon glyphicon-ok"></i></p>
+                                    <p class="validation-wrong">{{$ctrl.registrationUsernameErrorMessage}}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="registrationPassword">
+                                <input type="password" class="modals-input" id="registerPassword" placeholder="Password" ng-model="$ctrl.registration.password" ng-blur="$ctrl.registrationPasswordValidate($event)" ng-keyup="$ctrl.signUpPassInput()">
+                                <div class="validation-wrap" ng-show="$ctrl.registration.password != ''">
+                                    <p class="validation-ok"><i class="glyphicon glyphicon-ok"></i></p>
+                                    <p class="validation-wrong">Password must be at least 8 characters</p>
+                                </div>
+
+                                <div class="pass-strength-bar-cont">
+                                    <div id="reg-pass-strength-bar"></div>
+                                    <div id="reg-pass-strength-word"></div>
+                                </div>
+
+                            </div>
+
+                            <div ng-password-strength="$ctrl.registration.password" strength="passStrength" inner-class="progress-bar" inner-class-prefix="progress-bar-"></div>
+
+                            <div class="privacy-select" rel="private">
+                                <div class="validation-wrap" ng-show="$ctrl.registrationErrorMessage != ''">
+                                    <p class="validation-ok"><i class="glyphicon glyphicon-ok"></i></p>
+                                    <p class="validation-wrong">{{$ctrl.registrationErrorMessage}}</p>
+                                </div>                            
+                                <label class="st-checkbox" for="remember" ng-click="$ctrl.stCheckbox($event)">
+                                    <i class="checkbox-icon"></i> By registering, I accept the <a href="/#/terms_of_use" target="_blank">Terms of Use</a>
+                                    <br/> and the <a href="/#/privacy_policy" target="_blank">Privacy Policy</a>
+                                </label>
+                                <input class="hide" type="checkbox" name="terms-agree" id="remember" value="yes">
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                    <div class="modal-footer login-footer">
+                        <button type="button" class="create-acc" ng-click="$ctrl.doRegister()">CREATE YOUR ACCOUNT</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+</div>

@@ -1,0 +1,97 @@
+<div class="group-modal modal-contacts" id="share-story" role="dialog" aria-hidden="true">
+    <!-- share-story-->
+    <div class="modal-content" dw-loading="share-story">
+        <div class="modal-header">
+            <button type="button" class="close-modal" ng-click="$ctrl.Close()" aria-hidden="true">×</button>
+            <div class="modal-title">
+                <i class="shared-notes-icon"></i> Share your story
+            </div>
+        </div>
+        <div class="modal-body">
+
+            <!-- Select all contacts line  -->
+              <!--<div>-->
+                <!--<label class="st-checkbox" for="all-contacts-share" ng-class="{'checked': $ctrl.opt.mode_all}" ng-click="$ctrl.SelectMode($event , 'MODE_ALL')"><span>Search/Choose contacts to share your story or share with all your contacts by selecting this  -</span><i class="checkbox-icon"></i></label>-->
+                <!--<input class="hide" type="checkbox" name="all-contacts-share" id="all-contacts-share" value="yes">-->
+              <!--</div>-->
+              <!--<input type="text" placeholder="Search Contacts" class="std-input">-->
+              <!--<div class="select-user-priviledges" dw-loading="loading_contact">-->
+            <!-- Select all contacts and selector section ends here -->
+
+             <div>Only your contacts will be receive a notification that you have shared your story with them.</div>
+
+              <div class="tagsinput">
+                <span class="tag tag_group" ng-repeat="friend in $ctrl.selectedFriends">
+                  {{friend.username}}
+                  <button class="small-close-button remove_tag" ng-click="$ctrl.selectedFriend(friend)">×</button>
+                </span>
+              </div>
+
+              <div class="checkbox-container">
+                <label class="st-checkbox" ng-class="{'checked': $ctrl.showExistingGroup}" ng-click="$ctrl.selectExistingGroupOption(true)">
+                  <span>Add users from existing groups</span>
+                  <i class="checkbox-icon"></i>
+                </label>
+              </div>
+
+              <div class="checkbox-container set-right">
+                <label class="st-checkbox" ng-class="{'checked': !$ctrl.showExistingGroup}" ng-click="$ctrl.selectExistingGroupOption(false)">
+                  <span>Search users on StoryThat</span>
+                  <i class="checkbox-icon"></i>
+                </label>
+              </div>
+
+              <div class="create-group-existing-users-view" ng-if="!$ctrl.showExistingGroup">
+                <input type="text" ng-model="$ctrl.searchUser" ng-keydown="$ctrl.SearchKeydown($event)" placeholder="Search users" class="std-input">
+
+                <div ng-repeat="friend in $ctrl.searchedFriends">
+                  <div class="contact-hoverable my-contacts-filter" ng-class="{'active': friend.selected}">
+                    <div class="contact-avatar" ng-click="$ctrl.selectedFriend(friend)">
+                      <img class="img-circle" ng-src={{friend.avatar}} width="100%" height="100%">
+                    </div>
+                    <div class="contactInfo">
+                      <h2>{{friend.username}}</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="create-group-existing-users-view" ng-if="$ctrl.showExistingGroup">
+                <div class="dashed-line"></div>
+                <div class="group-select-permissions row">
+                  <div class="col-xs-4 group-select">
+                    <div ng-repeat="item in $ctrl.allGroup">
+                      <div class="col-xs-10 group" ng-class="{'active': $ctrl.selectedGroup === item}" ng-click="$ctrl.selectGroup(item)">
+                        <input class="hide" type="checkbox">
+                        {{item.group.name}}
+                      </div>
+                      <i class="small-sprite-unchecked my-contacts-filter-checkbox"
+                         ng-class="{'active': item.selectAll}" ng-click="$ctrl.selectAllFriends(item)"></i>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-8 most-contacted">
+                    <div ng-repeat="friend in $ctrl.friends">
+                      <div class="contact-hoverable my-contacts-filter" ng-class="{'active': friend.selected}">
+                        <div class="contact-avatar" ng-click="$ctrl.selectedFriend(friend)">
+                          <img class="img-circle" ng-src={{friend.avatar}} width="100%" height="100%">
+                        </div>
+                        <div class="contactInfo">
+                          <h2>{{friend.username}}</h2>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="bottom-overlay"></div>
+                  </div><!-- column-xs-8 most-contacted-->
+                  <div class="clear"></div>
+                </div>
+                <!-- all groups -->
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+           <a class="btn-story-that-small-light fl" ng-click="$ctrl.Close()">CANCEL</a>
+           <a data-dismiss="modal" class="btn-story-that-small-light fr" ng-click="$ctrl.ShareThisStory($event)">SHARE</a>
+        </div>
+    </div>
+</div><!-- share story -->

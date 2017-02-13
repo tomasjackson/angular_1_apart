@@ -1,0 +1,423 @@
+
+/* Sprites */
+
+.stories-icon, .story-gallery-blue, .support-icon, .trim, .tumblr, .twitter, .twitter-share, .upgrade-icon, .user-blue-icon, .about-icon, .add-bubble, .add-bubble-white, .add-contact-grey, .add-note-icon-white, .add-to-group-round, .back-blue, .big-star-active, .big-star-off, .blockx, .calendar, .calendar-white, .camera-white, .check, .clock, .collapse-grey, .collapse-up-blue, .delete-icon, .edit-icon-grey, .edit-profile-icon, .email-closed-icon, .facebook, .facebook-share, .facebook-source, .favourite-star-grey, .forward-blue, .gallery-icon, .gallery-icon-dark, .gallery-icon-white, .google-plus, .group-greyed, .group-icon, .group-white-blue, .icon-calendar-heading, .icon-favourite-active, .left-arrow, .location-marker-grey, .login-icon, .login-icon-white, .logout-icon-round, .map-marker, .mobile-gallery, .more, .more-blue, .notification-active, .notification-grey, .notification-small-icon, .open-email-icon, .options-left, .privacy-eye, .register-icon, .register-icon-white, .remove-contact, .reply-arrow, .right-arrow, .searchicon, .searchicon-light, .settings-icon, .small-group-icon, .starred-grey{
+    background: url(../sprites/mobile_sprites.optimized.png) no-repeat;
+    display:inline-block;
+    /*background-size: 238px 417px;*/
+}
+
+.stories-icon{
+    background-position: -457px -360px ;
+    width: 38px;
+    height: 50px;
+}
+
+.story-gallery-blue{
+    background-position: 0 -255px ;
+    width: 104px;
+    height: 104px;
+}
+
+.support-icon{
+    background-position: -62px -521px ;
+    width: 61px;
+    height: 72px;
+}
+
+.trim{
+    background-position: -128px -658px ;
+    width: 42px;
+    height: 42px;
+}
+
+.tumblr{
+    background-position: -404px -255px ;
+    width: 85px;
+    height: 94px;
+}
+
+.twitter{
+    background-position: -318px -255px ;
+    width: 85px;
+    height: 94px;
+}
+
+.twitter-share{
+    background-position: -83px -360px ;
+    width: 85px;
+    height: 73px;
+}
+
+.upgrade-icon{
+    background-position: -422px -521px ;
+    width: 52px;
+    height: 46px;
+}
+
+.user-blue-icon{
+    background-position: -422px -138px ;
+    width: 74px;
+    height: 76px;
+}
+
+.about-icon{
+    background-position: 0 -658px ;
+    width: 38px;
+    height: 49px;
+}
+
+.add-bubble{
+    background-position: -78px -708px ;
+    width: 39px;
+    height: 34px;
+}
+
+.add-bubble-white{
+    background-position: -196px -452px ;
+    width: 67px;
+    height: 59px;
+}
+
+.add-contact-grey{
+    background-position: -344px 0;
+    width: 106px;
+    height: 115px;
+}
+
+.add-note-icon-white{
+    background-position: -39px -658px ;
+    width: 45px;
+    height: 41px;
+}
+
+.add-to-group-round{
+    background-position: -237px 0;
+    width: 106px;
+    height: 115px;
+}
+
+.back-blue{
+    background-position: -66px -452px ;
+    width: 64px;
+    height: 65px;
+}
+
+.big-star-active{
+    background-position: -104px -138px ;
+    width: 103px;
+    height: 116px;
+}
+
+.big-star-off{
+    background-position: 0 -138px ;
+    width: 103px;
+    height: 116px;
+}
+
+.blockx{
+    background-position: -451px -84px ;
+    width: 31px;
+    height: 31px;
+}
+
+.calendar{
+    background-position: -50px -594px ;
+    width: 49px;
+    height: 55px;
+}
+
+.calendar-white{
+    background-position: 0 -594px ;
+    width: 49px;
+    height: 63px;
+}
+
+.camera-white{
+    background-position: -264px -452px ;
+    width: 66px;
+    height: 56px;
+}
+
+.check{
+    background-position: -388px -452px ;
+    width: 64px;
+    height: 46px;
+}
+
+.clock{
+    background-position: -384px -594px ;
+    width: 30px;
+    height: 29px;
+}
+
+.collapse-grey{
+    background-position: -338px -594px ;
+    width: 45px;
+    height: 32px;
+}
+
+.collapse-up-blue{
+    background-position: -233px -594px ;
+    width: 53px;
+    height: 36px;
+}
+
+.delete-icon{
+    background-position: -415px -658px ;
+    width: 39px;
+    height: 37px;
+}
+
+.edit-icon-grey{
+    background-position: -455px -658px ;
+    width: 35px;
+    height: 35px;
+}
+
+.edit-profile-icon{
+    background-position: -312px -360px ;
+    width: 62px;
+    height: 74px;
+}
+
+.email-closed-icon{
+    background-position: -375px -360px ;
+    width: 81px;
+    height: 56px;
+}
+
+.facebook{
+    background-position: 0 -360px ;
+    width: 82px;
+    height: 91px;
+}
+
+.facebook-share{
+    background-position: -451px 0;
+    width: 39px;
+    height: 83px;
+}
+
+.facebook-source{
+    background-position: -105px -255px ;
+    width: 103px;
+    height: 103px;
+}
+
+.favourite-star-grey{
+    background-position: -130px 0;
+    width: 106px;
+    height: 115px;
+}
+
+.forward-blue{
+    background-position: -131px -452px ;
+    width: 64px;
+    height: 65px;
+}
+
+.gallery-icon{
+    background-position: -118px -708px ;
+    width: 34px;
+    height: 34px;
+}
+
+.gallery-icon-dark{
+    background-position: -153px -708px ;
+    width: 34px;
+    height: 34px;
+}
+
+.gallery-icon-white{
+    background-position: -243px -521px ;
+    width: 58px;
+    height: 59px;
+}
+
+.google-plus{
+    background-position: -209px -255px ;
+    width: 108px;
+    height: 95px;
+}
+
+.group-greyed{
+    background-position: -294px -658px ;
+    width: 40px;
+    height: 41px;
+}
+
+.group-icon{
+    background-position: -212px -658px ;
+    width: 40px;
+    height: 41px;
+}
+
+.group-white-blue{
+    background-position: -453px -452px ;
+    width: 42px;
+    height: 44px;
+}
+
+.icon-calendar-heading{
+    background-position: -185px -521px ;
+    width: 57px;
+    height: 66px;
+}
+
+.icon-favourite-active{
+    background-position: -208px -138px ;
+    width: 102px;
+    height: 116px;
+}
+
+.left-arrow{
+    background-position: -302px -521px ;
+    width: 59px;
+    height: 47px;
+}
+
+.location-marker-grey{
+    background-position: -188px -708px ;
+    width: 26px;
+    height: 32px;
+}
+
+.login-icon{
+    background-position: -39px -708px ;
+    width: 38px;
+    height: 37px;
+}
+
+.login-icon-white{
+    background-position: -335px -658px ;
+    width: 40px;
+    height: 40px;
+}
+
+.logout-icon-round{
+    background-position: 0 -521px ;
+    width: 61px;
+    height: 72px;
+}
+
+.map-marker{
+    background-position: 0 -708px ;
+    width: 38px;
+    height: 48px;
+}
+
+.mobile-gallery{
+    background-position: -311px -138px ;
+    width: 110px;
+    height: 105px;
+}
+
+.more{
+    background-position: 0 -757px ;
+    width: 20px;
+    height: 78px;
+}
+
+.more-blue{
+    background-position: -21px -757px ;
+    width: 20px;
+    height: 78px;
+}
+
+.notification-active{
+    background-position: -244px -360px ;
+    width: 67px;
+    height: 73px;
+}
+
+.notification-grey{
+    background-position: 0 0;
+    width: 129px;
+    height: 137px;
+}
+
+.notification-small-icon{
+    background-position: -253px -658px ;
+    width: 40px;
+    height: 41px;
+}
+
+.open-email-icon{
+    background-position: -169px -360px ;
+    width: 74px;
+    height: 74px;
+}
+
+.options-left{
+    background-position: -190px -594px ;
+    width: 42px;
+    height: 51px;
+}
+
+.privacy-eye{
+    background-position: -287px -594px ;
+    width: 50px;
+    height: 34px;
+}
+
+.register-icon{
+    background-position: -376px -658px ;
+    width: 38px;
+    height: 39px;
+}
+
+.register-icon-white{
+    background-position: -171px -658px ;
+    width: 40px;
+    height: 42px;
+}
+
+.remove-contact{
+    background-position: -85px -658px ;
+    width: 42px;
+    height: 42px;
+}
+
+.reply-arrow{
+    background-position: -146px -594px ;
+    width: 43px;
+    height: 52px;
+}
+
+.right-arrow{
+    background-position: -362px -521px ;
+    width: 59px;
+    height: 47px;
+}
+
+.searchicon{
+    background-position: 0 -452px ;
+    width: 65px;
+    height: 68px;
+
+}
+.searchicon-light{
+    background-position: -331px -452px ;
+    width: 56px;
+    height: 56px;
+}
+
+.settings-icon{
+    background-position: -124px -521px ;
+    width: 60px;
+    height: 72px;
+}
+
+.small-group-icon{
+    background-position: -422px -215px ;
+    width: 26px;
+    height: 26px;
+}
+
+.starred-grey{
+    background-position: -100px -594px ;
+    width: 45px;
+    height: 51px;
+}
+/* END Sprites */

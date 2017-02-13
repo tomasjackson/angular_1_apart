@@ -1,0 +1,232 @@
+@import 'fonts';
+@import 'includes/mixins';
+@import 'includes/sprites';
+@import 'includes/general';
+@import 'includes/notifications';
+@import 'includes/navbar';
+@import 'includes/calendar';
+@import 'includes/modals';
+@import 'includes/left-nav';
+
+//Modules
+@import 'modules/account';
+@import 'modules/public-profile';
+@import 'modules/journal';
+@import 'modules/notes';
+@import 'modules/shared_stories';
+@import 'modules/single_story';
+@import 'modules/gallery';
+@import 'modules/contacts';
+@import 'modules/home';
+@import 'modules/home_calendar';
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+}
+
+body {
+  font-family: 'bree_ltlight';
+  background-color: #efefef;
+}
+
+.container{
+    width:1000px;
+}
+
+.main-content {
+    min-height: 300px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.content-wrapper{
+    background-color: #f6f6f6;
+    width: 100%;
+}
+
+
+
+/*???
+* Must test to find origin.
+*???
+*/
+
+#avatar_container {
+    .thumbnail img {
+        max-height: 115px;
+        width: auto;
+    }
+    .view_avatar {
+        overflow: hidden;
+    }
+}
+
+#uploader_selector {
+    border: 1px dotted #CCCCCC;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    min-height: 100px;
+    padding-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+
+.attachment {
+    margin: 8px;
+    width: 115px;
+    -moz-user-select: none;
+    color: #464646;
+    float: left;
+    list-style: none outside none;
+    margin: 0 10px 20px;
+    padding: 0;
+    position: relative;
+    text-align: center;
+}
+
+.mf_selected.attachment {
+    box-shadow: 0 0 0 1px #FFFFFF, 0 0 0 5px #59A51F;
+}
+
+.thumbnail img {
+    max-height: 115px;
+    width: auto;
+}
+
+.attachment-preview {
+    background: none repeat scroll 0 0 #EEEEEE;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1) inset, 0 0 0 1px rgba(0, 0, 0, 0.05) inset;
+    cursor: pointer;
+    position: relative;
+    /*height: 199px;*/
+    /*width: 199px;*/
+    height: 115px;
+    width: 115px;
+
+    .thumbnail {
+        height: 115px;
+        width: 115px;
+
+        &:after {
+            bottom: 0;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+            content: "";
+            display: block;
+            left: 0;
+            overflow: hidden;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+
+
+}
+.attachment{
+    &.mf_selected .check {
+        display: block;
+    }
+    .thumbnail {
+        display: block;
+        left: 0;
+        margin: 0 auto;
+        max-height: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        border: none;
+        border-radius: 0;
+
+        .centered {
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            transform: translate(50%, 50%);
+            width: 100%;
+            img {
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+    .check {
+        background: linear-gradient(to bottom, #70CE27, #59A51F) repeat scroll 0 0 #F1F1F1;
+        border: 1px solid #FFFFFF;
+        border-radius: 3px;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+        display: none;
+        height: 24px;
+        outline: 0 none;
+        position: absolute;
+        right: -7px;
+        top: -7px;
+        width: 24px;
+        div {
+            background-position: -20px 0;
+            height: 15px;
+            margin: 4px;
+            width: 15px;
+        }
+        &:hover div {
+            background-position: -60px 0;
+        }
+    }
+}
+
+.media-modal-icon {
+    background-image: url("../images/uploader-icons.png");
+    background-repeat: no-repeat;
+}
+
+.mf_actions {
+    position: absolute;
+    background-color: #000000;
+    opacity: 0.5;
+    width: 115px;
+    height: 115px;
+    display: none;
+}
+
+.mf_actions_container {
+    position: relative;
+    width: 115px;
+    height: 115px;
+    display: none;;
+}
+.mf_actions_bg  {
+    background: #CCC;
+    filter:alpha(opacity=60); /* IE */
+    -moz-opacity:0.6; /* Mozilla */
+    opacity: 0.6; /* CSS3 */
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    width:100%;
+}
+.mf_actions_icons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    background-color: #333333;
+}
+
+.mf_action_icon {
+    font-size: 20px;
+    color: white;
+}
+
+.story_container {
+    position: relative;
+}
+
+

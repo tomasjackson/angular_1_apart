@@ -1,0 +1,99 @@
+/* Modals
+----------------------------------------------------------------------------------------------------------------------*/
+.modal-small .modal-dialog {
+    width: 430px;
+}
+.modal-content{
+    border: 1px solid #e6e6e6;
+}
+.modal .modal-header{
+    background-color:#efefef;
+    padding: 10px 10px;
+}
+.modal .modal-header h4 {
+    text-align:center;
+    font-family: 'bree_ltlight';
+    font-weight: normal;
+    color:#4a4a49;
+    font-size: 18px;
+    margin: 0 auto;
+}
+.modal .modal-footer {
+    background-color: #efefef;
+    border-top: 1px solid #e6e6e6;
+}
+.modal .modal-header button.close-icon{
+    border-radius: 22px;
+    border: none;
+    position:absolute;
+    top: -22px;
+    right: -22px;
+}
+.modal > .modal-footer span{
+    font-size: 18px;
+    color: #4a4a49;
+    line-height: 45px;
+}
+
+.login-body .login-input {
+    background-color: #ffffff;
+    border: none;
+    border-bottom: 2px solid #e6e6e6;
+    height: 45px;
+    border-radius: 0px;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    font-family: bree_ththin;
+    color: #4a4a49;
+}
+
+.login-body button {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.save-btn{
+    cursor: pointer;
+    -webkit-box-shadow: 0 2px 0 #bfbfbf;
+    -moz-box-shadow: 0 2px 0 #bfbfbf;
+    box-shadow: 0 2px 0 #bfbfbf;
+    vertical-align: middle;
+    padding: 0;
+    color: #4a4a49;
+    height: 38px;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-family: 'bree_rgregular';
+    text-transform: uppercase;
+    line-height: 37px;
+    display: inline-block;
+    border:1px solid #fff;;
+    text-decoration: none;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    background-clip: padding-box;
+    text-align: center;
+    background-color: #fff;
+    font-size: 18px;
+} /* Removed padding and changed text to align center */
+
+.save-btn:hover{
+    -webkit-box-shadow: 0 4px 0 #1f719a;
+    -moz-box-shadow: 0 4px 0 #1f719a;
+    box-shadow: 0 4px 0 #1f719a;
+    background-color: #48a7d8;
+    border: 1px solid #9dcce5;
+    color: #ffffff !important;
+    text-shadow: 0px 2px 2px #337a9e;
+}
+.perm-blue{
+    -webkit-box-shadow: 0 4px 0 #1f719a;
+    -moz-box-shadow: 0 4px 0 #1f719a;
+    box-shadow: 0 4px 0 #1f719a;
+    background-color: #48a7d8;
+    border: 1px solid #9dcce5;
+    color: #ffffff !important;
+    text-shadow: 0px 2px 2px #337a9e;
+}

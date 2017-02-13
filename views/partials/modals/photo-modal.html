@@ -1,0 +1,119 @@
+<div class="photo-video-modal" id="photo-modal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
+    <div class="modal-content">
+        <div class="media-container comments-active" ng-class="{'comments-active' : $ctrl.view_mode == 'DEFAULT' , 'active about-view': $ctrl.view_mode == 'ABOUT' , 'active comments-active' : $ctrl.view_mode == 'COMMENT'}">
+            <div class="modal-title">{{$ctrl.displaying_media.title}}<span class="fr location-modal" ng-if="$ctrl.displaying_media.location">{{$ctrl.displaying_media.location}}</span><span class="time-modal fr" ng-if="$ctrl.displaying_media.userDate">{{$ctrl.parseDateTime($ctrl.displaying_media.userDate).date + ' ' + $ctrl.parseDateTime($ctrl.displaying_media.userDate).time}}</span></div>
+            <div class="anime-div-wrapper">
+                <div class="left-side-panel">
+                    <div class="image-ram">
+                        <span data-dismiss="modal" class="full-screen-resize" ng-click="$ctrl.FullScreenShow($event)"><i class="fa fa-expand" aria-hidden="true"></i></span>
+                        <a id="crop-photo-modal" data-target="#crop-photo" data-dismiss="modal" data-toggle="modal"><i class="fa fa-crop"></i> Crop</a>
+                        <div id="myCarousel" data-interval="false" class="carousel slide" data-ride="carousel">
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner" role="listbox">
+                                <div class="item" ng-repeat="media in $ctrl.media_array" ng-class="{'active' : $ctrl.current_id == media.id}">
+                                    <div class="single-st-img">
+
+                                        <img ng-src="{{media.path.original}}" ng-if="!media.mediaFileType && media.path.original" height=100% alt="gallery img">
+                                        <img ng-src="{{media.path}}" ng-if="!media.mediaFileType && !media.path.original" height=100% alt="gallery img">
+
+                                        <iframe width="100%" height="100%" ng-if="media.mediaFileType && media.embeddedVideoUrl" ng-src="{{trustSrc(media.path)}}" frameborder="0" allowfullscreen></iframe>
+                                        <video width="100%"" height="100%" ng-if="media.mediaFileType && !media.embeddedVideoUrl" controls>
+                                            <source ng-src="{{trustSrc(media.path)}}">
+                                        </video>
+                                    </div>
+                                </div>
+                            </div><!-- carousel-inner -->
+                            <!-- Left and right controls -->
+                            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" ng-click="$ctrl.CarouseSlide($event , 'LEFT')"><span class="note-gal-arrow arrow-left"></span></a>
+                            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next" ng-click="$ctrl.CarouseSlide($event , 'RIGHT')"><span class="note-gal-arrow arrow-right"></span></a>
+                        </div><!-- myCarousel -->
+                    </div><!-- image-ram -->
+                    <div class="media-cont-footer">
+                        <div class="uploaded-by fl">
+                            <!--<img class="fl" src="assets/img/avatar-upload-1.png" alt="avatar"> used only when the user has uploaded a photo -->
+                            <i class= "fa fa-user fl" aria-hidden="true"></i>
+                            <span class="up-by">Uploaded by</span>
+                            <span class="up-by-username">username</span>
+                        </div>
+                        <div class="stars-numb fr">
+                            <span class="like-number">{{$ctrl.favorite_media_count}} <i ng-click="$ctrl.SetAsFavorite($event)"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="media-notes" class="right-side-panel">
+                    <h3>Notes on this photo
+                    <button class="fr journal-story-button btn-story-that-light" ng-click="$ctrl.AddNote($event, $ctrl.displaying_media)"><i class="fa fa-comment-o" aria-hidden="true"></i> Add Note</button>
+                    </h3>
+                    <div class="media-notes-inner">
+                      <div ng-repeat="note in $ctrl.displaying_media.notes">
+                        <div data-reply="medianote" class="media-notes-box">
+                          <p class="media-note-head">
+                            <span class="story-avatar"><img ng-src="{{note.user.avatar}}"></span>
+                            <span>{{note.user.username}}</span>
+                            <span class="date">Thu. 14 Dec 2013  2:22</span>
+                            <button class="toggle-note fr"><i class="notes-arrow-collapse"></i></button>
+                          </p>
+                          <div class="comment-body">
+                            <p>{{note.content}}</p>
+                            <div class="gall-footer-options">
+                              <a href="#" class="gl-comment fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></a>
+                              <a href="#" class="gl-delete fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                              <div class="stars-numb fr">
+                                <span class="like-number">2<i></i></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div><!-- comment-1 -->
+                        <div class="medianote1 media-notes-box comment-reply">
+                          <p class="media-note-head"><img src="assets/img/note-user-girl1.png" alt="user"><span>Dennis</span>
+                            <span class="date">Thu. 14 Dec 2013  2:22</span></p>
+                          <div class="comment-body">
+                            <p>This is a note on the photo by the author. The user can make the note private, or edit or delete the note.</p>
+                            <div class="gall-footer-options">
+                              <a href="#" class="gl-edit fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                              <a href="#" class="gl-locker fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Manage Privacy"><i class="fa fa-lock" aria-hidden="true"></i></a>
+                              <a href="#" class="gl-delete fl" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                              <div class="stars-numb fr">
+                                <span class="like-number">2<i></i></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div><!-- comment-reply -->
+
+                      </div>
+                    </div><!-- media-notes-inner -->
+                </div> <!-- media-notes -->
+
+                <div id="about-media" class="right-side-panel owner">
+                    <h3>About
+                    <button class="journal-story-button btn-story-that-light pull-right" data-toggle="modal" data-dismiss="modal" data-target="#edit-media"><i class="fa fa-pencil-square-o"></i>Edit</button>
+                    </h3>
+                    <div class="content-box">
+                        <div class="content-body">
+                            <p>{{$ctrl.displaying_media.description}}</p>
+                            <form id="add-keyword-form">
+                                <hr class="dashed-line">
+                                <input class="std-input" type="text" placeholder="Add keywords">
+                            </form>
+                        </div>
+                    </div>
+                    <p class="note-keywords">
+                        <span ng-repeat="keyword in $ctrl.displaying_media.keywords">{{keyword.keyword}}<a title="Removing tag"></a></span>
+                    </p>
+                    <p class="share-down-modal-btn">
+                        <button class="journal-story-button btn-story-that-light" data-toggle="modal" data-dismiss="modal" data-target="#manage-privacy-media"><i class="fa fa-unlock-alt"></i>Manage Privacy</button>
+                        <button class="journal-story-button btn-story-that-light" data-toggle="modal" data-dismiss="modal" data-target="#share-media"><i class="fa fa-share-alt" aria-hidden="true"></i>Share</button>
+                        <button class="journal-story-button btn-story-that-light"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                    </p>
+                </div>
+            </div>
+        </div><!-- media container -->
+        <div id="photo-video-nav">
+            <button class="close-modal-dialog" ng-click="$ctrl.closeModal()"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <button class="default-view active" data-toggle="tooltip" data-original-title="Photo/Video" ng-click="$ctrl.ViewMode($event , 'DEFAULT')"><i class="fa fa-picture-o" aria-hidden="true"></i></button>
+            <button class="about-view" data-toggle="tooltip" data-original-title="About" ng-click="$ctrl.ViewMode($event , 'ABOUT')"><i class="fa fa fa-file-text-o" aria-hidden="true"></i></button>
+            <button class="comment-view" data-toggle="tooltip" data-original-title="Notes" ng-click="$ctrl.ViewMode($event , 'COMMENT')"><i class="fa fa-comment-o" aria-hidden="true"></i></button>
+            <a href="#" class="image-download"><i class="fa fa-download"></i></a>
+        </div><!-- photo-video-nav -->
+    </div> <!-- modal-content -->
+</div><!-- photo-modal -->

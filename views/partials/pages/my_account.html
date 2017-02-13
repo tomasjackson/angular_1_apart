@@ -1,0 +1,542 @@
+<div class="my-account-page" id="content">
+  <div class="browse_by_calendar">
+    <div class="my-account-top">
+      <div class="my-account-avatar editable" ng-show="editableProfile">
+        <div ngf-drop ngf-select ng-model="avatar" class="drop-box"
+             ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false" accept=".jpg,.png" ngf-pattern="">
+          <img class="img-circle" ng-src={{userInfo.avatar}} width="63" height="63" alt=""/>
+        </div>
+        <i class="fa fa-camera" aria-hidden="true"></i>
+      </div>
+      <div class="my-account-avatar" ng-if="!editableProfile">
+        <img class="img-circle" ng-src={{userInfo.avatar}} width="63" height="63">
+      </div>
+      <input ng-required="true" ng-show="editableProfile" class="account-edit-username" type="text" ng-model="userInfo.username">
+      <h1 ng-show="!editableProfile">{{userInfo.username}}</h1>
+      <div class="account-owner-actions fr">
+        <span class="group-contacts-btn" tooltip-placement="top" uib-tooltip="Add/Edit Info">
+          <span><i class="fa fa-pencil" aria-hidden="true" ng-click="editProfile(userInfo)"></i></span>
+        </span>
+        <span class="group-contacts-btn" data-placement="top" uib-tooltip="Change Password">
+          <span data-target="#change-pass" data-toggle="collapse" ng-click="pass_close()"><i class="fa fa-key" aria-hidden="true"></i></span>
+        </span>
+        <span class="group-contacts-btn" data-placement="top" uib-tooltip="My Public Profile">
+          <span><i class="fa fa-user" aria-hidden="true" ng-click="publicPage()"></i></span>
+        </span>
+      </div>
+    </div>
+
+    <hr class="dashed-line">
+    <!-- MY ACCOUNT PAGE - PROFILE SECTION -->
+
+    <form name="passwordForm" ng-submit="passwordForm.$valid && changePass()">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="change-pass" class="collapse fly-out-menu">
+            <div class="arrow-up"></div>
+
+            <div class="text-holder">
+              <div class="change-pass-header">
+                <button type="button" ng-click="pass_close_modal($event)" data-toggle="collapse" class="change-pass-close fr" aria-hidden="false">×</button>
+                <div class="modal-title">CHANGE PASSWORD</div>
+              </div>
+
+              <div class="validation-wrap">
+                <p class="error-message" ng-if="PassErrorMessage">{{PassErrorMessage}} </p>
+                <p class="success-message" ng-if="PassSuccessMessage">{{PassSuccessMessage}} </p>
+              </div>
+
+              <div class="form-group">
+                <input type="password" ng-required="true" id="old-pass-input" class="modals-input" ng-model="pass.current" placeholder="Old Password">
+                <div class="validation-wrap">
+                  <p class="validation-ok"><i class="glyphicon glyphicon-ok"></i></p>
+                  <p class="new-password-validation validation-wrong"><i class=""></i> Please enter a correct password</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="password" ng-required="true" class="modals-input" ng-model="pass.password" placeholder="New Password">
+                <div class="validation-wrap">
+                  <p class="validation-ok"><i class="glyphicon glyphicon-ok"></i></p>
+                  <p class="new-password-validation validation-wrong"><i class=""></i>Password must be atleast 8 characters</p>
+                  <div class="pass-strength-bar-cont">
+                    <div id="pass-strength-bar"></div>
+                    <div id="pass-strength-word"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="password" ng-required="true" class="modals-input" ng-model="pass.repeat" placeholder="Confirm Password">
+                <div class="validation-wrap">
+                  <p class="validation-ok"><i class="glyphicon glyphicon-ok"></i></p>
+                  <p class="new-password-confirm-validation validation-wrong"><i class=""></i>Password does not match.</p>
+                </div>
+              </div>
+            </div>
+            <div class="buttons-footer">
+              <button class="btn-story-that-light" type="button" ng-click="pass_close_modal($event)" data-toggle="collapse">CLOSE</button>
+              <button class="btn-story-that-light" type="submit">CHANGE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="validation-wrap">
+      <p class="error-message" ng-if="ErrorMessage">{{ErrorMessage}} </p>
+      <p class="success-message" ng-if="SuccessMessage">{{SuccessMessage}} </p>
+    </div>
+
+    <div class="row profile_section">
+      <form name="profileForm" ng-submit="profileForm.$valid && saveProfile()">
+        <h4 class="col-sm-12 my-account-header">
+          <i class="my-account-about-icon"></i><i class="mid-dots">· · ·</i>
+          <strong> About</strong>
+          <button ng-show="editableProfile" class="add-network pull-right" type="submit"><i class="add-icon"></i><span>Save</span></button>
+        </h4>
+
+        <div class="about-view" ng-show="editableProfile">
+          <div class="col-md-7">
+            <fieldset class="row privacy-switch-edit">
+              <div class="dropdown">
+                <button class="dropdown-toggle privacy-switch-btn" type="button" data-toggle="dropdown">
+                  <span>{{permission.firstname}}</span> <i class="collapse-arrow-small"></i>
+                </button>
+                <ul class="dropdown-menu privacy-dropdown" role="menu" aria-labelledby="name-privacy">
+                  <li><label><span>Public</span><input class="hide" ng-model="permission.firstname" name="first_name_privacy" value="public" type="radio"></label></li>
+                  <li><label><span>Private</span><input class="hide" ng-model="permission.firstname" name="first_name_privacy" value="private" type="radio"></label></li>
+                </ul>
+              </div>
+              <span class="account-input-label"><i class="mid-dots">·</i>Name</span>
+              <input ng-required="true" class="account-edit-fields" type="text" ng-model="userInfo.firstname">
+            </fieldset>
+
+            <div class="clearfix"></div>
+            <fieldset class="row privacy-switch-edit">
+              <div class="dropdown">
+                <button class="dropdown-toggle privacy-switch-btn" type="button" data-toggle="dropdown">
+                  <span>{{permission.lastname}}</span> <i class="collapse-arrow-small"></i>
+                </button>
+                <ul class="dropdown-menu privacy-dropdown" role="menu" aria-labelledby="name-privacy">
+                  <li><label><span>Public</span><input class="hide" ng-model="permission.lastname" name="last_name_privacy" value="public" type="radio"></label></li>
+                  <li><label><span>Private</span><input class="hide" ng-model="permission.lastname" name="last_name_privacy" value="private" type="radio"></label></li>
+                </ul>
+              </div>
+              <span class="account-input-label"><i class="mid-dots">·</i>Last Name</span>
+              <input ng-required="true" class="account-edit-fields" type="text" ng-model="userInfo.lastname">
+            </fieldset>
+
+            <div class="clearfix"></div>
+
+            <fieldset class="row privacy-switch-edit">
+              <div class="dropdown">
+                <button class="dropdown-toggle privacy-switch-btn" type="button" data-toggle="dropdown">
+                  <span>{{permission.email}}</span> <i class="collapse-arrow-small"></i>
+                </button>
+                <ul class="dropdown-menu privacy-dropdown" role="menu" aria-labelledby="name-privacy">
+                  <li><label><span>Public</span><input class="hide" ng-model="permission.email" name="email_privacy" value="public" type="radio"></label></li>
+                  <li><label><span>Private</span><input class="hide" ng-model="permission.email" name="email_privacy" value="private" type="radio"></label></li>
+                </ul>
+              </div>
+              <span class="account-input-label"><i class="mid-dots">·</i>Email:</span>
+              <input ng-required="true" class="account-edit-fields" value="scarlet@gmail.com" type="email" ng-model="userInfo.email">
+            </fieldset>
+
+            <div class="clearfix"></div>
+
+            <fieldset class="row privacy-switch-edit">
+              <div class="dropdown">
+                <button class="dropdown-toggle privacy-switch-btn" type="button" data-toggle="dropdown">
+                  <span>{{permission.profession}}</span>
+                  <i class="collapse-arrow-small"></i>
+                </button>
+                <ul class="dropdown-menu privacy-dropdown" role="menu" aria-labelledby="name-privacy">
+                  <li><label><span>Public</span><input class="hide" ng-model="permission.profession" name="profession_privacy" value="public" type="radio"></label></li>
+                  <li><label><span>Private</span><input class="hide" ng-model="permission.profession" name="profession_privacy" value="private" type="radio"></label></li>
+                </ul>
+              </div>
+
+              <span class="account-input-label"><i class="mid-dots">·</i>Profession</span>
+              <input class="account-edit-fields" type="text" ng-model="userInfo.profession">
+            </fieldset>
+
+            <div class="clearfix"></div>
+
+            <fieldset class="row privacy-switch-edit">
+              <div class="dropdown">
+                <button class="dropdown-toggle privacy-switch-btn" type="button" data-toggle="dropdown">
+                  <span>{{permission.phone}}</span> <i class="collapse-arrow-small"></i>
+                </button>
+                <ul class="dropdown-menu privacy-dropdown" role="menu" aria-labelledby="name-privacy">
+                  <li><label><span>Public</span><input class="hide" ng-model="permission.phone" name="phone_privacy" value="public" type="radio"></label></li>
+                  <li><label><span>Private</span><input class="hide" ng-model="permission.phone" name="phone_privacy" value="private" type="radio"></label></li>
+                </ul>
+              </div>
+              <span class="account-input-label"><i class="mid-dots">·</i>Phone</span>
+              <input class="account-edit-fields" type="text" ng-model="userInfo.phone">
+            </fieldset>
+
+            <div class="clearfix"></div>
+
+            <fieldset class="row privacy-switch-edit">
+              <div class="dropdown">
+                <button class="dropdown-toggle privacy-switch-btn" type="button" data-toggle="dropdown">
+                  <span>{{permission.birthdate}}</span> <i class="collapse-arrow-small"></i>
+                </button>
+                <ul class="dropdown-menu privacy-dropdown" role="menu" aria-labelledby="name-privacy">
+                  <li><label><span>Public</span><input class="hide" ng-model="permission.birthdate" name="birthday_privacy" value="public" type="radio"></label></li>
+                  <li><label><span>Private</span><input class="hide" ng-model="permission.birthdate" name="birthday_privacy" value="private" type="radio"></label></li>
+                </ul>
+              </div>
+              <span class="account-input-label"><i class="mid-dots">·</i>Birthday:</span>
+              <p class="input-group account-datepicker">
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="birthday" is-open="birthdayPicker.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="EditBirthday()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </fieldset>
+
+            <div class="clearfix"></div>
+
+            <fieldset class="row privacy-switch-edit">
+              <div class="dropdown">
+                <button class="dropdown-toggle privacy-switch-btn" type="button" data-toggle="dropdown">
+                  <span>{{permission.website}}</span> <i class="collapse-arrow-small"></i>
+                </button>
+                <ul class="dropdown-menu privacy-dropdown" role="menu" aria-labelledby="name-privacy">
+                  <li><label><span>Public</span><input class="hide" ng-model="permission.website" name="phone_privacy" value="public" type="radio"></label></li>
+                  <li><label><span>Private</span><input class="hide" ng-model="permission.website" name="phone_privacy" value="private" type="radio"></label></li>
+                </ul>
+              </div>
+              <span class="account-input-label"><i class="mid-dots">·</i>Website</span>
+              <input class="account-edit-fields" type="text" ng-model="userInfo.website">
+            </fieldset>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="col-md-5 relative">
+            <fieldset class="row privacy-switch-edit">
+              <div class="dropdown">
+                <button class="dropdown-toggle privacy-switch-btn" type="button" data-toggle="dropdown">
+                  <span>{{permission.numOfStories}}</span> <i class="collapse-arrow-small"></i>
+                </button>
+                <ul class="dropdown-menu privacy-dropdown" role="menu" aria-labelledby="name-privacy">
+                  <li><label><span>Public</span><input class="hide" ng-model="permission.numOfStories" name="number-stories" value="public" type="radio"></label></li>
+                  <li><label><span>Private</span><input class="hide" ng-model="permission.numOfStories" name="number-stories" value="private" type="radio"></label></li>
+                </ul>
+              </div>
+              <span class="account-input-label right"><i class="mid-dots">·</i>No. of Stories: <strong>{{userState.stories}}</strong></span>
+            </fieldset>
+            <fieldset class="row privacy-switch-edit">
+              <div class="dropdown">
+                <button class="dropdown-toggle privacy-switch-btn" type="button" data-toggle="dropdown">
+                  <span>{{permission.numOfPictures}}</span> <i class="collapse-arrow-small"></i>
+                </button>
+                <ul class="dropdown-menu privacy-dropdown" role="menu" aria-labelledby="name-privacy">
+                  <li><label><span>Public</span><input class="hide" ng-model="permission.numOfPictures" name="number-pictures" value="public" type="radio"></label></li>
+                  <li><label><span>Private</span><input class="hide" ng-model="permission.numOfPictures" name="number-pictures" value="private" type="radio"></label></li>
+                </ul>
+              </div>
+              <span class="account-input-label right"><i class="mid-dots">·</i>No. of Pictures: <strong>{{userState.photos}}</strong></span>
+            </fieldset>
+
+            <fieldset class="row privacy-switch-edit">
+              <div class="dropdown">
+                <button class="dropdown-toggle privacy-switch-btn" type="button" data-toggle="dropdown">
+                  <span>{{permission.numOfVideos}}</span> <i class="collapse-arrow-small"></i>
+                </button>
+                <ul class="dropdown-menu privacy-dropdown" role="menu" aria-labelledby="name-privacy">
+                  <li><label><span>Public</span><input class="show" ng-model="permission.numOfVideos" name="favorite-users" value="public" type="radio"></label></li>
+                  <li><label><span>Private</span><input class="hide" ng-model="permission.numOfVideos" name="favorite-users" value="private" type="radio"></label></li>
+                </ul>
+              </div>
+              <span class="account-input-label right"><i class="mid-dots">·</i>No. of Videos: <strong>{{userState.videos}}</strong></span>
+            </fieldset>
+
+            <fieldset class="row privacy-switch-edit">
+              <div class="dropdown">
+                <button class="dropdown-toggle privacy-switch-btn" type="button" data-toggle="dropdown">
+                  <span>{{permission.numOfFavoriteUsers}}</span> <i class="collapse-arrow-small"></i>
+                </button>
+                <ul class="dropdown-menu privacy-dropdown" role="menu" aria-labelledby="name-privacy">
+                  <li><label><span>Public</span><input class="hide" ng-model="permission.numOfFavoriteUsers" name="favorite-users" value="public" type="radio"></label></li>
+                  <li><label><span>Private</span><input class="hide" ng-model="permission.numOfFavoriteUsers" name="favorite-users" value="private" type="radio"></label></li>
+                </ul>
+              </div>
+              <span class="account-input-label right"><i class="mid-dots">·</i>Favorite Users: <strong>{{userState.favorite_users}}</strong></span>
+            </fieldset>
+
+            <fieldset class="row privacy-switch-edit">
+              <div class="dropdown">
+                <button class="dropdown-toggle privacy-switch-btn" type="button" data-toggle="dropdown">
+                  <span>{{permission.favoriteBy}}</span> <i class="collapse-arrow-small"></i>
+                </button>
+                <ul class="dropdown-menu privacy-dropdown" role="menu" aria-labelledby="name-privacy">
+                  <li><label><span>Public</span><input class="hide" ng-model="permission.favoriteBy" name="favorited-users" value="public" type="radio"></label></li>
+                  <li><label><span>Private</span><input class="hide" ng-model="permission.favoriteBy" name="favorited-users" value="private" type="radio"></label></li>
+                </ul>
+              </div>
+              <span class="account-input-label right"><i class="mid-dots">·</i>Favorited By: <strong>{{userState.favorite_by}}</strong></span>
+            </fieldset>
+          </div>
+
+<!--         <div class="col-md-12">
+            <fieldset class="row privacy-switch-edit">
+              <div class="dummy-div">
+                <span class="account-input-label">Social:</span>
+              </div>
+
+              <div class="socials-profile">
+                <div class="social-input" ng-repeat="net in MainSocialNet">
+                  <input placeholder="{{net.name}}.com/" ng-model="net.link">
+                  <button class="remove-social" type="button" ng-click="removeSocialNet(net)">×</button>
+                </div>
+
+                <button class="add-more-social" type="button" ng-click="addSocialNet()" ng-if="!showAddSocialNet"> + ADD MORE</button>
+                <div class="add-social-profile" ng-show="showAddSocialNet">
+                  <div class="select-social">
+                    <span class="select-value">{{social_Placeholder}}</span><span class="network-arrow"></span>
+                    <div class="options-wrapper">
+                      <button type="button"  ng-repeat="other in otherSocialNet" ng-click="chooseNet(other)">{{other.name}}</button>
+                    </div>
+                  </div>
+
+                  <button class="add-network" type="button" ng-click="addNewLink()"><i class="add-icon"></i><span>Add</span></button>
+                  <input type="text" class="add-link-type" placeholder="Type to add link" ng-model="newLink">
+                </div>
+              </div>
+            </fieldset>
+          </div>
+-->
+        </div>
+
+        <div class="default-view" ng-show="!editableProfile">
+          <div class="col-md-7 ">
+            <div class="clearfix"></div>
+            <div class="access-col">
+              <div class="pub-priv">
+                <p ng-if="userInfo.firstname"><span class="privacy-switch {{permission.firstname}}">{{permission.firstname}}</span></p>
+                <p ng-if="userInfo.lastname"><span class="privacy-switch {{permission.lastname}}">{{permission.lastname}}</span></p>
+                <p ng-if="userInfo.email"><span class="privacy-switch {{permission.email}}">{{permission.email}}</span></p>
+                <p ng-if="userInfo.profession"><span class="privacy-switch {{permission.profession}}">{{permission.profession}}</span></p>
+                <p ng-if="userInfo.phone"><span class="privacy-switch {{permission.phone}}">{{permission.phone}}</span></p>
+                <p ng-if="birthdayLabel"><span class="privacy-switch {{permission.birthdate}}">{{permission.birthdate}}</span></p>
+                <p ng-if="userInfo.website"><span class="privacy-switch {{permission.website}}">{{permission.website}}</span></p>
+              </div>
+              <div class="answers-pub-priv">
+                <p ng-if="userInfo.firstname">
+                  <i class="mid-dots">·</i>
+                  <label>Name:</label> <span>{{userInfo.firstname}}</span>
+                </p>
+                <p ng-if="userInfo.lastname">
+                  <i class="mid-dots">·</i>
+                  <label>Last Name:</label> <span>{{userInfo.lastname}}</span>
+                </p>
+                <p ng-if="userInfo.email">
+                  <i class="mid-dots">·</i>
+                  <label>Email:</label> <span>{{userInfo.email}}</span>
+                </p>
+                <p ng-if="userInfo.profession">
+                  <i class="mid-dots">·</i>
+                  <label>Profession:</label> <span>{{userInfo.profession}}</span>
+                </p>
+                <p ng-if="userInfo.phone">
+                  <i class="mid-dots">·</i>
+                  <label>Phone:</label> <span>{{userInfo.phone}}</span>
+                </p>
+                <p ng-if="birthdayLabel">
+                  <i class="mid-dots">·</i>
+                  <label>Birthday:</label> <span>{{birthdayLabel}}</span>
+                </p>
+                <p ng-if="userInfo.website">
+                  <i class="mid-dots">·</i>
+                  <label>Website:</label> <span>{{userInfo.website}}</span>
+                </p>
+<!--                <p>
+                  <div class="row social-icons">
+                    <span class="privacy-switch public"></span>
+                    <label>Social:</label>
+                      <span class="social-icons-profile">
+                        <a href={{userInfo.social.facebook}} target="_blank" class="social-my-account"><i class="social-facebook_icon"></i></a>
+                        <a href={{userInfo.social.twitter}} target="_blank" class="social-my-account"><i class="social-twitter_icon"></i></a>
+                        <a href={{userInfo.social.google}} target="_blank" class="social-my-account"><i class="social-google_icon"></i></a>
+                        <a href={{userInfo.social.tumblr}} target="_blank" class="social-my-account"><i class="social-tumblr_icon"></i></a>
+                        <a href={{userInfo.social.linkedin}} target="_blank" class="social-my-account"><i class="social-linkedin_icon"></i></a>
+                        <a href={{userInfo.social.pinterest}} target="_blank" class="social-my-account"><i class="social-pinterest_icon"></i></a>
+                      </span>
+                  </div>
+                </p>
+-->
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-5 relative access-col">
+            <div class="pub-priv">
+              <p><span class="privacy-switch {{permission.numOfStories}}">{{permission.numOfStories}}</span></p>
+              <p><span class="privacy-switch {{permission.numOfPictures}}">{{permission.numOfPictures}}</span></p>
+              <p><span class="privacy-switch {{permission.numOfVideos}}">{{permission.numOfVideos}}</span></p>
+              <p><span class="privacy-switch {{permission.numOfFavoriteUsers}}">{{permission.numOfFavoriteUsers}}</span></p>
+              <p><span class="privacy-switch {{permission.favoriteBy}}">{{permission.favoriteBy}}</span></p>
+            </div>
+            <div class="answers-pub-priv">
+              <p ng-if="userState.stories >= 0">
+                <i class="mid-dots">·</i>
+                <label>No. of Stories: </label> <span>{{userState.stories}}</span>
+              </p>
+              <p ng-if="userState.photos >= 0">
+                <i class="mid-dots">·</i>
+                <label> No. of Pictures: </label> <span>{{userState.photos}}</span>
+              </p>
+              <p ng-if="userState.videos >= 0">
+                <i class="mid-dots">·</i>
+                <label>  No. of Videos:  </label> <span>{{userState.videos}}</span>
+              </p>
+              <p ng-if="userState.favorite_users >= 0">
+                <i class="mid-dots">·</i>
+                <label>  Favorite Users:  </label> <span>{{userState.favorite_users}}</span>
+              </p>
+              <p ng-if="userState.favorite_by >= 0">
+                <i class="mid-dots">·</i>
+                <label>  Favorited By:  </label> <span>{{userState.favorite_by}}</span>
+              </p>
+            </div>
+
+            <div class="fake-depth"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+<!-- MY ACCOUNT PAGE - BILLING SECTION COMMENTING OUT FOR NOW FOR SOFT LAUNCH UNTIL PAYMENT BACKEND IS READY
+    <div class="profile_section billing-wrap">
+      <div class="row quick-plan-info">
+        <h4 class="col-md-4 my-account-header">
+          <i class="my-account-cogwheel-icon"></i><i class="mid-dots">· · ·</i>
+          <span><strong>My Plan:</strong> Free</span>
+        </h4>
+
+
+        <div class="col-md-4">
+          <div class="progress edit-profile-completed">
+            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+          </div>
+        </div>
+
+        <div class="col-md-4 available-space"><strong>1.5GB</strong> of 5GB is free</div>
+      </div>
+      <div class="row pricing-section">
+        <div class="price-plan low-plan">
+          <h3>Buy <span>1GB</span> of space</h3>
+          <button class="story-blue-btn ">Buy for $0.99</button>
+        </div>
+        <div class="price-plan mid-plan">
+          <h3>Buy <span>4GB</span> of space</h3>
+          <button class="story-blue-btn">Buy for $4.44</button>
+        </div>
+        <div class="price-plan high-plan">
+          <h3>Buy <span>40GB</span> of space</h3>
+          <button class="story-blue-btn">Buy for $17.44</button>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="gray-italic-font">Only the media files you upload will be allocated towards this space. Text is Free.</p>
+
+-->
+    <div class="profile_section notifications-section">
+      <h4 class="row my-account-header">
+        <i class="my-account-notification-icon"></i><i class="mid-dots">· · ·</i>
+        <strong> Notifications</strong>
+      </h4>
+
+      <div class="row notification-setting">
+        <span class="col-md-9">Email me when someone adds me as a contact:</span>
+
+        <div class="col-md-3 radioContainer">
+          <label class="st-radio fl" for="email_share_yes">
+            <i class="checkbox-icon"></i> <span>Yes</span>
+            <input class="hide" type="radio" name="email_on_share" id="email_share_yes" value="yes">
+          </label>
+
+          <label class="st-radio fr" for="email_share_no">
+            <i class="checkbox-icon"></i> <span>No</span>
+            <input class="hide" type="radio" name="email_on_share" id="email_share_no" value="no">
+          </label>
+        </div>
+      </div>
+      <div class="row notification-setting">
+        <span class="col-md-9">Email me when someone shares a story, photo or a video with me:</span>
+        <div class="col-md-3 radioContainer">
+          <label class="st-radio fl" for="email_star_yes">
+            <i class="checkbox-icon"></i> <span>Yes</span>
+            <input class="hide" type="radio" name="email_on_star" id="email_star_yes" value="yes">
+          </label>
+
+          <label class="st-radio fr" for="email_star_no">
+            <i class="checkbox-icon"></i> <span>No</span>
+            <input class="hide" type="radio" name="email_on_star" id="email_star_no" value="no">
+          </label>
+        </div>
+      </div>
+      <div class="row notification-setting">
+        <span class="col-md-9">Email me when someone adds me to favorites:</span>
+        <div class="col-md-3 radioContainer">
+          <label class="st-radio fl" for="email_video_yes">
+            <i class="checkbox-icon"></i> <span>Yes</span>
+            <input class="hide" type="radio" name="email_share_photo" id="email_video_yes" value="yes">
+          </label>
+
+          <label class="st-radio fr" for="email_video_no">
+            <i class="checkbox-icon"></i> <span>No</span>
+            <input class="hide" type="radio" name="email_share_photo" id="email_video_no" value="no">
+          </label>
+        </div>
+      </div>
+      <div class="row notification-setting">
+        <span class="col-md-9">Email me when someone adds my photo or a video to favorites</span>
+        <div class="col-md-3 radioContainer">
+          <label class="st-radio fl" for="email_photo_yes">
+            <i class="checkbox-icon"></i> <span>Yes</span>
+            <input class="hide" type="radio" name="email_add_photo" id="email_photo_yes" value="yes">
+          </label>
+
+          <label class="st-radio fr" for="email_photo_no">
+            <i class="checkbox-icon"></i> <span>No</span>
+            <input class="hide" type="radio" name="email_add_photo" id="email_photo_no" value="no">
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row permanently-delet-acc">
+      <div class="col-md-12">
+        <a data-target="#delete-account-options" data-toggle="collapse">Permanently delete your entire account forever?</a>
+
+        <div id="delete-account-options" class="collapse fly-out-menu">
+
+          <div class="del-acc-header">
+            <button type="button" ng-click="close_del_modal($event)" data-toggle="collapse" class="delete-acc-close fr" aria-hidden="true">×</button>
+            <div class="modal-title">Delete Account?</div>
+          </div>
+          <div class="text-holder">
+            <p>Deleting your member account (username) will be permanent.
+
+            <p>You will lose access to your stories, pictures and videos.</p>
+
+            <p>Would you like us to send an email to <a href="mailto:user@email.com">user@email.com</a> that contains a link that you can use to delete your account?</p>
+          </div>
+          <div class="buttons-footer">
+            <button class="btn-story-that-light" type="button">Send the Email</button>
+            <button class="btn-story-that-light" type="button" ng-click="close_del_modal($event)" data-toggle="collapse">Never Mind</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="confirm_modal">
+</div>

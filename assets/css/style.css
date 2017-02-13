@@ -1,0 +1,71 @@
+/* Left Sidebar Calendar
+----------------------------------------------------------------------------------------------------------------------*/
+.left-navigation .datepicker {
+    font-size: 14px;
+    font-family: 'bree_rgregular';
+    padding: 4px;
+    border-radius: 0px;
+
+}
+.left-navigation .datepicker-inline {
+    width: 100%;
+}
+.left-navigation .datepicker table tr td, .datepicker table tr th {
+    text-align: center;
+    width: 35px;
+    height: 32px;
+    border-radius: 0px;
+}
+.left-navigation .datepicker th.dow {
+    height: 20px;
+    background: url("../sprites/calendar-line-days.png") no-repeat left bottom;
+}
+.left-navigation .datepicker th.dow:first-of-type {
+    background: none;
+}
+.left-navigation table tbody tr {
+    /*border-top:1px solid #e5e5e5;*/
+}
+.left-navigation table tbody td {
+    /*border-right:1px solid #fdfdfd;*/
+    border-right:1px solid #e5e5e5;
+    border-top:1px solid #e5e5e5;
+    /*outline: 1px solid #e5e5e5;*/
+    color: #8c8c8c;
+}
+.left-navigation table tbody tr td:last-of-type {
+    border-right: none;
+}
+.left-navigation table thead th {
+    font-family: 'bree_ltlight';
+    color: #d1d1d1;
+    font-weight: normal;
+}
+.left-navigation table thead tr:first-of-type th {
+    color: #4a4a49;
+    font-family: 'bree_rgregular';
+    font-size: 16px;
+}
+.left-navigation .datepicker table tr td.new,
+.left-navigation .datepicker table tr td.old {
+    color: #d1d1d1;
+    font-weight: normal;
+}
+.left-navigation .datepicker .today {
+    border-radius: 0px!important;
+    background: #85c2de; /* Old browsers */
+    color: #1e4f7e;
+    box-shadow: 0px 4px 8px 2px #286f94 inset;
+    border-color: #e5e5e5;
+}
+/* Icons
+----------------------------------------------------------------------------------------------------------------------*/
+.story-icon {
+    float: left;
+}
+
+
+
+
+
+

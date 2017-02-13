@@ -1,0 +1,61 @@
+<div tabindex="-1" id="add-note-3" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close-modal" ng-click="$ctrl.CloseModal($event)">×</button>
+            <div class="modal-title"><i class="my-journal-add-note"></i> Add Note</div>
+            <!--<div class="note-short-descr">{{$ctrl.note_string}}</div>-->
+        </div><!--modal-header -->
+        <div class="modal-body" dw-loading="saving-note">
+            <form role="form" class="final-note-detail">
+                <fieldset class="form-group">
+                    <textarea class="std-textarea" name="description" placeholder="Enter Note Text" ng-model="$ctrl.note_string"></textarea>
+                </fieldset>
+                <fieldset class="form-group privateNote cf">
+                    <div class="lock-wrap"><i class="faded-lock"></i></div>
+                    <label for="privacyCheck" class="st-checkbox privacy-label" ng-class="{'checked':$ctrl.private_flag}" ng-click="$ctrl.CheckClick($event)">
+                        <span class="privacy-descr"><span class="action-name">Hide this note from the story/photo/video.</span>
+                        <span class="action-description">Notes hidden from the content is visible to you and the recepient/s in the notes area.</span>
+                        </span>
+                        <i class="checkbox-icon"></i>
+                        <input class="fr hide" type="checkbox" name="privacycheck" id="privacyCheck">
+                    </label>
+
+                </fieldset> <!-- form-group privateNote cf -->
+
+                <fieldset class="form-group added-note-media">
+                    <hr class="dashed-line">
+                   
+                    <div class="notes-photo-wrap">
+                        <!--<div class="note-photo-container">
+                            <button type="button" class="remove-note-media">×</button>
+                            <div class="added-photo "><img height="100" src="./allModals_files/gallery_sample(1).png"></div>
+                        </div>
+                        <div class="note-photo-container">
+                            <button class="remove-note-media" type="button">×</button>
+                            <div class="added-photo"><img height="100" src="./allModals_files/gallery_sample(1).png"></div>
+                        </div>
+                        <div class="note-photo-container">
+                            <button class="remove-note-media" type="button">×</button>
+                            <div class="added-photo "><img height="100" src="./allModals_files/gallery_sample(1).png"></div>
+                        </div>
+                        <div class="note-photo-container">
+                            <button class="remove-note-media" type="button">×</button>
+                            <div class="added-photo cf"><img height="100" src="./allModals_files/gallery_sample(1).png"></div>
+                        </div>-->
+                    </div><!-- notes-photo-wrap -->
+                </fieldset>
+                <fieldset class="form-group add-media-btn-fix">
+                    <button class="story-action-btn" ng-click="$ctrl.AddMore($event)">
+                        <span class="icon-part"><i class="camera-icon"></i></span>
+                        <span class="descr-part">Add more photos/videos</span>
+                    </button>
+                </fieldset>
+            </form><!-- final-note-detail -->
+        </div><!-- modal-body -->
+        <div class="modal-footer">
+            <button class="btn-story-that-small-light fl" ng-click="$ctrl.BackButton($event)" id="media-prev">Cancel</button>
+             <span>You've added {{$ctrl.media_count}} photos/videos</span>
+            <button class="btn-story-that-small-light fr" id="media-next" ng-click="$ctrl.PostNote($event)">Save</button>
+        </div><!-- modal-footer -->
+    </div><!-- modal-content -->
+</div><!-- add note 3 -->

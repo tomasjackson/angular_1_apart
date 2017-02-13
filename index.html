@@ -1,0 +1,244 @@
+<!doctype html>
+<html ng-app="frontendApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <title ng-bind="main.service.pageTitle + ' &ndash; StoryThat'">StoryThat</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/jquery-ui-bootstrap/jquery.ui.theme.css" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/ng-marviluz/ng-marviluz.css" />
+    <link rel="stylesheet" href="bower_components/ng-img-crop/compile/minified/ng-img-crop.css" />
+    <link rel="stylesheet" href="bower_components/angular-material-datetimepicker/css/material-datetimepicker.min.css" />
+    <link rel="stylesheet" href="bower_components/jquery-timepicker-jt/jquery.timepicker.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/icons.css">
+    <link rel="stylesheet" href="styles/datepicker3.css">
+    <link rel="stylesheet" href="styles/jquery.tagsinput.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/angular-loading.css">
+    <link rel="stylesheet" href="styles/supersized.css">
+    <link rel="stylesheet" href="styles/supersized.shutter.css">
+    <!-- endbuild -->
+    <link href="assets/css/awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <div id="supersized-container">
+    <!--Thumbnail Navigation-->
+    <div id="prevthumb"></div>
+    <div id="nextthumb"></div>
+
+
+    <!-- thumbnail and arrow naviagion (should be uncommented when there is more then 1 image) -->
+
+    <!--Arrow Navigation-->
+    <a id="prevslide" class="load-item"></a>
+    <a id="nextslide" class="load-item"></a>
+      <a id="close-fullscreen"><i class="fa fa-compress"></i></a>
+      <div id="thumb-tray" class="load-item hidden">
+      <div id="thumb-back"></div>
+      <div id="thumb-forward"></div>
+    </div>
+
+    <!--Control Bar-->
+    <div id="controls-wrapper" class="load-item">
+      <div id="controls">
+
+
+        <!--Slide counter-->
+        <div id="slidecounter">
+          <span class="slidenumber">1</span> / <span class="totalslides">1</span>
+          <a href="#">Photo Title</a> by
+          <a href="#">Username</a>
+        </div>
+        <!--Slide captions displayed here-->
+        <div id="slidecaption"></div>
+
+        <!--Thumb Tray button-->
+        <a id="tray-button" class="active"><img id="tray-arrow" src="assets/img/button-tray-up.png"/></a>
+      </div>
+    </div>
+  </div><!-- supersized -->
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+
+  <div ui-view="" id ="body-container"></div>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+<!--     <script src="files/jquery_003.js"></script>
+
+    <script src="files/jquery_004.js"></script>
+ -->    <script src="files/general_utilities.js"></script>
+    <script src="files/nprogress.js"></script>
+<!--     <script src="files/jquery.easing.min.js"></script>
+ --><!--     <script src="files/supersized.3.2.7.js"></script>
+ -->    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="files/moment.js"></script>
+    <script src="files/bootstrap.js"></script>
+    <script src="files/holder.js"></script>
+
+    <script src="files/router.js"></script>
+    <script src="files/routing.js"></script>
+<!--     <script type="text/javascript" src="files/bootstrap-datepicker.js"></script> -->
+    <script type="text/javascript" src="files/date.js"></script>
+
+    <script type="text/javascript" src="files/viewing_permission.js"></script>
+    <script type="text/javascript" src="files/share_content.js"></script>
+    <script type="text/javascript" src="files/crop_image.js"></script>
+
+    <script type="text/javascript" src="files/mustache.js"></script>
+    <script type="text/javascript" src="files/calendarClass.js"></script>
+    <script type="text/javascript" src="files/calendar.js"></script>
+    <script type="text/javascript" src="files/jcarousel.js"></script>
+
+    <script type="text/javascript" src="files/helpers.js"></script>
+    <script type="text/javascript" src="files/search-functions.js"></script>
+    <script type="text/javascript" src="files/search-actions.js"></script>
+
+    <script type="text/javascript" src="files/functions.js"></script>
+
+    <script type="text/javascript" src="files/plupload.js"></script>
+    <script type="text/javascript" src="files/wmds.js"></script>
+
+<!--     <script type="text/javascript" src="files/jquery.tagsinput.js"></script> -->
+<!--     <script type="text/javascript" src="files/bday-picker.js"></script> -->
+    <script type="text/javascript" src="files/scripts.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="files/custom.js"></script>
+
+    <script src="https://apis.google.com/js/platform.js?onload=onLoadGoogleInit" async defer></script>
+    <script src="files/fb_google_init.js"></script>
+    <script type="text/javascript" src="assets/js/dom-man.js"></script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/ng.datepicker-ui/dist/ngDatepicker.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/ng-marviluz/ng-marviluz.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
+    <script src="bower_components/angular-base64/angular-base64.js"></script>
+    <script src="bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
+    <script src="bower_components/angular-material-datetimepicker/js/angular-material-datetimepicker.min.js"></script>
+    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/jquery-timepicker-jt/jquery.timepicker.js"></script>
+    <script src="bower_components/angular-jquery-timepicker/src/timepickerdirective.js"></script>
+    <script src="bower_components/spin.js/spin.js"></script>
+    <script src="bower_components/angular-loading/angular-loading.js"></script>
+    <script src="bower_components/angulargrid/angulargrid.js"></script>
+    <script src="bower_components/ng-infinite-scroll-npm-is-better-than-bower/build/ng-infinite-scroll.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/main.controller.js"></script>
+        <script src="scripts/controllers/myJournal.js"></script>
+        <script src="scripts/controllers/my_gallery.controller_add.js"></script>
+        <script src="scripts/controllers/my_gallery.controller.js"></script>
+
+        <script src="scripts/directives/modals.js"></script>
+        <script src="scripts/services/main.service.js"></script>
+        <script src="scripts/services/sendAPI.service.js"></script>
+        <script src="scripts/services/authentication.service.js"></script>
+        <script src="scripts/services/storymanage.service.js"></script>
+        <script src="scripts/services/mediaStory.service.js"></script>
+        <script src="scripts/services/media.service.js"></script>
+        <script src="scripts/services/user.service.js"></script>
+        <script src="scripts/services/mediadetail.service.js"></script>
+        <script src="scripts/services/developer.service.js"></script>
+        <script src="scripts/services/notification.service.js"></script>
+
+        <script src="scripts/controllers/modals/login-modal.js"></script>
+        <script src="scripts/controllers/modals/createnewstory-modal.js"></script>
+        <script src="scripts/controllers/modals/createdstory-modal.js"></script>
+        <script src="scripts/controllers/modals/upload-media.controller.js"></script>
+        <script src="scripts/controllers/modals/photo-modal.controller.js"></script>
+        <script src="scripts/controllers/modals/editstory-modal-controller.js"></script>
+        <script src="scripts/controllers/user.controller.js"></script>
+        <script src="scripts/controllers/modals/editstory-journal-modal.controller.js"></script>
+        <script src="scripts/controllers/single_story.controller.js"></script>
+        <script src="scripts/controllers/modals/imagefromfb-modal.controller.js"></script>
+        <script src="scripts/controllers/modals/imagefromgallery-modal.controller.js"></script>
+        <script src="scripts/controllers/modals/imagefromdevice-modal.controller.js"></script>
+        <script src="scripts/controllers/modals/single-storypage/imagefromfb-modal.controller.js"></script>
+        <script src="scripts/controllers/modals/single-storypage/imagefromgallery-modal.controller.js"></script>
+        <script src="scripts/controllers/modals/single-storypage/imagefromdevice-modal.controller.js"></script>
+
+        <script src="scripts/controllers/modals/media/cropimagecontroller.js"></script>
+        <script src="scripts/controllers/modals/media/editmediacontroller.js"></script>
+        <script src="scripts/controllers/modals/media/photo-modal.controller.js"></script>
+
+        <script src="scripts/controllers/modals/manage_privacy.controller.js"></script>
+        <script src="scripts/controllers/searchresult.controller.js"></script>
+        <script src="scripts/controllers/navbar.controller.js"></script>
+        <script src="scripts/controllers/otheruser.controller.js"></script>
+        <script src="scripts/controllers/modals/addmedia-modal.controller.js"></script>
+        <script src="scripts/controllers/modals/connectUser-confirm-modal.controller.js"></script>
+        <script src="scripts/controllers/modals/newGroup-modal.controller.js"></script>
+        <script src="scripts/controllers/modals/editGroup-modal.controller.js"></script>
+        <script src="scripts/controllers/usergroup.controller.js"></script>
+        <script src="scripts/controllers/shared_stories.controller.js"></script>
+        <script src="scripts/controllers/modals/sharestory-modal.controller.js"></script>
+        <script src="scripts/controllers/modals/sharemedia-modal.controller.js"></script>
+        <script src="scripts/controllers/header_calendar.controller.js"></script>
+
+        <script src="scripts/controllers/modals/note-for-story/addnotes-modal.controller.js"></script>
+        <script src="scripts/controllers/modals/note-for-story/replynotes-modal.controller.js"></script>
+        <script src="scripts/controllers/modals/note-for-story/addmedia-for-note-modal.controller.js"></script>
+        <script src="scripts/controllers/modals/note-for-story/device.controller.js"></script>
+        <script src="scripts/controllers/modals/note-for-story/gallery.controller.js"></script>
+        <script src="scripts/controllers/modals/note-for-story/facebook.controller.js"></script>
+        <script src="scripts/controllers/modals/note-for-story/addnotes-last-modal.controller.js"></script>
+        <script src="scripts/controllers/my_notes.controller.js"></script>
+        <script src="scripts/controllers/notifications.controller.js"></script>
+        <script src="scripts/controllers/modals/confirm-popup-modal.controller.js"></script>
+        <!-- endbuild -->
+
+
+    <script src="files/jquery_003.js"></script>
+    <script src="files/jquery_004.js"></script>
+    <script src="files/jquery.easing.min.js"></script>
+    <script src="files/supersized.3.2.7.js"></script>
+
+    <script type="text/javascript" src="files/scripts.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="files/bootstrap-datepicker.js"></script><!-- For Bootstrap DatePicker on leftside bar -->
+</body>
+</html>

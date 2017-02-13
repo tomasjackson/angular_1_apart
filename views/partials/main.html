@@ -1,0 +1,32 @@
+<div ui-view="navbar"></div>
+<div ui-view="headerCalendar" ng-if="calendar_show"></div>
+
+<div class="content-wrapper">
+    <div class="container">
+        <div class="content row">
+            <div class="col-md-3 sidebar" id="sidebar">
+                <div class="left-navigation">
+                    <h4 ng-class="{'active-coll': open_calendar}">
+                        <a ng-click="today()"><i class="fa fa-calendar-o"></i>&nbsp; &nbsp; {{short_today.weekday}}, {{short_today.month}} {{short_today.day}}, {{short_today.year}} &nbsp;</a>
+
+                        <i class="fa fa-angle-down " ng-click="$ctrl.OnCollapseCalendar($event)"></i>
+                    </h4>
+                    <div class="calendar-nav-left ">
+                      <div ng-click="$ctrl.CalendarClick($event)" uib-datepicker ng-model="calendar" class="well well-sm main-calendar" datepicker-options="options"></div>
+                      <div class="calendar-gradient-bottom"></div>
+                    </div>
+                    <ul class="left-nav-menu">
+                        <li><a ui-sref="mainPage.myJournal" ui-sref-active="selected"><i class="fa fa-book" aria-hidden="true"></i>My Journal </a></li>
+                        <li><a ui-sref="mainPage.sharedStories" ui-sref-active="selected"><i class="fa fa-files-o" aria-hidden="true"></i> Shared Stories</a></li>
+                        <li><a ui-sref="mainPage.myGallery" ui-sref-active="selected"><i class="fa fa-picture-o" aria-hidden="true"></i> Gallery</a></li>
+                        <li><a ui-sref="mainPage.myNotes" ui-sref-active="selected"><i class="fa fa-comment-o" aria-hidden="true"></i>Notes</a></li>
+                        <li><a ui-sref="mainPage.allNotifications" ui-sref-active="selected"><i class="fa fa-bell-o" aria-hidden="true"></i>Notifications</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 main-content" id="content" ui-view="mainContent"></div><!-- content -->
+        </div>
+    </div><!-- container -->
+</div> <!-- content-wrapper -->
+
+<div ui-view="bootstrapWidgets"></div>

@@ -1,0 +1,95 @@
+<div class="modal-contacts group-modal" id="create-group" role="dialog" aria-hidden="true">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close-modal" ng-click="$ctrl.closeModal()"data-dismiss="modal" aria-hidden="true">×</button>
+      <div class="modal-title">
+        <i class="my-contacts-groups-icon"></i>
+        <span>Create Group</span>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="validation-wrap">
+        <p class="error-message" ng-if="$ctrl.ErrorMessage">{{$ctrl.ErrorMessage}} </p>
+        <p class="success-message" ng-if="$ctrl.SuccessMessage">{{$ctrl.SuccessMessage}} </p>
+      </div>
+      <form role="form">
+        <label for="add_name">Enter the name of your group:</label>
+        <input id="add_name" type="text" name="group_name" placeholder="Group Name" ng-model="$ctrl.newGroupName" class="std-input">
+
+        <div class="tagsinput">
+          <span class="tag tag_group" ng-repeat="friend in $ctrl.selectedFriends">
+            {{friend.username}}
+            <button class="small-close-button remove_tag" ng-click="$ctrl.selectedFriend(friend)">×</button>
+          </span>
+        </div>
+
+        <div class="checkbox-container">
+          <label class="st-checkbox" ng-class="{'checked': $ctrl.showExistingGroup}" ng-click="$ctrl.selectExistingGroupOption(true)">
+            <span>Add users from existing groups</span>
+            <i class="checkbox-icon"></i>
+          </label>
+        </div>
+
+        <div class="checkbox-container set-right">
+          <label class="st-checkbox" ng-class="{'checked': !$ctrl.showExistingGroup}" ng-click="$ctrl.selectExistingGroupOption(false)">
+            <span>Search users on StoryThat</span>
+            <i class="checkbox-icon"></i>
+          </label>
+        </div>
+
+        <div class="create-group-storyThat-view" ng-if="!$ctrl.showExistingGroup">
+          <input type="text" ng-model="$ctrl.searchUser" ng-keydown="$ctrl.SearchKeydown($event)" placeholder="Search users" class="std-input">
+
+          <div ng-repeat="friend in $ctrl.searchedFriends">
+            <div class="contact-hoverable my-contacts-filter" ng-class="{'active': friend.selected}">
+              <div class="contact-avatar" ng-click="$ctrl.selectedFriend(friend)">
+                <img class="img-circle" ng-src={{friend.avatar}} width="100%" height="100%">
+              </div>
+              <div class="contactInfo">
+                <h2>{{friend.username}}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="create-group-existing-users-view" ng-if="$ctrl.showExistingGroup">
+          <div class="dashed-line"></div>
+          <div class="group-select-permissions row">
+            <div class="col-xs-4 group-select">
+              <div ng-repeat="item in $ctrl.allGroup">
+                <div class="col-xs-10 group" ng-class="{'active': $ctrl.selectedGroup === item}" ng-click="$ctrl.selectGroup(item)">
+                  <input class="hide" type="checkbox">
+                  {{item.group.name}}
+                </div>
+                <i class="small-sprite-unchecked my-contacts-filter-checkbox"
+                   ng-class="{'active': item.selectAll}" ng-click="$ctrl.selectAllFriends(item)"></i>
+              </div>
+            </div>
+
+            <div class="col-xs-8 most-contacted">
+              <div ng-repeat="friend in $ctrl.friends">
+                <div class="contact-hoverable my-contacts-filter" ng-class="{'active': friend.selected}">
+                  <div class="contact-avatar" ng-click="$ctrl.selectedFriend(friend)">
+                    <img class="img-circle" ng-src={{friend.avatar}} width="100%" height="100%">
+                  </div>
+                  <div class="contactInfo">
+                    <h2>{{friend.username}}</h2>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bottom-overlay"></div>
+            </div><!-- column-xs-8 most-contacted-->
+            <div class="clear"></div>
+          </div>
+          <!-- all groups -->
+        </div>
+      </form>
+    </div><!-- modal-body -->
+
+    <div class="modal-footer">
+      <span class="view-count">{{$ctrl.selectedFriends.length}} users in this group</span>
+      <button id="save-group" class="story-blue-btn fr" ng-click="$ctrl.createNewGroup()">Save</button>
+    </div>
+  </div><!-- modal-content -->
+</div><!-- create-group modal -->

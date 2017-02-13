@@ -1,0 +1,195 @@
+.add-note-icon, .bell-grey-icon, .bell-icon, .blue-camera-icon, .check-blue-icon, .check-grey-icon, .check-none-icon, .clock-icon, .close-icon, .close-small-icon, .delete-icon, .dots-blue-icon, .dots-grey-icon, .down-arrow-icon, .edit-icon, .expand-icon, .flat-star-icon, .group-icon, .left-arrow-icon, .location, .pen-icon, .private-icon, .reply-icon, .right-arrow-icon, .search-icon, .semi-ribon-icon, .small-clock-icon, .small-location-icon, .star-icon, .three-dots-icon, .wheel-icon{
+    background: url(../../sprites/sprites-3.png) no-repeat;
+}
+
+.add-note-icon{
+    background-position: -54px -208px ;
+    width: 22px;
+    height: 22px;
+}
+
+.bell-grey-icon{
+    background-position: -1px -1px ;
+    width: 27px;
+    height: 33px;
+}
+
+.bell-icon{
+    background-position: -2px -55px ;
+    width: 25px;
+    height: 28px;
+}
+
+.blue-camera-icon{
+    background-position: 0 -207px ;
+    width: 27px;
+    height: 24px;
+}
+
+.check-none-icon{
+    background-position: -253px -205px ;
+    width: 24px;
+    height: 26px;
+}
+
+.check-grey-icon{
+    background-position: -306px -201px ;
+    width: 24px;
+    height: 26px;
+}
+.check-blue-icon {
+    background-position: -3px -155px ;
+    width: 26px;
+    height: 29px;
+}
+.clock-icon{
+    background-position: -105px -211px ;
+    width: 18px;
+    height: 18px;
+}
+
+.close-icon{
+    background-position: -91px -96px ;
+    width: 45px;
+    height: 43px;
+}
+
+.close-small-icon{
+    background-position: -153px -206px ;
+    width: 25px;
+    height: 24px;
+}
+
+.delete-icon{
+    background-position: -12px -113px ;
+    width: 12px;
+    height: 15px;
+}
+
+.dots-blue-icon{
+    background-position: -44px -164px ;
+    width: 37px;
+    height: 9px;
+}
+
+.dots-grey-icon{
+    background-position: -94px -165px ;
+    width: 38px;
+    height: 12px;
+}
+
+.down-arrow-icon{
+    background-position: -208px -208px ;
+    width: 14px;
+    height: 16px;
+}
+
+.edit-icon{
+    background-position: -307px -158px ;
+    width: 17px;
+    height: 15px;
+}
+
+.expand-icon{
+    background-position: -293px -48px ;
+    width: 44px;
+    height: 44px;
+}
+
+.flat-star-icon{
+    background-position: -246px -103px ;
+    width: 32px;
+    height: 33px;
+}
+
+.group-icon{
+    background-position: -250px -53px ;
+    width: 29px;
+    height: 29px;
+}
+
+.left-arrow-icon{
+    background-position: -194px -41px ;
+    width: 38px;
+    height: 56px;
+}
+
+.location{
+    background-position: -256px -155px ;
+    width: 14px;
+    height: 18px;
+}
+
+.pen-icon{
+    background-position: -196px 0;
+    width: 38px;
+    height: 42px;
+}
+
+a.pen-icon {
+    width: 38px;
+    height: 42px;
+}
+
+.private-icon{
+    background-position: -208px -160px ;
+    width: 14px;
+    height: 17px;
+}
+
+.reply-icon{
+    background-position: -150px -103px ;
+    width: 25px;
+    height: 30px;
+}
+
+.right-arrow-icon{
+    background-position: -149px -43px ;
+    width: 39px;
+    height: 56px;
+}
+
+.search-icon{
+    background-position: -255px -8px ;
+    width: 20px;
+    height: 20px;
+}
+
+.semi-ribon-icon{
+    background-position: -66px -6px ;
+    width: 104px;
+    height: 29px;
+}
+
+.small-clock-icon{
+    background-position: -306px -107px ;
+    width: 18px;
+    height: 18px;
+}
+
+.small-location-icon{
+    background-position: -53px -107px ;
+    width: 16px;
+    height: 19px;
+}
+
+.star-icon{
+    background-position: -57px -61px ;
+    width: 14px;
+    height: 14px;
+}
+
+.three-dots-icon{
+    background-position: -154px -169px ;
+    width: 20px;
+    height: 5px;
+    margin-top: 16px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.wheel-icon{
+    background-position: -99px -54px ;
+    width: 29px;
+    height: 28px;
+}

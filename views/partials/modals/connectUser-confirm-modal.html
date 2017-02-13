@@ -1,0 +1,71 @@
+<div class="modal-contacts" id="modal-add-contact" role="dialog" aria-hidden="true">
+  <div class="modal-content" ng-if="$ctrl.category === 'addContact'">
+    <div class="modal-body">
+      <div type="button" class="modal-close" data-dismiss="modal" ng-click="$ctrl.closeModal()" aria-hidden="true">×</div>
+      You just sent a new contact request<br>
+      If <b class="modal-username">{{$ctrl.user.username}}</b> accepts your request, then you will be able to<br>
+      exchange stories, photos and videos.
+    </div>
+    <div class="modal-footer">
+      <button class="create-story-dropdown modal-button" type="button" ng-click="$ctrl.closeModal()" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+
+  <div class="modal-content" ng-if="$ctrl.category === 'removeContact'">
+    <div class="modal-body">
+      <span class="modal-username hide">{{$ctrl.user.username}}</span>
+      If you remove this user from your contacts,<br>
+      then you will not be able to exchange stories, photos or videos.<br>
+      Are you sure you want to remove?
+    </div>
+    <div class="modal-footer">
+      <button class="create-story-dropdown modal-button" type="button" ng-click="$ctrl.closeModal()" data-dismiss="modal">No</button>
+      <button class="create-story-dropdown modal-button modal-yes" type="button" ng-click="$ctrl.removeContact()" data-dismiss="modal">Yes</button>
+    </div>
+  </div>
+
+  <div class="modal-content" ng-if="$ctrl.category === 'addFavourite'">
+    <div class="modal-body">
+      <div type="button" class="modal-close" data-dismiss="modal" ng-click="$ctrl.closeModal()" aria-hidden="true">×</div>
+      You have just added <b class="modal-username">{{$ctrl.user.username}}</b><br> to your favorites.
+      You can now receive stories<br>
+      from <b class="modal-username">{{$ctrl.user.username}}</b> in your “Shared Stories” area.
+    </div>
+    <div class="modal-footer">
+      <button class="create-story-dropdown modal-button" type="button" ng-click="$ctrl.closeModal()" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+
+  <div class="modal-content" ng-if="$ctrl.category === 'removeFavourite'">
+    <div class="modal-body">
+      <div type="button" class="modal-close" data-dismiss="modal" ng-click="$ctrl.closeModal()" aria-hidden="true">×</div>
+      If you remove <b class="modal-username">{{$ctrl.user.username}}</b> from favorites you will no longer recieve stories from <b class="modal-username">{{$ctrl.user.username}}</b>.<br>
+      Are you sure you want to remove?
+    </div>
+    <div class="modal-footer">
+      <button class="create-story-dropdown modal-button" type="button" ng-click="$ctrl.closeModal()" data-dismiss="modal">No</button>
+      <button class="create-story-dropdown modal-button modal-yes" type="button" ng-click="$ctrl.removeFavourite()" data-dismiss="modal">Yes</button>
+    </div>
+  </div>
+
+  <div class="modal-content" ng-if="$ctrl.category === 'addToGroup'">
+    <div class="modal-header">
+      <button type="button" class="close-modal" data-dismiss="modal" ng-click="$ctrl.closeModal()" aria-hidden="true">×</button>
+      <div class="modal-title">Add '{{$ctrl.user.username}}' to Group</div>
+    </div>
+
+    <div class="modal-body add-to-group-select">
+      <h2>Select Groups you want this user to be in</h2>
+      <div class="group-select row">
+        <div class="col-xs-6 group" ng-repeat="group in $ctrl.groups" ng-class="{'active': group.existUser}" ng-click="$ctrl.addToUser(group)">
+          <input class="hide" type="checkbox" name="all_contacts">
+          <i class="multiple-contacts-icon-inactive"></i> {{group.group.name}}
+          <i class="small-sprite-unchecked" ng-class="{'active': group.existUser}"></i>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-story-that-small-light" ng-click="$ctrl.onSave()">Save</button>
+    </div>
+  </div>
+</div>

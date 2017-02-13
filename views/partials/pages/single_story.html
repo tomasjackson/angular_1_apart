@@ -1,0 +1,228 @@
+<div class="browse_by_calendar">
+    <div class="row single-story-page" dw-loading="loading">
+        <div class="single-st-heading row">
+            <div class="story-info-container">
+
+                <span class="page-header-title">{{$ctrl.TitleWrapper($ctrl.story.title)}}</span><span class="by-username" ng-hide="$ctrl.cur_usr_name == $ctrl.story.user.username"><a ui-sref="mainPage.otherUser({id:$ctrl.story.user.id,username:$ctrl.story.user.username})">by {{$ctrl.story.user.username}}</a></span>
+
+            </div>
+            <div class="starred-times pull-right">
+                <span class="stars-single-story"></span>
+                <span class="star-numb">{{$ctrl.story.favoriteBy}} Stars</span>
+            </div>
+        </div>
+
+        <div class="single-st-media-wrap" ng-if="$ctrl.story.mediaFiles.length">
+            <div class="media-container">
+                <span data-dismiss="modal" class="full-screen-resize" ng-click="$ctrl.FullScreenShow($event)"></span>
+                <button id="st-view-photos" ng-click="$ctrl.ChangeViewMode($event)">View All Photos/Videos</button>
+                <div id="myCarousel" data-interval="false" class="carousel slide" data-ride="carousel">
+
+                  <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item" ng-repeat="media in $ctrl.story.mediaFiles" ng-class="{active:$first}">
+                            <div class="single-st-img">
+
+                                <iframe width="100%" height="345px" ng-if="media.mediaFileType && media.embeddedVideoUrl" ng-src="{{trustSrc(media.path)}}" style="transition: ease all 320ms;" frameborder="0" allowfullscreen></iframe>
+                                <video width="100%"" height="100%" ng-if="media.mediaType && !media.embeddedVideoUrl" controls>
+                                    <source ng-src="{{trustSrc(media.path)}}">
+                                </video>
+
+
+                                <img ng-src="{{media.path.t5}}" style="transition: ease all 320ms;" ng-if="!media.mediaFileType && media.path.original">
+                                <img ng-src="{{media.path}}" ng-if="!media.mediaFileType && !media.path.original">
+
+                                <div class="img-controls">
+                                    <i class="fa fa-pencil" data-dismiss="modal" data-toggle="modal" data-target="#edit-media"></i>
+                                    <i data-target="#crop-photo" data-dismiss="modal" data-toggle="modal" class="fa fa-crop"></i>
+                                    <i class="fa fa-times"></i>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" ng-click="$ctrl.SlideArrow($event , 'PREVIOUS')">
+                        <span class="note-gal-arrow arrow-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next" ng-click="$ctrl.SlideArrow($event , 'NEXT')">
+                        <span class="note-gal-arrow arrow-right"></span>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-st-content">
+           <p class="single-st-header">
+              <span><img src="assets/icons/single-note-clock.png" alt="clock"></span>
+              {{$ctrl.parseDateTime($ctrl.story.userDate)}}
+              <span class="s-note-clock"><img src="assets/icons/single-note-loc.png" alt="clock"></span>{{$ctrl.story.location}}
+           </p>
+           <p class="st-text-first">{{$ctrl.story.description}}</p>
+            <div class="action-buttons">
+                <a class="btn-story-that-light st-share" ng-if="$ctrl.cur_usr_name == $ctrl.story.user.username"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a>
+                <!--<a class="btn-story-that-light st-invite" data-toggle="collapse" data-target="#invite-options" ng-if="$ctrl.cur_usr_name == $ctrl.story.user.username"><i class="fa fa-paper-plane" aria-hidden="true"></i> Invite</a>-->
+                <a class="btn-story-that-light st-add-note" ng-click="$ctrl.AddNote($event, $ctrl.story)"><i class="fa fa-quote-left" aria-hidden="true"></i> Add Note</a>
+                <a class="btn-story-that-light st-edit" ng-if="$ctrl.cur_usr_name == $ctrl.story.user.username" ng-click="$ctrl.EditStoryButton($event, $ctrl.story)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                <a class="btn-story-that-light st-delete" ng-if="$ctrl.cur_usr_name == $ctrl.story.user.username" ng-click="$ctrl.DeleteThisStory($event)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
+                <a class="btn-story-that-light st-add-journal" href="#" ng-if="$ctrl.cur_usr_name != $ctrl.story.user.username"><i class=" fa fa-book" aria-hidden="true"></i> Add to Journal</a>
+                <a class="btn-story-that-light st-cam" ng-click="$ctrl.AddMediaToStory($event)"><i class="fa fa-picture-o" aria-hidden="true"></i> Add Photos/Videos</a>
+            </div>
+            <div id="">
+
+            </div>
+
+            <div id="invite-options" class="collapse fly-out-menu">
+
+               <div class="del-acc-header">
+                    <button type="button" data-target="#invite-options" data-toggle="collapse" class="delete-acc-close fr" aria-hidden="true">×</button>
+                    <div class="modal-title">Email This Story</div>
+                </div>
+                <div class="text-holder">
+                <p><input id="multiple-email" placeholder="Enter Email" class="std-input"></p>
+                <p>People you share this story with will be able to
+
+                <p>You will lose access to your stories, pictures and videos.</p>
+
+                <p>Would you like us to send an email to <a href="mailto:user@email.com">user@email.com</a> that contains a link that you can use to delete your account?</p>
+
+                </div>
+                <div class="buttons-footer">
+                    <button class="btn-story-that-light" type="button" >Send the Email</button>
+                    <button class="btn-story-that-light" type="button" data-target="#invite-options" data-toggle="collapse">Never Mind</button>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="st-notes my-notes-page">
+            <span class="page-header-title"><i class="fa fa-comment-o marg-left" aria-hidden="true"></i> Notes</span>
+            <div ng-repeat="note in $ctrl.story.notes">
+              <div class="note" style="margin-bottom: 0px; margin-top: 10px" ng-class="{'open':note.expanded}">
+                <div class="note-head" ng-click="$ctrl.ExpandNoteBox(note, $event)">
+                  <div class="note-title-head fl">
+                    <a href="#" class="note-title">{{$ctrl.ExtractNoteTitle(note.content)}}</a>
+                    <a href="#"><span class="shared-note">{{$ctrl.GetPrivacy(note.private)}}</span></a>
+                  </div>
+                  <div class="note-meta fr">
+                    <button class="toggle-note fr"><i class="notes-arrow-collapse"></i></button>
+                    <div class="note-info fr">
+                      <a href="#">{{note.user.username}}</a>
+                      <div class="date-info">{{$ctrl.ConvertTimeStamp(note.creationDate)}}</div>
+                    </div>
+                    <div class="navbar-avatar">
+                      <img class="fr my-notes-avatar" ng-src="{{note.user.avatar}}">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row note-body">
+                  <div class="col-xs-8">
+                    <p class="note-content">{{note.content}}</p>
+                  </div>
+                  <div class="col-xs-4 note-media">
+
+                    <iframe width="100%" height="100%" ng-if="note.mediaFiles[0].mediaFileType && note.mediaFiles[0].embeddedVideoUrl" ng-src="{{trustSrc(note.mediaFiles[0].path + '?autostart=0')}}" frameborder="0" allowfullscreen></iframe>
+                    <video width="100%" height="100%" ng-if="note.mediaFiles[0].mediaFileType && !note.mediaFiles[0].embeddedVideoUrl" controls>
+                      <source ng-src="{{trustSrc(note.mediaFiles[0].path)}}">
+                    </video>
+
+                    <div class="img-journal" ng-style="{'background-image' : 'url(' + note.mediaFiles[0].path.t2 + ')'}" ng-if="!note.mediaFiles[0].mediaFileType && note.mediaFiles[0].path.t2"></div>
+                    <div class="img-journal" ng-style="{'background-image' : 'url(' + note.mediaFiles[0].path + ')'}" ng-if="!note.mediaFiles[0].mediaFileType && !note.mediaFiles[0].path.t2"></div>
+
+                  </div>
+
+                  <div class="note-footer">
+                    <div class="note-actions fl">
+                      <a class="btn-story-that-light"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                      <a class="btn-story-that-light" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
+                      <a class="btn-story-that-light" ng-click="$ctrl.ReplyNote(note)"><i class="fa fa-comment-o" aria-hidden="true"></i> Reply</a>
+                    </div>
+                    <!-- note action -->
+                    <div class="comments-likes fr">
+                      <p><span class="comment-num">{{note.numReplies}} <i class="fa fa-comment-o" aria-hidden="true"></i></span> <span class="like-number"  ng-click="$ctrl.SetNoteAsFavorite($event, note)" ng-class="{'active': note.favorite}">{{note.favoritedBy}} <i></i></span></p>
+                    </div>
+                  </div>
+                  <!-- note footer -->
+                </div>
+              </div>
+              <div class="note note1 all-notes reply-note" ng-repeat="reply in note.replays" style="margin-bottom: 0px" ng-class="{'open':reply.expanded}">
+                <div class="note-head" ng-click="$ctrl.ExpandNoteBox(reply, $event)">
+                  <div class="note-title-head fl">
+                    <i class="reply-to-note-icon"></i>
+                    <span class="note-title">{{$ctrl.DescriptionWrapper(reply.content)}}</span>
+                    <a><span class="shared-note">My public note on story  </span> <span class="story-title">{{note.context.title}}</span></a>
+                  </div>
+                  <div class="note-meta fr">
+                    <button class="toggle-note fr"><i class="notes-arrow-collapse"></i></button>
+                    <div class="note-info fr">
+                      <a  ui-sref="mainPage.otherUser({id:rely.user.id,username:rely.user.username})">{{reply.user.username}}</a>
+                      <div class="date-info">30 Dec 2013, 1: 35 PM</div>
+                    </div>
+                    <div class="navbar-avatar">
+                      <img class="fr my-notes-avatar" ng-src="{{reply.user.avatar}}">
+                    </div>
+                  </div>
+                </div>
+                <div class="row note-body">
+                  <div class="col-xs-12">
+                    <p class="note-content">{{reply.content}}</p>
+                  </div>
+                  <div class="note-footer">
+                    <div class="note-actions fl">
+                      <a class="btn-story-that-light" href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                      <a class="btn-story-that-light delete-note-btn"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
+                      <a class="btn-story-that-light" href="#"><i class="fa fa-reply" aria-hidden="true"></i></i> Reply</a>
+                    </div> <!-- note action -->
+
+                    <div class="comments-likes fr">
+                      <p><span class="comment-num">{{reply.numReplies}} <i class="fa fa-comment-o" aria-hidden="true"></i></span> <span data-toggle="tooltip" data-placement="top" data-original-title="Add to Favorites" class="like-number "  ng-click="$ctrl.SetNoteAsFavorite($event, reply)" ng-class="{'active': reply.favorite}">{{reply.favoritedBy}}<i></i></span></p>
+                    </div>
+                  </div>
+                  <!-- note footer -->
+                </div>
+                <!--<div class="confirm-prompt-dialog delete-note-dialog">-->
+                  <!--<p>This action will permanently delete this note.</p>-->
+                  <!--<p>Are you sure?</p>-->
+                  <!--<button data-dismiss="modal" class="btn-story-that-small-light">CANCEL</button>-->
+                  <!--<button data-dismiss="modal" class="btn-story-that-small-light">YES, DELETE</button>-->
+                <!--</div>-->
+                <!-- confirm delete note -->
+              </div>
+
+            </div>
+
+
+            <div class="note mt-st-large user-note" ng-class="{'open': open_div_journal}" style="margin-top: 10px ">
+                <div class="note-head" ng-click="(open_div_journal = !open_div_journal)">
+                    <span class="users-title">
+                        {{$ctrl.story.journalsByDetails.length}} User/s added this story to Journal
+                    </span>
+                    <button class="toggle-note fr"><i class="notes-arrow-collapse"></i></button>
+                </div>
+
+                <div class="row note-body">
+                    <div class="col-md-3 cur" ng-repeat="user in $ctrl.story.journalsByDetails">
+                      <div class="story-avatar"><img ng-src={{user.journal.user.avatar}} alt="avatar"></div>
+                      <span class="users-nick">{{user.journal.user.username}}</span>
+                    </div>
+                </div>
+
+            </div>
+            <!-- note -->
+            <div class="note user-note" ng-class="{'open': open_div_favorite}">
+                <div class="note-head" ng-click="(open_div_favorite = !open_div_favorite)">
+                    <span class="users-title">
+                        {{$ctrl.story.favoriteBy}} User/s added this story to favorites
+                    </span>
+                    <button class="toggle-note fr"><i class="notes-arrow-collapse"></i></button>
+                </div>
+                <div class="row note-body">
+                    <div class="col-md-3 cur" ng-repeat="user in $ctrl.story.favoriteByDetails">
+                        <div class="story-avatar"><img ng-src={{user.user.avatar}} alt="avatar"></div>
+                        <span class="users-nick">{{user.user.username}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- note -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,206 @@
+.single-story-page{
+    padding-left:10px;
+}
+
+.single-st-media-wrap{
+    position: relative;
+
+    .fake-corner-depth{
+        max-height:350px;
+    }
+
+    .media-container{
+        @include spread-box-shadow(41px, 39px, 21px , -41px, #ededed);
+        @include border-radius(5px);
+        margin-top: 20px;
+        background-color: #FFFFFF;
+        border: 1px solid #e1e1e1;
+        position: relative;
+        padding: 5px;
+        z-index: 5;
+        .single-st-img{
+            img{
+                vertical-align: top;
+                max-height:350px;
+            }
+        }
+
+        .media-gallery{
+            display:none;
+        }
+
+        &.toggled-gallery{
+            .single-st-img{display:none;}
+            .media-gallery{display:block;}
+        }
+
+        .single-gallery-image{
+            @extend .gallery-image-template;
+            margin: 5px;
+            float: left;
+        }
+    }
+}
+
+
+.single-st-heading{
+    margin: 0 0 10px 0;
+    .quotation{
+        float: left;
+        font-family: "Times New Roman";
+        font-size: 25px;
+        color: #aaaaa9;
+        display: inline-block;
+        position:relative;
+        top:1px;
+        &.lower{
+            top:10px;
+        }
+    }
+
+    h1{ //title
+        max-width: 350px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 25px;
+        color: #4a4a49;
+        margin:0 5px;
+        float: left;
+    }
+
+    h2{ // author
+        max-width: 200px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 25px;
+        color: #a0a09f;
+        margin: 0 0 0 10px;
+        float: left;
+    }
+
+    .star-count{
+        height: 50px;
+        line-height: 50px;
+        float: right;
+        margin-right: 10px;
+    }
+
+    .single-story-options{
+        @extend .story-clear-btn;
+        float: right;
+    }
+}
+
+.single-st-content{
+    font-size: 14px;
+    color: #4a4a49;
+}
+
+.story-notes-wrap{
+    @extend .notebook-lines;
+    @include box-shadow(0, -10px, 10px, #e1e1e1);
+    @include border-radius(5px);
+    position: relative;
+    margin-bottom: 20px;
+
+    .story-wrap-header{
+
+        text-align: center;
+        height: 55px;
+        padding: 15px;
+        margin-bottom: 10px;
+
+        span{
+            line-height:35px;
+            color: #4a4a49;
+            font-size:20px;
+            display:inline-block;
+        }
+    }
+
+    .add-note{
+        background-color: #a3a6a6;
+        color: #FFFFFF;
+        font-size: 15px;
+        height:35px;
+        line-height:35px;
+        border: none;
+        float:right;
+    }
+}
+
+.story-note{
+    padding-left:10px;
+    position:relative;
+
+    i.reply-to-note-icon-big{
+        position:absolute;
+        left: 15px;
+        top: -5px;
+        display:none;
+    }
+
+    .story-note-meta{
+        height:45px;
+        line-height:45px;
+
+        .note-avatar{
+            @extend .avatar-tpl;
+            float:left;
+            img{
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        h3{
+            height: 50px;
+            line-height: 50px;
+            float: left;
+            color: #4a4a49;
+            font-size: 15px;
+            margin: 0 0 0 5px;
+        }
+        span{
+            height: 50px;
+            line-height: 50px;
+            float: right;
+            color: #4a4a49;
+            font-size:15px;
+            margin: 0 10px 0 0 ;
+
+            .clock-bolded{top:2px;}
+        }
+    }
+
+    .story-note-content{
+        padding-left: 45px;
+        font-size: 14px;
+        color: #919191;
+        line-height: 25px;
+        position: relative;
+        top: -10px;
+        margin: 0;
+    }
+
+    .note-actions{
+        text-align: right;
+        position: relative;
+        top:-5px;
+        right:-5px;
+
+        button{
+            font-size: 16px;
+            @extend .button-clear;
+            margin-right:20px;
+            display:inline-block;
+
+            i{top:2px;}
+        }
+    }
+
+    &.reply{ //reply note type
+        padding-left: 50px;
+        i.reply-to-note-icon-big{display: inline-block;}
+    }
+}

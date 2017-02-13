@@ -1,0 +1,83 @@
+<div class="browse_by_calendar my-contacts-page">
+
+        <div class="row ">
+            <div class="col-md-6 calendar-breadcrumb">
+
+                <span class="page-header-title"><i class="fa fa-user" aria-hidden="true"></i> My Contacts</span>
+            </div>
+            <div class="col-md-6 ">
+
+                <div class="drop-filter">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" data-toggle="dropdown" type="button">
+                            <span class="dropdown-toggle-label">Alphabetical</span>&nbsp;<i class="sprite-dropdown"></i>
+                        </button>
+                        <div class="dropdown-menu st-dropdown" aria-labelledby="name-privacy" role="menu">
+                            <i class="dropdown-arrow-top-outer"><i class="dropdown-arrow-top-inner"></i></i>
+                            <button class="story-clear-btn sort-elements gradient-bottom" data-sort="data-contacted" data-order="desc">Most Contacted</button>
+                            <button class="story-clear-btn sort-elements gradient-bottom hide" data-sort="data-name" data-order="asc">Alphabetical</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    <div class="row contacts-wrap sort-wrapper">
+
+        <div class="contact" data-contacted="3" data-name="Aki">
+            <a href="#" class="avatar">
+                <img class="img-circle" src="assets/img/contacts-user-1.png" alt="" width="100%" height="100%">
+            </a>
+            <div class="contactInfo">
+                <a ui-sref="mainPage.otherUser({id:friend.user.id,username:friend.user.username})" class="contact-name">Aki</a>
+                <div class="quickActions">
+                    <button class="contacts-button contacts-add-group" data-toggle="modal" data-target="#modal-add-group"><i data-toggle="tooltip" data-placement="bottom" data-animation="false" title="Add to Group"></i></button>
+                    <button class="contacts-button contacts-favorite"><i data-toggle="tooltip" data-placement="bottom" data-animation="false" data-original-title="Add to Favorites"></i></button>
+                    <button class="contacts-button contacts-delete" data-toggle="modal" data-target="#modal-delete-contact"><i data-toggle="tooltip" data-placement="bottom" data-animation="false" title="Delete Contact"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="contact" data-contacted="2" data-name="George">
+            <a href="#" class="avatar">
+                <img class="img-circle" src="assets/img/contacts-user-3.png" alt="" width="100%" height="100%">
+            </a>
+            <div class="contactInfo">
+                <a ui-sref="mainPage.otherUser({id:friend.user.id,username:friend.user.username})" class="contact-name">George</a>
+                <div class="quickActions">
+                    <button class="contacts-button contacts-add-group" data-toggle="modal" data-target="#modal-add-group"><i data-toggle="tooltip" data-placement="bottom" data-animation="false" title="Add to Group"></i></button>
+                    <button class="contacts-button contacts-favorite"><i data-toggle="tooltip" data-placement="bottom" data-animation="false" data-original-title="Add to Favorites"></i></button>
+                    <button class="contacts-button contacts-delete" data-toggle="modal" data-target="#modal-delete-contact"><i data-toggle="tooltip" data-placement="bottom" data-animation="false" title="Delete Contact"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="contact" data-contacted="1" data-name="Girica">
+            <a href="#" class="avatar">
+                <img class="img-circle" src="assets/img/contacts-user-4.png" alt="" width="100%" height="100%">
+            </a>
+            <div class="contactInfo">
+                <a ui-sref="mainPage.otherUser({id:friend.user.id,username:friend.user.username})" class="contact-name">Girica</a>
+                <div class="quickActions">
+                    <button class="contacts-button contacts-add-group" data-toggle="modal" data-target="#modal-add-group"><i data-toggle="tooltip" data-placement="bottom" data-animation="false" title="Add to Group"></i></button>
+                    <button class="contacts-button contacts-favorite"><i data-toggle="tooltip" data-placement="bottom" data-animation="false" data-original-title="Add to Favorites"></i></button>
+                    <button class="contacts-button contacts-delete" data-toggle="modal" data-target="#modal-delete-contact"><i data-toggle="tooltip" data-placement="bottom" data-animation="false" title="Delete Contact"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="contact" data-contacted="4" data-name="Jessica">
+            <a href="#" class="avatar">
+                <img class="img-circle" src="assets/img/contacts-user-2.png" alt="" width="100%" height="100%">
+            </a>
+            <div class="contactInfo">
+                <a ui-sref="mainPage.otherUser({id:friend.user.id,username:friend.user.username})" class="contact-name">Jessica</a>
+                <div class="quickActions">
+                    <button class="contacts-button contacts-add-group" data-toggle="modal" data-target="#modal-add-group"><i data-toggle="tooltip" data-placement="bottom" data-animation="false" title="Add to Group"></i></button>
+                    <button class="contacts-button contacts-favorite"><i data-toggle="tooltip" data-placement="bottom" data-animation="false" data-original-title="Add to Favorites"></i></button>
+                    <button class="contacts-button contacts-delete" data-toggle="modal" data-target="#modal-delete-contact"><i data-toggle="tooltip" data-placement="bottom" data-animation="false" title="Delete Contact"></i></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+                    </div>

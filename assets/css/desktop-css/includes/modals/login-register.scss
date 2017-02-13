@@ -1,0 +1,108 @@
+/*LOGIN*/
+.modal-title{
+    color: #4a4a49;
+    font-size:24px;
+}
+
+#login-modal {
+    .modal-dialog{
+        width: 430px;
+    }
+    .modal-footer{
+        .story-blue-btn{
+            font-size:20px;
+            color: #4a4a49;
+            padding-top:5px;
+            width:250px;
+            &:hover{color:#ffffff; }
+        }
+    }
+}
+
+.login-body{
+    max-width: 315px;
+    margin: 0 auto;
+    text-align:center;
+
+    .story-grey-btn{
+        width:230px;
+        font-size:25px;
+        color:#4a4a49;
+
+        &:hover{color:#ffffff;}
+    }
+
+    .st-checkbox{
+        font-size:16px;
+        font-family: 'bree_ththin';
+        font-weight:normal;
+    }
+}
+.login-links{
+    text-align:left;
+    margin-bottom:10px;
+}
+
+
+.forgot-password{
+    float:right;
+    font-size:16px;
+    color: #929191;
+    display:inline-block;
+    font-family: 'bree_ththin';
+
+    &:active,&:link,&:visited{color: #929191;}
+
+    &:hover{
+        color: #929191;
+        text-decoration: none;
+    }
+}
+
+
+/*END login*/
+
+
+//Register{
+#registration-modal {
+    .modal-dialog{
+        width: 430px;
+    }
+    .modal-footer{
+        .story-blue-btn{
+            font-size:20px;
+            padding-top: 5px;
+            width:125px;
+            height:38px;
+        }
+    }
+}
+
+.privacy-select {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    .st-checkbox{
+
+        text-align:left;
+        span{
+            width:240px;
+            font-size: 16px;
+            line-height:20px;
+            display:inline-block;
+            padding-left:10px;
+            top: -5px;
+        }
+    }
+}
+
+.validation-wrap{
+    display:none;
+    font-size: 16px;
+    font-family: 'bree_ltlight';
+    text-align: center;
+
+    .validation-ok {color: #44a3d4;display:none;}
+    .validation-wrong {color: #d24242;display:none;}
+}
+
+//} ENDRegister

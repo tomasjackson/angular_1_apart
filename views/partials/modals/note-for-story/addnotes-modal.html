@@ -1,0 +1,35 @@
+<div tabindex="-1" id="add-note-1" role="dialog" aria-labelledby="addNote" aria-hidden="false">
+    <div class="modal-content" dw-loading="saving-note">
+        <div class="modal-header">
+            <button type="button" class="close-modal" data-dismiss="modal" aria-hidden="true" ng-click="$ctrl.CloseModal($event)">×</button>
+            <div class="modal-title"><i class="my-journal-add-note"></i> Add Note</div>
+        </div>
+        <div class="modal-body">
+            <form role="form">
+                <fieldset class="form-group">
+                    <textarea class="std-textarea" name="description" placeholder="Enter Note Text" ng-model="$ctrl.note_string"></textarea>
+                </fieldset>
+                <fieldset class="form-group privateNote cf">
+                    <div class="lock-wrap"><i class="faded-lock"></i></div>
+                    <label for="privacyCheck" class="st-checkbox privacy-label" ng-class="{'checked':$ctrl.private_flag}" ng-click="($ctrl.private_flag=!$ctrl.private_flag)">
+                        <span class="privacy-descr">
+                        <span class="action-name">Hide this note from the story?</span>
+                        <span class="action-description">Private notes are visible only to the recipient and you.</span>
+                        </span>
+                        <i class="checkbox-icon"></i>
+                    </label>
+                    <input class="hide" type="checkbox" name="privacycheck" id="privacyCheck">
+                </fieldset>
+                <fieldset class="form-group add-media-btn-fix">
+                    <button class="story-action-btn" ng-click="$ctrl.AddMediaForNote($event)">
+                        <span class="icon-part"><i class="camera-icon"></i></span>
+                        <span class="descr-part">Add photos/videos</span>
+                    </button>
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer tac">
+            <a data-dismiss="modal" class="btn-story-that-small-light" ng-click="$ctrl.PostNote($event)">Post Note</a>
+        </div>
+    </div>
+</div><!-- add note 1 -->

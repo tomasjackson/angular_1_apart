@@ -1,0 +1,251 @@
+
+/*MY CONTACTS*/
+
+.contacts-wrap{
+    padding-left:15px;
+}
+.contact{
+    min-width: 230px;
+    margin-bottom: 20px;
+    display:inline-block;
+    float:left;
+}
+.avatar{
+    position:relative;
+    display:inline-block;
+    height: 70px;
+    width: 70px;
+    line-height: 55px;
+    text-align:center;
+    border: 5px solid #ffffff;
+    border-radius: 35px;
+    @include box-shadow(0, 5px, 10px, #D9D9D9);
+    margin-right: 10px;
+
+    img{
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:2;
+    }
+}
+.quick-star{
+    //initial unstarred state.
+    background-color: transparent;
+
+    position:absolute;
+    z-index: 3;
+    top:-10px;
+    right:-10px;
+    border:none;
+    width: 34px;
+    height: 32px;
+    i.starred-icon{
+        @extend .my-contacts-not-starred;
+    }
+    &:hover {
+        i.starred-icon{
+            @extend .my-contacts-starred;
+        }
+    }
+
+    //starred state
+    &.starred{
+        i.starred-icon{
+            @extend .my-contacts-starred;
+        }
+        &:hover{
+            i.starred-icon{
+                @extend .my-contacts-not-starred;
+            }
+        }
+    }
+}
+
+.contactInfo{
+    display:inline-block;
+    width:165px;
+    position:relative;
+    top:10px;
+    float:right;
+
+    .story-blue-btn{
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .contact-name{
+        color: #000000;
+        font-size: 18px;
+        margin:0;
+        line-height:20px;
+        width:100%;
+        overflow:hidden;
+        display:inline-block;
+    }
+}
+
+.quickActions{
+    width:100%;
+    display:inline-block;
+    line-height:20px;
+}
+
+.quick-contact-action{ //contact quick actions template
+    border: none;
+    background: none;
+    width: 34px;
+    height: 35px;
+    display:inline-block;
+    margin-left: -5px;
+    &:hover{//hover state icon style
+        .my-contacts-add-to-group{
+            @extend .my-contacts-add-to-group-hover;
+        }
+
+        .my-contacts-remove-from-contact{
+            @extend .my-contacts-remove-from-contact-hover;
+        }
+
+        .my-contacts-block-contact{
+            @extend .my-contacts-block-contact-hover;
+        }
+    }
+}
+
+.create-group{
+    @extend .story-blue-btn;
+    line-height: 38px;
+    color: #4a4a49;
+    font-size:14px;
+    width:160px;
+    margin-left:10px;
+    font-weight:bold;
+}
+
+.all-groups{
+    @extend .radial-gradient;
+    padding-top: 30px;
+    margin-top: 15px;
+}
+.show-more{
+    margin: 0 auto;
+    background:none;
+    color: #adadad;
+    border:none;
+    font-size: 20px;
+    display:block;
+    text-indent: 30px;
+    text-align:center;
+    &:hover{
+        background:none;
+    }
+}
+
+.edit-group{
+    background-color: #fbfbfb;
+    color: #d8d8d8;
+    width:35px;
+    height:35px;
+    @include border-radius(50%);
+    text-align: center;
+    line-height:33px;
+    font-weight:18px;
+    border: 2px solid #f1f1f1;
+}
+
+.contact-tabs{
+    width:100%;
+    padding-left: 5px;
+    .group-wrap{
+        position:relative;
+        float:left;
+        width:490px;
+        margin-right:-15px;
+    }
+
+    ul.group-list{
+        width: 230px;
+        float: left;
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+    }
+    .group-name{
+        background: none;
+        border:none;
+        color: #a0a09f;
+        font-size: 18px;
+        line-height: 50px;
+        text-decoration:none;
+        height: 50px;
+        text-align:left;
+        width:120px;
+        float:left;
+        &:active, &:link,&:visited{color: #a0a09f;}
+        &:hover{text-decoration:none;}
+    }
+
+    li.group{
+        height: 50px;
+        line-height: 50px;
+        color: #a0a09f;
+        border: 2px solid #F6F6F6;
+        margin: 1px -15px 0 0;
+        padding-left:20px;
+        .edit-group{ //unselected group state
+            margin-top: 7px;
+            float:left;
+            .edit-group-icon{@extend .my-contacts-edit-group;}
+        }
+
+        &.active-group{ //selected group state
+            @extend .group-gradient;
+            .group-name{color: #000000;float:left;}
+            .edit-group{
+                border: 2px solid #e7e7e7;
+                background-color: #ffffff;
+                color: #9c9c9c;
+                .edit-group-icon{@extend .my-contacts-edit-group-hover;}
+            }
+        }
+        &:hover{
+            @extend li.group.active-group;
+        }
+    }
+}
+.group-wrap{
+    position:relative;
+}
+.group-contacts{
+    position:absolute;
+    width:100%;
+    top:10px;
+    left:5px;
+    opacity: 0;
+    z-index: 1;
+    .contactInfo{width:160px;}
+
+    &.selected-group{
+        z-index: 999;
+        opacity: 1;
+        @include transition(opacity, 0.5s, linear)
+    }
+}
+
+.filter{
+    span.filter-label{
+        color:#adadad;
+        font-size: 18px;
+    }
+
+    .gallery-switch{
+        strong{
+            font-size: 18px !important;
+            color:#4a4a49 !important;
+        }
+    }
+    .dropdown.open{
+        .sprite-dropdown{@extend .sprite-dropdown-up;}
+    }
+}

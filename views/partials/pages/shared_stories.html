@@ -1,0 +1,89 @@
+<div class="shared-stories-page">
+    <div class="browse_by_calendar">
+        <div class="row st-static-row">
+            <div class="col-md-6 calendar-breadcrumb">
+                <span class="page-header-title"><i class="fa fa-files-o" aria-hidden="true"></i>Shared Stories: {{$ctrl.sinceDate}}</span>
+            </div>
+            <div class="col-md-6 ">
+                <div class="drop-filter">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" data-toggle="dropdown" type="button">
+                            <span class="dropdown-toggle-label">All Stories</span>&nbsp;<i class="sprite-dropdown"></i>
+                        </button>
+                        <div class="dropdown-menu st-dropdown" aria-labelledby="name-privacy" role="menu">
+                            <button class="story-clear-btn filter-elements" data-filter=".all-stories" ng-click="$ctrl.ChangeFilter(0)">All Stories<span class="pull-right">{{$ctrl.shared_stories.length}}</span></button>
+                            <button class="story-clear-btn filter-elements" data-filter=".my-favorites">My Favorites<span class="pull-right">2</span></button>
+                            <button class="story-clear-btn filter-elements" data-filter=".my-favorites" ng-click="$ctrl.ChangeFilter(1)">Hidden Stories<span class="pull-right">{{$ctrl.hidden_stories.length}}</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="story-listing clearfix" dw-loading="initial_loading" style="min-height: 300px">
+            <ul class="dynamic-grid" angular-grid="$ctrl.stories" grid-width="200" gutter-size="10" angular-grid-id="stories" refresh-on-img-load="true" ng-if="$ctrl.stories.length" style="list-style-type: none;">
+                <li data-ng-repeat="story in $ctrl.stories" class="grid" style="overflow: visible">
+                    <div class="story-wrapper">
+                        <div class="story-middle">
+                            <div class="story-inner" ng-class="{'expanded':story.expanded}">
+                                <div data-toggle="modal" class="story-image" ng-if="story.mediaFiles.length" ng-click="$ctrl.OpenDetailModal($event, story)">
+
+                                    <iframe width="100%" height="145px" class="video-siz" ng-if="story.mediaFiles[0].mediaFileType && story.mediaFiles[0].embeddedVideoUrl" ng-src="{{trustSrc(story.mediaFiles[0].path)}}" frameborder="0" allowfullscreen></iframe>
+
+                                    <video width="100%" height="145px" class="video-siz" ng-if="story.mediaFiles[0].mediaFileType && !story.mediaFiles[0].embeddedVideoUrl" controls>
+                                        <source ng-src="{{trustSrc(story.mediaFiles[0].path)}}">
+                                    </video>
+                                    <img ng-src="{{story.mediaFiles[0].path.t2}}" alt="gallery img" ng-if="!story.mediaFiles[0].mediaFileType && story.mediaFiles[0].path.original">
+                                    <img ng-src="{{story.mediaFiles[0].path}}" alt="gallery img" ng-if="!story.mediaFiles[0].mediaFileType && !story.mediaFiles[0].path.original">
+
+                                </div>
+                                <div class="story-author" ng-click="$ctrl.expandView($event , story)">
+                                    <div class="story-avatar"><img ng-src="{{story.user.avatar}}"></div>
+                                    <a ui-sref="mainPage.otherUser({id:story.user.id,username:story.user.username})">
+                                        <span class="story-username">{{story.user.username}}</span></a>
+                                    <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
+                                </div>
+                                <div class="story-content">
+                                    <a ui-sref="mainPage.singleStory({id:story.id})"><h4 class="story-title">{{story.title}}</h4></a>
+                                    <p class="story-text">{{story.description}}</p>
+                                </div>
+                                <div class="story-footer">
+                                    <div class="story-footer-date gradient-bottom clearfix" ng-show="!story.expanded">
+                                        <div class="ribbon-icon">
+                                            <span class="date">{{$ctrl.parseDateTime(story.userDate).date}}</span>
+                                            <span class="time">{{$ctrl.parseDateTime(story.userDate).time}}</span>
+                                        </div>
+                                        <a class="story-open-options three-dots-icon-big" ng-click="$ctrl.expandView($event , story)"></a>
+                                    </div>
+                                    <div class="story-footer-options gradient-top clearfix" ng-show="story.expanded">
+                                        <a class="add-note-gal" ng-click="$ctrl.AddNote($event, story)"><i class="fa fa-comment-o" aria-hidden="true" tooltip-placement="top" uib-tooltip="Add a Note"></i></a>
+                                        <a class="star-gall" ng-click="$ctrl.SetAsFavorite($event, story)" tooltip-placement="top" uib-tooltip="Add to Favorites" ng-class="{'active': story.favorite}">
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                      </a>
+                                        <a data-toggle="modal" class="addtojournal-gal" ng-class="{'removed':!story.journal}" tooltip-placement="topleft" uib-tooltip="{{$ctrl.GetToolTip(story.journal)}}"><i class="fa" ng-class="{'fa-calendar-plus-o':!story.journal, 'fa-calendar-minus-o': story.journal}" aria-hidden="true" ng-click="$ctrl.RemoveFromJournal($event, story)"></i>
+                                            <ul>
+                                                <li ng-click="$ctrl.AddToJournal($event, story)"><i class="fa fa-calendar-plus-o"></i> Add to Journal</li>
+                                                <li ng-click="$ctrl.AddToJournalIncogito($event, story)"><i class="fa fa-user-secret"></i> Add to Journal (incognito)</li>
+                                            </ul>
+                                        </a>
+                                        <a class="delete-gall" ng-click="$ctrl.HideSharedStory($event, story)"><i class="fa fa-eye-slash" tooltip-placement="top" uib-tooltip="Hide"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="confirm-prompt-dialog delete-shared-story">
+                            <message>
+                            <p>This action will permanently delete this story.</p>
+                            <p>Are you sure?</p>
+                            <button data-dismiss="modal" class="btn-story-that-small-light">CONFIRM</button>
+                            <button data-dismiss="modal" class="btn-story-that-small-light">CANCEL</button>
+                            </message>
+                        </div>
+                        <!-- confirm delete shared story -->
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

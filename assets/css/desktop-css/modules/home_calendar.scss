@@ -1,0 +1,135 @@
+.home-calendar{
+    width: 640px;
+    position:relative;
+    margin:0 auto;
+    top: -295px;
+    margin-bottom:-300px;
+}
+.landing-calendar{
+    width: 100%;
+    position:relative;
+}
+.fake-underlay{
+    height: 100%;
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y2ZjZmNiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjM0JSIgc3RvcC1jb2xvcj0iI2Y2ZjZmNiIgc3RvcC1vcGFjaXR5PSIwLjczIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjM2JSIgc3RvcC1jb2xvcj0iI2Y2ZjZmNiIgc3RvcC1vcGFjaXR5PSIwLjc0Ii8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNmY2ZjYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  rgba(246,246,246,0) 0%, rgba(246,246,246,0.73) 34%, rgba(246,246,246,0.74) 36%, rgba(246,246,246,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(246,246,246,0)), color-stop(34%,rgba(246,246,246,0.73)), color-stop(36%,rgba(246,246,246,0.74)), color-stop(100%,rgba(246,246,246,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(246,246,246,0) 0%,rgba(246,246,246,0.73) 34%,rgba(246,246,246,0.74) 36%,rgba(246,246,246,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(246,246,246,0) 0%,rgba(246,246,246,0.73) 34%,rgba(246,246,246,0.74) 36%,rgba(246,246,246,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(246,246,246,0) 0%,rgba(246,246,246,0.73) 34%,rgba(246,246,246,0.74) 36%,rgba(246,246,246,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(246,246,246,0) 0%,rgba(246,246,246,0.73) 34%,rgba(246,246,246,0.74) 36%,rgba(246,246,246,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00f6f6f6', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-8 */
+
+    position:absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+.calendar-head{
+    font-family: 'Open Sans', sans-serif;
+    background-color: #FFFFFF;
+    color: #c0c0c0;
+    text-align:center;
+    height: 70px;
+    line-height: 40px;
+    padding: 15px;
+    font-size: 32px;
+    margin: 0;
+    position: relative;
+    z-index: 4;
+}
+.calendar-table-wrap{
+    background: transparent;
+    position:relative;
+    z-index: 3;
+    width: 100%;
+    padding: 10px 35px;
+    color: #6C6C6C;
+    table{
+        font-family: 'Roboto', sans-serif;
+        width: 100%;
+        font-size: 24px;
+    }
+    th{
+        cursor: pointer;
+        width: 14%;
+        text-align:center;
+        vertical-align: middle;
+        height: 80px;
+        font-weight: 400;
+    }
+    td{
+        width: 14%;
+        text-align:center;
+        vertical-align: middle;
+        height: 80px;
+        cursor: pointer;
+        color: #808284;
+        background-color: #FFFFFF;
+        border: 2px solid #f5f5f5;
+        font-weight: 300;
+
+        .last-month-day{
+            background-color: transparent;
+            border: none;
+            color: #878C8F;
+        }
+
+        &.calendar-marked{
+            position: relative;
+            font-size: 47px;
+            font-weight: bold !important;
+            color: #FFFFFF !important;
+            background-color: #6ac4f3 !important;
+            border: 2px solid #9ecde6 !important ;
+            text-shadow: 0 2px #3a8eb9;
+
+            &:before{
+                background: #1f719a;
+                content: ' ';
+                position: absolute;
+                display: block;
+                width: 103%;
+                height: 0;
+                border: 2px solid #1f719a;
+                bottom: -6px;
+            }
+        }
+    }
+}
+
+.popover {
+    background: rgb(255,255,255); /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNGY0ZjQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(244,244,244,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(244,244,244,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(244,244,244,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(244,244,244,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(244,244,244,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(244,244,244,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f4f4f4',GradientType=0 ); /* IE6-8 */
+    border: 1px solid #dff0f8;
+    color: #277ba5;
+}
+
+.calendar-nav{
+    color: #64c3f4;
+    font-size: 24px;
+    background: none;
+    border: none;
+    outline: none;
+}
+.back-blue {
+    background-size: 297.6px 501px;
+    background-position: -39.6px -271.2px;
+    width: 39px;
+    height: 42px; }
+
+.forward-blue {
+    background-size: 297.6px 501px;
+    background-position: -78.6px -271.2px;
+    width: 38.4px;
+    height: 42px; }

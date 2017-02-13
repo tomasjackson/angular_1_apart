@@ -1,0 +1,116 @@
+.filtered-header{
+    margin: 0 -15px 15px 0;
+    strong{
+        font-size:22px;
+        color: #4a4a49;
+    }
+    span{
+        font-size:16px;
+    }
+}
+
+.drop-filter{
+    text-align:right;
+    line-height:40px;
+
+    span{
+        color:#adadad;
+        font-size:18px;
+    }
+
+    .dropdown{display: inline-block;}
+
+    .dropdown-menu{
+        right: 0;
+        left: auto;
+        text-align: right;
+        width:120px;
+        padding-right:10px;
+        li{
+            cursor:pointer;
+            padding-right:10px;
+        }
+    }
+}
+
+.gallery-option{
+    font-size: 18px;
+    width: 80px;
+    display:inline-block;
+    text-align:right;
+}
+
+
+.gallery-page{
+    margin-top: -10px;
+
+    .my-account-header{
+        margin:0;
+        height: 40px;
+    }
+
+    .story-header-top{
+        margin: 0 0 0 90px;
+        line-height: 30px;
+    }
+
+    .switch-wrap{
+        height: 20px;
+        line-height: 20px;
+    }
+
+    .section-type{
+        height: 40px;
+        line-height: 40px;
+        strong{position:relative;top:2px;}
+    }
+    .calendar-breadcrumb{
+        margin: 0 0 0 90px;
+        line-height: 25px;
+    }
+
+}
+
+.main-gallery-wrap{
+    padding: 0 0 20px 35px;
+    margin-right: -30px;
+
+    .gallery-image{
+        @extend .gallery-image-template;
+        padding: 2px;
+        margin: 0 30px 30px 0;
+        float:left;
+
+        .gallery-actions {
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            right: 0;
+            background-color: #ffffff;
+            line-height: 44px;
+            height: 36px;
+            display: none;
+
+            .gallery-trigger{
+                border:none;
+                background: none;
+                width:23%;
+                height:100%;
+                text-align:center;
+                padding:0;
+                &:hover{//hover over photo buttons
+                    i.gallery-photo-share{@extend .gallery-photo-share-hover;}
+                    i.gallery-photo-add-note{@extend .gallery-photo-add-note-hover;}
+                    i.gallery-photo-edit{@extend .gallery-photo-edit-hover;}
+                    i.gallery-photo-delete{@extend .gallery-photo-delete-hover;}
+                    i.sprite-add-to-journal{@extend .sprite-add-to-journal-hover;}
+                    i.sprite-gallery-star{@extend .sprite-gallery-star-hover;}
+                }
+            }
+        }
+
+        &:hover{ // hover over image-display triggers
+            .gallery-actions{display:block;}
+        }
+    }
+}

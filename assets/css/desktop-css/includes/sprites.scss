@@ -1,0 +1,1260 @@
+$assets_path  : "http://storyhtml.bywmds.us/web/assets";
+$img_path     : "http://storyhtml.bywmds.us/web/assets/img";
+.calendar-gradient-bottom{
+    background: rgb(255,255,255); /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNWY1ZjUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(245,245,245,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(245,245,245,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(245,245,245,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(245,245,245,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(245,245,245,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5',GradientType=0 ); /* IE6-8 */
+}
+.radial-gradient{
+    background-image: url(#{$assets_path}/sprites/my_acc_grad.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.story-ribbon{
+    background-image: url(#{$assets_path}/sprites/story-ribbon.png);
+    background-repeat: repeat-x;
+    background-color: #f6f6f6;
+    line-height:60px;
+}
+
+.vertical-gradient{
+    min-height: 150px;
+    background-image: url(#{$assets_path}/sprites/vertical_gradient.png);
+    background-repeat: no-repeat;
+}
+
+//Final sprite SHEET
+.sprite {
+    background-image: url(#{$assets_path}/sprites/sprites-desktop.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    position:relative;
+}
+
+$fullW: 803px;
+$fullH: 791px;
+
+@mixin scaleSprite($percentage, $xpos, $ypos, $width,$height){
+    background-size: $fullW * $percentage/100 $fullH * $percentage/100 ;
+    background-position: $xpos * $percentage / 100 $ypos * $percentage / 100;
+    width:  $width * $percentage/100 ;
+    height: $height * $percentage/100 ;
+}
+
+.home-icon1 {
+    @extend .sprite;
+    @include scaleSprite(50,-427px, -56px, 106px, 129px );
+}
+
+.home-icon2 {
+    @extend .sprite;
+    @include scaleSprite(50,-223px, -166px, 129px, 117px );
+}
+
+.home-icon3 {
+    @extend .sprite;
+    @include scaleSprite(50,-535px, -166px, 130px, 129px );
+}
+
+.next-month-arrow {
+    @extend .sprite;
+    @include scaleSprite(50,-246px, -449px, 84px, 84px );
+}
+
+.prev-month-arrow{
+    @extend .sprite;
+    @include scaleSprite(50,-668px, -505px, 84px, 84px );
+}
+
+.search-icon{
+    @extend .sprite;
+    @include scaleSprite(50,-214px, -681px, 36px, 36px );
+}
+
+.capture-your-thoughts {
+    @extend .sprite;
+    @include scaleSprite(50,-649px, -2px, 26px, 20px );
+}
+
+.nav-cal-monthly{
+    @extend .sprite;
+    @include scaleSprite(65, -226px, -93px, 40px, 50px );
+}
+
+.sprite-weekly-view {
+    @extend .sprite;
+    @include scaleSprite(65, -755px, -194px, 40px, 50px );
+}
+
+.notification-icon {
+    @extend .sprite;
+    @include scaleSprite(54, -330px, -403px, 64px, 70px );
+    position:relative;
+    top: 10px;
+    left: -1px;
+}
+
+.notification-icon-hover{
+    @extend .sprite;
+    background-size: 434.5px 416.5px;
+    background-position: -230px -263.5px;
+    width: 75px;
+    height: 72px;
+    top: 5px;
+    left: -20px;
+}
+
+.sprite-notification-clicked {
+    @extend .sprite;
+    @include scaleSprite(65,-398px, -449px, 188px, 194px );
+}
+
+.right-cal-nav {
+    @extend .sprite;
+    @include scaleSprite(65,-330px, -482px, 26px, 26px );
+}
+
+.left-cal-nav {
+    @extend .sprite;
+    @include scaleSprite(65,-358px, -482px, 26px, 26px );
+
+}
+
+.calendar-small-icon {
+    @extend .sprite;
+    @include scaleSprite(50,-703px, -681px, 38px, 44px );
+}
+
+//LEFT NAV ICONS
+.my-journal-icon {
+    @extend .sprite;
+    @include scaleSprite(50,-768px, -245px, 36px, 36px );
+}
+
+.my-journal-icon-hover{
+    @extend .sprite;
+    @include scaleSprite(50,-769px, -472px, 36px, 36px );
+}
+
+.my-journal-blue-hover {
+    @extend .sprite;
+    @include scaleSprite(50,-587px, -678px, 40px, 45px );
+}
+
+.shared-stories-icon {
+    @extend .sprite;
+    @include scaleSprite(50,-768px, -283px, 36px, 36px );
+}
+
+.shared-stories-icon-hover {
+    @extend .sprite;
+    @include scaleSprite(50,-768px, -513px, 36px, 36px );
+}
+
+.nav-gallery-icon {
+    @extend .sprite;
+    @include scaleSprite(50,-768px, -319px, 36px, 36px );
+}
+
+.nav-gallery-icon-hover{
+    @extend .sprite;
+    @include scaleSprite(50,-768px, -550px, 36px, 36px );
+}
+
+.my-contacts-and-groups-icon{
+    @extend .sprite;
+    @include scaleSprite(50,-766px, -354px, 40px, 36px );
+}
+
+.my-contacts-and-groups-icon-hover{
+    @extend .sprite;
+    @include scaleSprite(50,-766px, -664px, 40px, 36px );
+}
+
+.my-account-icon{
+    @extend .sprite;
+    @include scaleSprite(50,-768px, -390px, 36px, 36px );
+}
+.my-account-icon-hover {
+    @extend .sprite;
+    @include scaleSprite(50,-767px, -702px, 36px, 36px );
+}
+//END LEFT NAV ICONS
+
+.edit-pencil {
+    @extend .sprite;
+    @include scaleSprite(50,-338px, -56px, 28px, 28px );
+    position:relative;
+    top:3px;
+}
+
+.edit-pencil-plin {
+    @extend .sprite;
+    @include scaleSprite(50,-266px, -93px, 30px, 30px );
+    position: relative;
+    top:3px;
+}
+
+.edit-pencil-plin-hover {
+    @extend .sprite;
+    @include scaleSprite(40,-201px, -2px, 40px, 40px );
+}
+
+//checkbox/radio sprites
+.sprite-unchecked {
+    @extend .sprite;
+    @include scaleSprite(50, -732px, -589px, 60px, 62px );
+}
+
+.sprite-check {
+    @extend .sprite;
+    @include scaleSprite(50, -2px, -166px, 60px, 62px );
+}
+
+.small-sprite-unchecked {
+    @extend .sprite;
+    @include scaleSprite(35, -732px, -589px, 60px, 62px );
+}
+
+.small-sprite-check {
+    @extend .sprite;
+    @include scaleSprite(35, -2px, -166px, 60px, 62px );
+}
+/*******************My Account Sprites**********************/
+
+.my-account-about-icon {
+    @extend .sprite;
+    @include scaleSprite(50,-590px, -725px, 50px, 64px );
+}
+
+.my-account-facebook-btn {
+    @extend .sprite;
+    @include scaleSprite(50,-52px, -299px, 60px, 80px );
+}
+
+.my-account-facebook-btn-hover {
+    @extend .sprite;
+    @include scaleSprite(50,-116px, -299px, 60px, 80px );
+}
+
+.my-account-tumblr-btn {
+    @extend .sprite;
+    @include scaleSprite(50,-184px, -299px, 62px, 80px );
+}
+
+.my-account-tumblr-btn-hover {
+    @extend .sprite;
+    @include scaleSprite(50,-250px, -299px, 62px, 80px );
+}
+
+.my-account-twitter-btn {
+    @extend .sprite;
+    @include scaleSprite(50,-320px, -299px, 62px, 80px );
+}
+
+.my-account-twitter-btn-hover {
+    @extend .sprite;
+    @include scaleSprite(50,-386px, -299px, 62px, 80px );
+}
+
+.my-account-notification-icon {
+    @extend .sprite;
+    @include scaleSprite(50,-644px, -725px, 52px, 54px );
+}
+
+.my-account-cogwheel-icon {
+    @extend .sprite;
+    @include scaleSprite(50,-700px, -725px, 50px, 50px );
+}
+
+//my account - edit
+.ok-icon-blue{
+    @extend .sprite;
+    @include scaleSprite(40, 0px, -632px, 40px, 44px );
+}
+
+.ok-icon-blue-small{
+    @extend .sprite;
+    @include scaleSprite(45, 0px, -632px, 40px, 44px );
+}
+.collapse-arrow-small{
+    @extend .sprite;
+    @include scaleSprite(30,-2px, -250px, 32px, 25px );
+}
+
+.expand-arrow-small {
+    @extend .sprite;
+    @include scaleSprite(30,-2px, -56px, 32px, 22px );
+}
+.pen-edit-white{
+    @extend .sprite;
+    @include scaleSprite(95,-787px, -433px, 15px, 15px );
+}
+
+/*******************END My Account Sprites**********************/
+
+/*******************My Contacts**********************/
+
+
+.my-contacts-header-icon {
+    @extend .sprite;
+    @include scaleSprite(50,-756px, -2px, 40px, 44px);
+    position:relative;
+    top:3px;
+}
+
+.my-contacts-add-to-group {
+    @extend .sprite;
+    @include scaleSprite(50,-590px, -299px, 56px, 68px);
+}
+
+.my-contacts-add-to-group-hover {
+    @extend .sprite;
+    @include scaleSprite(50,-456px , -371px, 56px, 68px);
+}
+
+.my-contacts-remove-from-contact {
+    @extend .sprite;
+    @include scaleSprite(50,-64px , -449px, 56px, 68px);
+}
+
+.my-contacts-remove-from-contact-hover {
+    @extend .sprite;
+    @include scaleSprite(50,-124px , -449px, 56px, 68px);
+}
+
+.my-contacts-block-contact {
+    @extend .sprite;
+    @include scaleSprite(50,-456px , -299px, 56px, 68px);
+}
+
+.my-contacts-block-contact-hover {
+    @extend .sprite;
+    @include scaleSprite(50,-590px , -371px, 56px, 68px);
+}
+
+.my-contacts-starred{
+    @extend .sprite;
+    @include scaleSprite(50,-184px , -449px, 56px, 68px);
+}
+
+.my-contacts-not-starred {
+    @extend .sprite;
+    @include scaleSprite(50,-2px , -443px, 56px, 68px);
+}
+
+.sprite-my_contacts_create-new-group {
+    @extend .sprite;
+    @include scaleSprite(50,-299px , -93px, 17px, 17px);
+}
+
+.my-contacts-groups-icon {
+    @extend .sprite;
+    @include scaleSprite(50,-380px , -725px, 50px, 54px);
+    position: relative;
+    top: 4px;
+}
+
+.my-contacts-edit-group {
+    @extend .sprite;
+    background-size: 401.5px 395.5px;
+    background-position: -238px 1px;
+    @include opacity(50%);
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 2px;
+}
+
+.my-contacts-edit-group-hover {
+    @extend .sprite;
+    background-size: 401.5px 395.5px;
+    background-position: -238px 1px;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 2px;
+}
+
+
+.sprite-dropdown {
+    @extend .sprite;
+    @include scaleSprite(60, -294px , -56px, 21px, 16px);
+    position:relative;
+    top:1px;
+}
+
+.sprite-dropdown-up {
+    @extend .sprite-dropdown;
+    @include scaleSprite(60, -316px, -56px, 22px, 16px);
+}
+
+/*******************END My Contacts**********************/
+
+/****************My Notes**************************/
+
+.arrow-down-showing {
+    @extend .sprite;
+    @include scaleSprite(50, -670px, -681px, 30px, 35px);
+    position: relative;
+    top:2px;
+}
+
+.clock-faded-icon {
+    @extend .sprite;
+    @include scaleSprite(50, -196px, -56px, 34px, 34px);
+}
+
+.clock-clear-icon {
+    @extend .sprite;
+    @include scaleSprite(50, -230px, -56px, 34px, 34px);
+}
+
+.smaller-clock-clear-icon {
+    @extend .sprite;
+    @include scaleSprite(35, -230px, -56px, 34px, 34px);
+    top:1px;
+    left:-1px;
+}
+
+.notes-sprite-expand {
+    @extend .sprite;
+    @include scaleSprite(50, -2px, -56px, 32px, 22px);
+}
+
+.notes-arrow-collapse {
+    @extend .sprite;
+    @include scaleSprite(50, -391px, -56px, 32px, 22px);
+}
+
+.notes-comment {
+    @extend .sprite;
+    @include scaleSprite(50, -2px, -133px, 32px, 28px);
+}
+
+.reply-to-note-icon {
+    @extend .sprite;
+    @include scaleSprite(40, -688px, -426px, 44px, 52px);
+}
+/****************END My Notes**********************/
+
+
+
+/****************My Journal**********************/
+
+.my-journal-delete {
+    @extend .sprite;
+    @include scaleSprite(60, -320px, -93px, 28px, 32px);
+}
+
+.my-journal-delete-hover {
+    @extend .sprite;
+    @include scaleSprite(60, -2px, -369px, 28px, 32px);
+}
+
+.my-journal-add-note {
+    @extend .sprite;
+    @include scaleSprite(60, -352px, -93px, 36px, 32px);
+}
+
+.my-journal-add-note-hover {
+    @extend .sprite;
+    @include scaleSprite(60, -650px, -334px, 36px, 32px);
+}
+
+.my-journal-star {
+    @extend .sprite;
+    @include scaleSprite(60, -645px, -93px, 34px, 36px);
+}
+
+.my-journal-star-darker {
+    @extend .sprite;
+    @include scaleSprite(60, -106px, -403px, 34px, 36px);
+}
+
+.my-journal-star-hover {
+    @extend .sprite;
+    @include scaleSprite(60, -34px, -403px, 34px, 36px);
+}
+
+.my-journal-edit {
+    @extend .sprite;
+    @include scaleSprite(60, -390px, -93px, 28px, 30px);
+}
+
+.my-journal-edit-hover {
+    @extend .sprite;
+    @include scaleSprite(60, -650px, -369px, 28px, 30px);
+}
+
+.my-journal-share {
+    @extend .sprite;
+    @include scaleSprite(60, -72px, -403px, 32px, 32px);
+}
+
+.my-journal-share-hover {
+    @extend .sprite;
+    @include scaleSprite(60, -650px, -299px, 32px, 32px);
+}
+
+.sprite-location {
+    @extend .sprite;
+    @include scaleSprite(50, -645px, -56px, 28px, 33px);
+}
+
+.shield-icon{
+    @extend .sprite;
+    @include scaleSprite(100, -766px, -755px, 38px, 38px);
+}
+.separator-dots{
+    color: #d9d9d9;
+    font-size: 20px;
+    display: inline-block;
+    text-align: center;
+    letter-spacing:7px;
+    width:100%;
+    height:10px;
+    line-height:5px;
+    overflow:hidden;
+    margin: 10px 0 20px 0;
+    &:after{ //generates dots as content prop; #NoMoreSprites
+        @include content-loop(100);
+    }
+}
+/****************END My Journal**********************/
+
+/****************Public Profile**********************/
+.profile-star {
+    @extend .sprite;
+    @include scaleSprite(50, -162px, -589px, 68px, 88px);
+}
+
+.profile-star-hover {
+    @extend .sprite;
+    @include scaleSprite(50, -660px, -589px, 68px, 88px);
+}
+
+.profile-add-to-group {
+    @extend .sprite;
+    @include scaleSprite(50, -234px, -589px, 68px, 88px);
+}
+
+.profile-add-to-group-hover {
+    @extend .sprite;
+    @include scaleSprite(50, -74px, -681px, 68px, 88px);
+}
+
+.profile-add-to-contacts {
+    @extend .sprite;
+    @include scaleSprite(50, -304px, -589px, 68px, 88px);
+}
+
+.profile-add-to-contacts-hover {
+    @extend .sprite;
+    @include scaleSprite(50, -2px, -681px, 68px, 88px);
+}
+
+
+.profile-block {
+    @extend .sprite;
+    @include scaleSprite(50, -144px, -681px, 68px, 88px);
+}
+.profile-block-hover {
+    @extend .sprite;
+    @include scaleSprite(50, -590px, -589px, 68px, 88px);
+}
+
+
+.gallery-title-icon {
+    @extend .sprite;
+    @include scaleSprite( 50, -248px, -725px, 52px, 52px );
+    position: relative;
+    top: 10px;
+}
+
+.profile-title-note {
+    @extend .sprite;
+    @include scaleSprite(60, -754px, -108px, 47px, 60px);
+    position: relative;
+    top: 10px;
+}
+
+
+/****************END Public Profile**********************/
+
+
+/********************Carousel Controls**********************/
+
+.right-carousel-nav {
+    @extend .sprite;
+    @include scaleSprite(40, -685px, -2px, 67px, 102px);
+}
+
+.right-carousel-nav-hover {
+    @extend .sprite;
+    @include scaleSprite(40, -683px, -108px, 67px, 102px);
+}
+
+
+.left-carousel-nav {
+    @extend .sprite;
+    @include scaleSprite(40, -688px, -320px, 67px, 102px);
+}
+
+.left-carousel-nav-hover {
+    @extend .sprite;
+    @include scaleSprite(40, -684px, -214px, 67px, 102px);
+}
+
+.bk-grad-rtl{
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNmY2ZjYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(246,246,246,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(246,246,246,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(246,246,246,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(246,246,246,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(246,246,246,1) 100%); /* IE10+ */
+    background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(246,246,246,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f6f6f6',GradientType=1 ); /* IE6-8 */
+}
+
+.bk-grad-ltr{
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y2ZjZmNiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(left,  rgba(246,246,246,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(246,246,246,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  rgba(246,246,246,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  rgba(246,246,246,1) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  rgba(246,246,246,1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+    background: linear-gradient(to right,  rgba(246,246,246,1) 0%,rgba(255,255,255,0) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f6f6', endColorstr='#00ffffff',GradientType=1 ); /* IE6-8 */
+}
+/****************END Carousel Controls**********************/
+
+/**************************Gallery**********************/
+
+.gallery-photo-share {
+    @extend .sprite;
+    @include scaleSprite(50, -221px, -403px, 34px, 32px);
+}
+
+.gallery-photo-share-hover {
+    @extend .sprite;
+    @include scaleSprite(50, -136px, -534px, 34px, 32px);
+}
+
+.gallery-photo-add-note {
+    @extend .sprite;
+    @include scaleSprite(50, -144px, -403px, 40px, 32px);
+}
+
+.gallery-photo-add-note-hover {
+    @extend .sprite;
+    @include scaleSprite(50, -336px, -516px, 40px, 32px);
+}
+
+.gallery-photo-edit {
+    @extend .sprite;
+    @include scaleSprite(50, -124px, -133px, 32px, 34px);
+}
+
+.gallery-photo-edit-hover{
+    @extend .sprite;
+    @include scaleSprite(50, -90px, -540px, 32px, 34px);
+}
+
+.gallery-photo-delete {
+    @extend .sprite;
+    @include scaleSprite(50, -184px, -403px, 38px, 36px);
+}
+
+.gallery-photo-delete-hover{
+    @extend .sprite;
+    @include scaleSprite(50, -640px, -458px, 38px, 36px);
+}
+
+.sprite-add-to-journal {
+    @extend .sprite;
+    @include scaleSprite(50, -293px, -403px, 30px, 36px);
+}
+
+.sprite-add-to-journal-hover {
+    @extend .sprite;
+    @include scaleSprite(50, -68px, -594px, 30px, 36px);
+}
+
+.sprite-gallery-star {
+    @extend .sprite;
+    @include scaleSprite(50, -258px, -406px, 34px, 34px);
+}
+
+.sprite-gallery-star-hover {
+    @extend .sprite;
+    @include scaleSprite(50, -598px, -542px, 34px, 34px);
+}
+
+.sprite-notifications-small-star {
+    @extend .sprite;
+    @include scaleSprite(50, -98px, -133px, 24px, 24px);
+}
+
+.sprite-notifications-starred-you {
+    @extend .sprite;
+    @include scaleSprite(50, -590px, -449px, 41px, 55px);
+    top:5px;
+}
+
+.x-icon{font-style: normal;position:relative;}
+
+.sprite-notifications-small-ok {
+    @extend .sprite;
+    @include scaleSprite(50, -64px, -133px, 30px, 25px);
+}
+.dropdown-arrow-top{
+    @extend .sprite;
+    @include scaleSprite(100, 1px, -37px, 20px, 13px);
+    position:absolute;
+    top:-13px;
+    left: 75px;
+}
+/**************************END Gallery**********************/
+/**************************Shared Stories**********************/
+
+.shared-ribbon-date{
+    background-image: url(#{$assets_path}/sprites/shared-date.png);
+    width:105px;
+    height:26px;
+    display:inline-block;
+}
+
+.sprite-options {
+    @extend .sprite;
+    @include scaleSprite(50, -590px, -508px, 80px, 20px);
+}
+
+.sprite-options-hover {
+    @extend .sprite;
+    @include scaleSprite(50, -2px, -532px, 80px, 20px);
+}
+/**************************END Shared Stories**********************/
+
+/**************************Single Story***************************/
+
+.sprite-star{
+    @extend .sprite;
+    @include scaleSprite(40, -214px, -725px, 30px, 30px);
+}
+
+.blue-privacy{
+    @extend .sprite;
+    @include scaleSprite(40, -271px, -2px, 32px, 41px);
+}
+
+.single-story-delete{
+    @extend .sprite;
+    @include scaleSprite(50, -264px, -56px, 26px, 31px);
+}
+
+.single-story-edit{
+    @extend .sprite;
+    @include scaleSprite(50, -338px, -56px, 28px, 28px);
+}
+
+.single-privacy {
+    @extend .sprite;
+    @include scaleSprite(50, -513px, -2px, 30px, 36px);
+}
+
+.clock-bolded {
+    @extend .sprite;
+    @include scaleSprite(50, -2px, -2px, 32px, 32px);
+}
+
+.add-note-btn{
+    @extend .sprite;
+    @include scaleSprite(50, -38px, 0px, 32px, 30px);
+    top: 2px;
+}
+
+.reply-to-note-icon-big {
+    @extend .sprite;
+    @include scaleSprite( 60, -688px, -426px, 44px, 52px );
+}
+
+/**************************END Single Story**********************/
+
+/**************************Top Calendar**********************/
+
+.stiches {
+    @extend .sprite;
+    @include scaleSprite( 100, -670px, -190px, 25px, 65px );
+}
+
+.small-stiches{
+    @extend .sprite;
+    @include scaleSprite( 100, -750px, -465px, 20px, 54px );
+}
+
+.sprite-cal-logo {
+    @extend .sprite;
+    @include scaleSprite( 50, -543px, -36px, 98px, 126px );
+}
+
+.list-gradient-top{
+    position: absolute;
+    top:0;
+    width: 120px;
+    left:0;
+    right:0;
+    height:30px;
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjIyJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 22%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(22%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 22%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 22%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 22%,rgba(255,255,255,0) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 22%,rgba(255,255,255,0) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-8 */
+}
+
+.list-gradient-bottom{
+    position: absolute;
+    width: 120px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijc4JSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 78%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(78%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 78%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 78%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 78%,rgba(255,255,255,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 78%,rgba(255,255,255,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-8 */
+}
+
+.cal-head-gradient{
+    background: rgb(221,221,221); /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2RkZGRkZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmYWZhZmEiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjN2RiOWU4IiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+    background: -moz-linear-gradient(top,  rgba(221,221,221,1) 0%, rgba(250,250,250,1) 100%, rgba(125,185,232,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(221,221,221,1)), color-stop(100%,rgba(250,250,250,1)), color-stop(100%,rgba(125,185,232,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(221,221,221,1) 0%,rgba(250,250,250,1) 100%,rgba(125,185,232,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(221,221,221,1) 0%,rgba(250,250,250,1) 100%,rgba(125,185,232,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(221,221,221,1) 0%,rgba(250,250,250,1) 100%,rgba(125,185,232,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(221,221,221,1) 0%,rgba(250,250,250,1) 100%,rgba(125,185,232,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#7db9e8',GradientType=0 ); /* IE6-8 */
+}
+
+.cal-month-left {
+    @extend .sprite;
+    @include scaleSprite( 50, -356px, -166px, 46px, 48px );
+}
+
+.cal-month-right {
+    @extend .sprite;
+    @include scaleSprite( 50, -2px, -299px, 46px, 48px );
+}
+
+/**************************ENDTop Calendar**********************/
+
+//MODALS
+.permissions-eye{
+    @extend .sprite;
+    @include scaleSprite( 50, -736px, -426px, 48px, 32px );
+}
+
+
+.multiple-contacts-icon-active{
+    @extend .sprite;
+    @include scaleSprite( 50, -112px, -56px, 28px, 28px);
+    top: 1px;
+}
+
+.multiple-contacts-icon-inactive{
+    @extend .sprite;
+    @include scaleSprite( 50, -80px, -56px, 28px, 28px);
+    top: 1px;
+}
+
+
+
+/******************END PLACED SPRITES*****************************
+ *****************************************************************
+ *****************************************************************/
+
+
+.sprite-valid {
+    @extend .sprite;
+    width: 29px;
+    height: 23px;
+    background-position: -754px -172px;
+}
+
+.big-check-white{
+    @extend .sprite;
+    width: 60px;
+    height: 46px;
+    background-position: -63px -166px;
+}
+
+//facebookPlain letter
+.sprite-button_icons-_facebook {
+    @extend .sprite;
+    width: 19px;
+    height: 36px;
+    background-position: -126px -2px;
+}
+
+.sprite-button_icons-_hover_facebook {
+    @extend .sprite;
+    width: 24px;
+    height: 43px;
+    background-position: -243px -2px;
+}
+
+//facebookPlain letter
+.sprite-button_icons-_hover_storythat-gallery {
+    @extend .sprite;
+    width: 36px;
+    height: 37px;
+    background-position: -347px -2px;
+}
+
+.sprite-add-note {
+    width: 34px;
+    height: 33px;
+    background-position: -36px -2px;
+}
+
+.sprite-add-photo-moments {
+    width: 30px;
+    height: 30px;
+    background-position: -74px -2px;
+}
+
+.sprite-arrow-down-_show-all-notes_ {
+    width: 14px;
+    height: 8px;
+    background-position: -108px -2px;
+}
+
+.sprite-button_icons-_hover_add-photo_video {
+    width: 48px;
+    height: 41px;
+    background-position: -149px -2px;
+}
+
+
+.sprite-button_icons-_hover_share {
+    width: 36px;
+    height: 37px;
+    background-position: -307px -2px;
+}
+
+
+.sprite-button_icons-_hover_upload {
+    width: 40px;
+    height: 37px;
+    background-position: -387px -2px;
+}
+
+.sprite-button_icons-add-photo_video {
+    width: 42px;
+    height: 34px;
+    background-position: -431px -2px;
+}
+
+
+.sprite-button_icons-share {
+    width: 30px;
+    height: 30px;
+    background-position: -543px -2px;
+}
+
+.story-gallery-icon {
+    width: 30px;
+    height: 30px;
+    background-position: -577px -2px;
+}
+
+.sprite-button_icons-upload {
+    width: 34px;
+    height: 30px;
+    background-position: -611px -2px;
+}
+
+
+.sprite-capture-your-thoughts-bigger {
+    width: 32px;
+    height: 26px;
+    background-position: -649px -26px;
+}
+.sprite-check-big-photo {
+    width: 60px;
+    height: 46px;
+    background-position: -63px -166px;
+}
+
+
+.sprite-contacts_groups__check {
+    @extend .sprite;
+    width: 40px;
+    height: 30px;
+    background-position: -38px -56px;
+}
+
+
+.sprite-create-story- {
+    width: 20px;
+    height: 20px;
+    background-position: -142px -56px;
+}
+
+.sprite-create-story-icon {
+    width: 46px;
+    height: 46px;
+    background-position: -127px -166px;
+}
+
+.sprite-crop {
+    width: 26px;
+    height: 26px;
+    background-position: -166px -56px;
+}
+
+
+.sprite-del_photo {
+    width: 42px;
+    height: 43px;
+    background-position: -177px -166px;
+}
+
+
+.sprite-error {
+    width: 19px;
+    height: 18px;
+    background-position: -368px -56px;
+}
+
+
+
+.sprite-location---hovered {
+    width: 27px;
+    height: 33px;
+    background-position: -2px -93px;
+}
+
+.sprite-location-big {
+    width: 27px;
+    height: 36px;
+    background-position: -33px -93px;
+}
+
+.sprite-make-private {
+    width: 22px;
+    height: 28px;
+    background-position: -64px -93px;
+}
+
+
+
+.sprite-my_account_edit-profile {
+    width: 29px;
+    height: 28px;
+    background-position: -266px -93px;
+}
+
+.sprite-my_account_facebook {
+    width: 60px;
+    height: 79px;
+    background-position: -52px -299px;
+}
+
+.sprite-my_account_facebook_hover {
+    width: 64px;
+    height: 76px;
+    background-position: -116px -299px;
+}
+
+.sprite-my_account_tumblr {
+    width: 62px;
+    height: 81px;
+    background-position: -184px -299px;
+}
+
+.sprite-my_account_tumblr_hover {
+    width: 66px;
+    height: 78px;
+    background-position: -250px -299px;
+}
+
+.sprite-my_account_twitter {
+    width: 62px;
+    height: 81px;
+    background-position: -320px -299px;
+}
+
+.sprite-my_account_twitter_hover {
+    width: 66px;
+    height: 78px;
+    background-position: -386px -299px;
+}
+
+.sprite-notifications_small_Clock {
+    width: 22px;
+    height: 22px;
+    background-position: -38px -133px;
+}
+
+.sprite-photo_not_mine_0001_add-note {
+    width: 37px;
+    height: 31px;
+    background-position: -182px -532px;
+}
+
+
+.sprite-photo_not_mine_0003_share {
+    width: 30px;
+    height: 30px;
+    background-position: -398px -403px;
+}
+
+.sprite-photo_not_mine_hover_0001_add-note {
+    width: 54px;
+    height: 48px;
+    background-position: -2px -585px;
+}
+
+
+.sprite-photo_not_mine_hover_0003_share {
+    width: 48px;
+    height: 42px;
+    background-position: -110px -585px;
+}
+
+
+.sprite-photo_popup__0004_full-screen {
+    width: 80px;
+    height: 80px;
+    background-position: -406px -214px;
+}
+
+
+.sprite-private-note {
+    width: 26px;
+    height: 34px;
+    background-position: -177px -214px;
+}
+
+.sprite-reply {
+    width: 24px;
+    height: 30px;
+    background-position: -490px -214px;
+}
+
+
+.sprite-shared_stories__0000_delete {
+    width: 33px;
+    height: 40px;
+    background-position: -250px -681px;
+}
+
+.sprite-shared_stories__0001_add-note {
+    width: 43px;
+    height: 37px;
+    background-position: -287px -681px;
+}
+
+.sprite-shared_stories__0002_star {
+    width: 42px;
+    height: 44px;
+    background-position: -334px -681px;
+}
+
+.sprite-shared_stories__0003_add-to-journal {
+    width: 34px;
+    height: 40px;
+    background-position: -380px -681px;
+}
+
+.sprite-shared_stories__0004_share {
+    width: 38px;
+    height: 40px;
+    background-position: -418px -681px;
+}
+
+.sprite-shared_stories_hover_0000_delete {
+    width: 33px;
+    height: 40px;
+    background-position: -460px -681px;
+}
+
+.sprite-shared_stories_hover_0001_add-note {
+    width: 43px;
+    height: 37px;
+    background-position: -497px -681px;
+}
+
+.sprite-shared_stories_hover_0002_star {
+    width: 42px;
+    height: 44px;
+    background-position: -544px -681px;
+}
+
+.sprite-shared_stories_hover_0003_add-to-journal {
+    width: 34px;
+    height: 40px;
+    background-position: -590px -681px;
+}
+
+.sprite-shared_stories_hover_0004_share {
+    width: 38px;
+    height: 40px;
+    background-position: -628px -681px;
+}
+
+.sprite-title_icons_0004_add-photo_video {
+    width: 52px;
+    height: 40px;
+    background-position: -434px -725px;
+}
+
+
+.sprite-title_icons_0007_notifications {
+    width: 52px;
+    height: 54px;
+    background-position: -644px -725px;
+}
+
+
+.sprite-title_icons_logout {
+    width: 38px;
+    height: 38px;
+    background-position: -756px -48px;
+}
+
+
+.sprite-title_icons_viewing-note {
+    width: 47px;
+    height: 60px;
+    background-position: -754px -108px;
+}
+
+
+.sprite-photo_not_mine_0001_add-note {
+    width: 37px;
+    height: 31px;
+    background-position: -182px -532px;
+}

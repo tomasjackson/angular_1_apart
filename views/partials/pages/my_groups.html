@@ -1,0 +1,80 @@
+<div class="browse_by_calendar my-group-page">
+    <div class="row my-group-static-row">
+        <div class="col-md-12 calendar-breadcrumb group-page-header">
+            <div class="col-md-6">
+                <span class="page-header-title"><i class="fa fa-users" aria-hidden="true"></i>My Groups <button class="btn-story-that-big-light" ng-click="$ctrl.createNewGroup()">+ Create New</button></span>
+                
+            </div><!-- col-md-6 -->
+            <div class="drop-filter">
+                <span class="dropdown-toggle-label"><span class="active-users-numb">{{$ctrl.friends.length}}</span> users in this group</span>
+            </div><!-- drop-filter -->
+        </div><!-- group-page-header-->
+    </div><!-- row my-group-static-row -->
+    <div class="clearfix"></div>
+
+    <div class="all-groups">
+        <div class="contact-tabs">
+            <ul class="group-list">
+                <li class="group" ng-repeat="defaultGroup in $ctrl.defaultGroup" ng-class="{'active-group':$ctrl.category === defaultGroup}">
+                    <button class="group-name" ng-click="$ctrl.selectCategory(defaultGroup)">{{defaultGroup.name}}</button>
+                    <div class="clearfix"></div>
+                </li>
+                <li class="group" ng-repeat="group in $ctrl.allGroups" ng-class="{'active-group':$ctrl.category === group}">
+                    <button class="group-name" ng-click="$ctrl.selectCategory(group)">{{group.name}}</button>
+                    <div class="dropdown">
+                        <button data-toggle="dropdown" class="edit-group"><i class="edit-group-icon"></i></button>
+                        <div class="dropdown-menu">
+                            <button ng-click="$ctrl.editGroup(group)"><i class="fa fa-edit"></i> Edit Group</button>
+                            <button ng-click="$ctrl.deleteGroup(group)"><i class="fa fa-times"></i> Delete</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+
+            <div class="group-wrap cf">
+                <div class="group-contacts selected-group">
+                    <div class="contact" ng-repeat="friend in $ctrl.friends">
+                        <a class="avatar">
+                            <img class="img-circle" ng-src={{friend.user.avatar}} width="100%" height="100%">
+                        </a>
+                        <div class="contactInfo">
+                            <a ui-sref="mainPage.otherUser({id:friend.user.id,username:friend.user.username})" class="contact-name">{{friend.user.username}}</a>
+                            <div class="quick-actions">
+                                <div class="quick-actions-btn">
+                                    <span class="group-contacts-btn del-group-contact-btn" ng-if="!friend.user.areFriends"
+                                          ng-click="$ctrl.addContact(friend.user)" tooltip-placement="top" uib-tooltip="Add Contact">
+                                        <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                                    </span>
+                                    <span class="group-contacts-btn del-group-contact-btn checked" ng-if="friend.user.areFriends"
+                                          ng-click="$ctrl.removeContact(friend.user)" tooltip-placement="top" uib-tooltip="Remove Contact">
+                                        <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                                    </span>
+                                </div>
+                                <div class="quick-actions-btn">
+                                    <span class="group-contacts-btn contacts-favorite" ng-if="!friend.user.isFavorite"
+                                          ng-click="$ctrl.addFavourite(friend.user)" tooltip-placement="top" uib-tooltip="Add to Favorites">
+                                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                                    </span>
+                                    <span class="group-contacts-btn contacts-favorite checked" ng-if="friend.user.isFavorite"
+                                          ng-click="$ctrl.removeFavorite(friend.user)" tooltip-placement="top" uib-tooltip="Remove from Favorites">
+                                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                                    </span>
+                                </div>
+                                <div class="quick-actions-btn">
+                                    <span class="group-contacts-btn" ng-class="{'checked':friend.user.groups.length}"
+                                          ng-click="$ctrl.addToGroup(friend.user)" tooltip-placement="top" uib-tooltip="Add to Groups">
+                                        <span class="remove-group-contact"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

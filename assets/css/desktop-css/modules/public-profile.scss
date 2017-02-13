@@ -1,0 +1,116 @@
+.public-profile-top{
+
+    .public-avatar {
+        margin: 0;
+        display:inline-block;
+        padding: 0;
+        img{
+            @include box-shadow(0, 3px, 3px, #cacaca);
+            @include border-radius(50%);
+            border: 5px solid #ffffff;
+            height:75px;
+            width: 75px;
+            text-align:center;
+        }
+    }
+
+    h1{
+        line-height: 100px;
+        display: inline-block;
+        margin: 0 10px;
+        font-size: 25px;
+        color: #4a4a49;
+    }
+}
+
+.public-profile-actions{ //public profile quick actions
+    text-align:right;
+
+    .quick-action{ // regular state
+        display: inline-block;
+        border:none;
+        background: none;
+        padding-top:15px;
+
+        &:hover{//regular state hover
+            i.profile-star{@extend .profile-star-hover}
+            i.profile-add-to-group{@extend .profile-add-to-group-hover}
+            i.profile-add-to-contacts{@extend .profile-add-to-contacts-hover}
+            i.profile-block{@extend .profile-block-hover}
+        }
+
+        &.selected{// Selected state
+            i.profile-star{@extend .profile-star-hover}
+            i.profile-add-to-group{@extend .profile-add-to-group-hover}
+            i.profile-add-to-contacts{@extend .profile-add-to-contacts-hover}
+            i.profile-block{@extend .profile-block-hover}
+        }
+    }
+}
+.public-about{
+    label{
+        margin-left: 75px;
+    }
+}
+.gallery-profile{
+    @extend .profile_section;
+    h4{
+        margin-left:10px;
+    }
+}
+//Small Carousel Styling
+
+
+.profile-carousel-wrapper {
+    $height : 120px;
+    height: $height;
+    width: 700px;
+    position:relative;
+    overflow:hidden;
+    margin-left:5%;
+
+    #carousel{left:20px;}
+
+    .profile-gallery-image{
+        @extend .gallery-image-template;
+        margin:0 10px 30px 10px;
+    }
+
+    .slide-nav{
+        line-height: 25px;
+        background: none;
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 70px;
+        height: 100%;
+        text-align: center;
+        border: none;
+        i{display: inline-block;}
+
+        &.next{
+            @extend .bk-grad-rtl;
+            right: -10px;
+            i.right-carousel-nav{position:relative; right:-10px;}
+            &:hover{
+                i.right-carousel-nav{ @extend .right-carousel-nav-hover;}
+            }
+        }
+
+        &.prev{
+            @extend .bk-grad-ltr;
+            left: -10px;
+            &:hover{
+                i.left-carousel-nav{
+                    @extend .left-carousel-nav-hover;
+                }
+            }
+        }
+    }
+    .slick-slider{margin-bottom:0;}
+}
+
+.gallery-section{
+    margin-top: 20px;
+}
+

@@ -1,0 +1,35 @@
+.text-center {
+    text-align: center;
+}
+.error {
+    color: red;
+}
+.facebookAlbum {
+    padding: 10px 0px;
+    border: 2px dotted #EFEFEF;
+    margin-bottom: 10px;
+}
+.facebookAlbum h3 {
+    padding-left: 10px;
+}
+.facebookList {
+    margin-top: 10px;
+    display: none;
+}
+.facebookListVideos {
+    margin-top: 10px;
+}
+.facebookAlbumTitle {
+    cursor: pointer;
+}
+.notesMediafiles {
+    list-style: none;
+    padding: 10px 0px;
+    margin: 0px;
+}
+.notesMediafiles .attachment {
+    margin-left: 0px;
+}
+.editMediaFilesList {
+    padding: 0px;
+}

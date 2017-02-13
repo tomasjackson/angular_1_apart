@@ -1,0 +1,49 @@
+<div class="browse_by_calendar my-contacts-page">
+    <div class="row">
+        <div class="col-md-12 calendar-breadcrumb">
+            <i class="contacts-header-icon"></i>
+            <span class="page-header-title">Search Users</span>
+        </div>
+    </div>
+
+    <div class="row contacts-wrap sort-wrapper">
+        <div class="validation-wrap">
+          <p class="error-message" ng-if="$ctrl.noResult">{{$ctrl.ErrorMessage}} </p>
+          <p class="success-message" ng-if="SuccessMessage">{{SuccessMessage}} </p>
+        </div>
+
+        <div class="contact" ng-repeat="user in $ctrl.searchResult" ng-if="$ctrl.searchCategory === 'user'">
+            <a href="" class="avatar">
+                <img class="img-circle" ng-src="{{user.avatar}}" alt="" width="100%" height="100%">
+            </a>
+            <div class="contactInfo">
+                <a ui-sref="mainPage.otherUser({id:user.id,username:user.username})" class="contact-name">{{user.username}}</a>
+                <div class="quickActions">
+                    <span ng-if="user.areFriends" ng-click="$ctrl.removeContact(user)" class="checked group-contacts-btn del-group-contact-btn" data-placement="top" uib-tooltip="Remove Contact">
+                        <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                    </span>
+                    <span ng-if="!user.areFriends" ng-click="$ctrl.addContact(user)" class="group-contacts-btn del-group-contact-btn" data-placement="top" uib-tooltip="Add Contact">
+                          <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                    </span>
+
+                    <span ng-if="user.isFavorite" ng-click="$ctrl.removeFavourite(user)" class="checked group-contacts-btn contacts-favorite" data-placement="top" uib-tooltip="Remove from Favorites">
+                        <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                    </span>
+                    <span ng-if="!user.isFavorite" ng-click="$ctrl.addFavourite(user)" class="group-contacts-btn contacts-favorite" data-placement="top" uib-tooltip="Add to Favorites">
+                          <span><i class="fa fa-star" aria-hidden="true"></i></span>
+                    </span>
+
+                    <span ng-if="user.groups.length" ng-click="$ctrl.removeGroup(user)" class="checked group-contacts-btn" data-placement="top" uib-tooltip="Remove from Groups">
+                        <span data-target="#block-user-acc" data-toggle="collapse" class="remove-group-contact"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                    </span>
+                    <span ng-if="!user.groups.length" ng-click="$ctrl.addGroup(user)" class="group-contacts-btn" data-placement="top" uib-tooltip="Add to Groups">
+                        <span data-target="#block-user-acc" data-toggle="collapse" class="remove-group-contact"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="quickActions"></div>
+    </div>
+
+    <div class="clearfix"></div>
+</div>

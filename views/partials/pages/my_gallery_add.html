@@ -1,0 +1,79 @@
+<div class="my-gallery-page">
+  <div class="browse_by_calendar">
+    <div class="row my-gallery-static-row">
+      <div class="col-md-6 calendar-breadcrumb">
+        <span class="page-header-title"><i class="fa fa-picture-o" aria-hidden="true"></i> My Gallery:</span> <span class="page-header-title">{{$ctrl.sinceDate}}</span>
+      </div>
+      <div class="col-md-6 ">
+        <div class="drop-filter">
+          <div class="dropdown">
+            <button class="dropdown-toggle" data-toggle="dropdown" type="button">
+              <span class="dropdown-toggle-label">All Photos/Videos </span>&nbsp;<i class="sprite-dropdown"></i>
+            </button>
+            <div class="dropdown-menu st-dropdown" aria-labelledby="name-privacy" role="menu">
+              <button class="story-clear-btn filter-elements current-filter" data-filter=".all-accounts-photos">All Photos/Videos <span class="pull-right">{{$ctrl.nGallery_count}}</span></button>
+              <button class="story-clear-btn filter-elements " data-filter=".account-owner">My Photos/Videos  <span class="pull-right">1</span></button>
+              <button class="story-clear-btn filter-elements " data-filter=".shared-photos">Shared <span class="pull-right">5</span></button>
+              <button class="story-clear-btn filter-elements " data-filter=".favorites-photos">My Favorites <span class="pull-right">{{$ctrl.nFavorite_count}}</span></button>
+            </div>
+          </div>
+        </div>
+      </div><!-- col-md-6 -->
+    </div><!-- row my-journal-static-row -->
+
+    <div class="clearfix" style="min-height:300px; overflow: visible;">
+      <div class="row gallery-main-content-wrapp" dw-loading="loading-media" style="min-height:540px; overflow: visible;">
+
+        <ul class="dynamic-grid" angular-grid="myGallery" grid-width="200" gutter-size="10" angular-grid-id="gallery" refresh-on-img-load="true" ng-if="myGallery.length" style="list-style-type: none;overflow : visible;">
+          <li data-ng-repeat="media in myGallery" class="grid" style="overflow:visible" >
+
+            <div class="gallery-item-box all-accounts-photos account-owner favorites-photos" ng-class="{'expanded-content' : media.expanded}">
+              <div data-toggle="modal" class="gall-img-cont" ng-click="$ctrl.OpenDetailModal($event , media)">
+                <video width="100%"" height="100%" ng-if="media.mediaFileType && !media.embeddedVideoUrl" controls>
+                <source ng-src="{{trustSrc(media.path)}}">
+                </video>
+
+                <iframe width="100%" height="100%" ng-if="media.mediaFileType && media.embeddedVideoUrl" ng-src="{{trustSrc(media.path)}}" frameborder="0" allowfullscreen></iframe>
+
+                <img ng-src="{{media.path.t2}}" alt="gallery img" ng-if="!media.mediaFileType && media.path.original">
+                <img ng-src="{{media.path}}" alt="gallery img" ng-if="!media.mediaFileType && !media.path.original">
+                <div class="ribbon-icon-trans" ng-show="media.expanded">
+                  <span class="date">{{$ctrl.parseDateTime(media.userDate).date}}</span>
+                  <span class="time">{{$ctrl.parseDateTime(media.userDate).time}}</span>
+                </div><!-- ribbon-icon-trans -->
+              </div><!-- gall-img-cont-->
+              <div class="content-cont">
+                <div class="content-box" ng-click = "$ctrl.expandOptions($event , media)" ng-show="media.expanded">
+                  <img class="item-arrow-box" src="assets/icons/item-box-arrow-up.png" alt="arrow">
+                  <div class="item-box-body">
+                    <p>{{media.description}}</p>
+                  </div><!-- item-box-body-->
+                  <div class="gall-footer-options">
+                    <a href="#" class="share-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                    <a class="edit-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Edit" ng-click="$ctrl.EditMedia(media.id , $event , $index)">
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a class="delete-gall"><i class="fa fa-trash-o" ng-click="$ctrl.DeleteThisMedia($event , media)"></i></a>
+                  </div><!--gall-footer-options-->
+                </div><!-- content box -->
+                <div class="item-footer" ng-click="$ctrl.expandOptions($event , media)">
+                  <h3 ng-click="$ctrl.OpenDetailModal($event , media)">{{media.title}}</h3>
+                  <a class="story-open-options three-dots-icon-big" href="#" ng-click="$ctrl.expandOptions($event , media)"></a>
+                </div><!-- item footer -->
+              </div><!-- content-cont -->
+              <div class="confirm-prompt-dialog delete-picture-prompt show-section" ng-if="media.confirm_delete">
+                <message>
+                  <p>This action will permanently delete this photo.</p>
+                  <p>Are you sure?</p>
+                  <button class="btn-story-that-small-light" ng-click ="$ctrl.ConfirmDelete('DELETE_MEDIA' , media , $event , $index)">YES, DELETE</button>
+                  <button class="btn-story-that-small-light" ng-click ="$ctrl.ConfirmDelete('CANCEL_ACTION' , media , $event , $index)">CANCEL</button>
+                </message>
+              </div>
+            </div><!--gallery-item-box shared-photos all-accounts-photos-->
+
+          </li>
+        </ul>
+
+      </div>
+    </div><!--browse_by_calendar my-gallery-page-->
+  </div>
+</div>

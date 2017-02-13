@@ -1,0 +1,103 @@
+<div id = "create-new-story" class = "uploading-photo-modal" role="dialog" aria-labelledby="createnewstory-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close-modal" aria-hidden="true" ng-click="$ctrl.Close($event)">×</button><!-- close button -->
+            <div class="modal-title">
+                <span>Add Media to your Story</span>
+            </div>
+        </div><!-- modal header -->
+        <div class="modal-body">
+            <div ng-repeat="media in $ctrl.mediaList" ng-if="$index % 4 == 0" class="row">
+                <div class="col-md-3">
+                    <div class="img-container">
+
+                        <iframe width="150px" height="140px" src="{{trustSrc(media.path)}}" ng-if="media.mediaFileType" frameborder="0" allowfullscreen></iframe>
+
+                        <div class="img" ng-style="{'background-image' : 'url(' + media.path.t2 + ')'}" ng-if="!media.mediaFileType && media.path.original"></div>
+                        <div class="img" ng-style="{'background-image' : 'url(' + media.path + ')'}" ng-if="!media.mediaFileType && !media.path.original"></div>
+
+                        <div class="img-controls">
+                            <i class="fa fa-times delete-photo" ng-click="$ctrl.DeleteMedia(media , $event)"></i>
+                        </div>
+                        <!-- img controls -->
+                        <div class="confirm-delete">
+                            <p>Remove this Link?</p>
+                            <button class="remove-photo" ng-click ="$ctrl.ConfirmDelete('DELETE_STORY' , media , $event)">Yes, Remove</button>
+                            <button class="cancel-delete" ng-click ="$ctrl.ConfirmDelete('CANCEL_ACTION' , media , $event)">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" ng-if="$ctrl.mediaList.length > ($index + 1)">
+                    <div class="img-container">
+                        <iframe width="150px" height="140px" src="{{trustSrc($ctrl.mediaList[$index + 1].path)}}" ng-if="$ctrl.mediaList[$index + 1].mediaFileType" frameborder="0" allowfullscreen></iframe>
+                        <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 1].path.t2 + ')'}" ng-if="!$ctrl.mediaList[$index + 1].mediaFileType && $ctrl.mediaList[$index + 1].path.original"></div>
+                        <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 1].path + ')'}" ng-if="!$ctrl.mediaList[$index + 1].mediaFileType && !$ctrl.mediaList[$index + 1].path.original"></div>
+
+                        <div class="img-controls">
+                            <i class="fa fa-times delete-photo" ng-click="$ctrl.DeleteMedia($ctrl.mediaList[$index + 1] , $event)"></i>
+                        </div>
+                        <!-- img controls -->
+                        <div class="confirm-delete">
+                            <p>Remove this file?</p>
+                            <button class="remove-photo" ng-click ="$ctrl.ConfirmDelete('DELETE_STORY' , $ctrl.mediaList[$index + 1] , $event)">Yes, Remove</button>
+                            <button class="cancel-delete" ng-click ="$ctrl.ConfirmDelete('CANCEL_ACTION' , $ctrl.mediaList[$index + 1] , $event)">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" ng-if="$ctrl.mediaList.length > ($index + 2)">
+                    <div class="img-container">
+                        <iframe width="150px" height="140px" src="{{trustSrc($ctrl.mediaList[$index + 2].path)}}" ng-if="$ctrl.mediaList[$index + 2].mediaFileType" frameborder="0" allowfullscreen></iframe>
+                        <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 2].path.t2 + ')'}" ng-if="!$ctrl.mediaList[$index + 2].mediaFileType && $ctrl.mediaList[$index + 2].path.original"></div>                        
+                        <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 2].path + ')'}" ng-if="!$ctrl.mediaList[$index + 2].mediaFileType && !$ctrl.mediaList[$index + 2].path.original"></div>                        
+
+                        <div class="img-controls">
+                            <i class="fa fa-times delete-photo" ng-click="$ctrl.DeleteMedia($ctrl.mediaList[$index + 2] , $event)"></i>
+                        </div>
+                        <!-- img controls -->
+                        <div class="confirm-delete">
+                            <p>Remove this file?</p>
+                            <button class="remove-photo" ng-click ="$ctrl.ConfirmDelete('DELETE_STORY' , $ctrl.mediaList[$index + 2] , $event)">Yes, Remove</button>
+                            <button class="cancel-delete" ng-click ="$ctrl.ConfirmDelete('CANCEL_ACTION' , $ctrl.mediaList[$index + 2] , $event)">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" ng-if="$ctrl.mediaList.length > ($index + 3)">
+                    <div class="img-container">
+                        <iframe width="150px" height="140px" src="{{trustSrc($ctrl.mediaList[$index + 3].path)}}" ng-if="$ctrl.mediaList[$index + 3].mediaFileType" frameborder="0" allowfullscreen></iframe>
+                        <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 3].path.t2 + ')'}" ng-if="!$ctrl.mediaList[$index + 3].mediaFileType && $ctrl.mediaList[$index + 3].path.original"></div>                        
+                        <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 3].path + ')'}" ng-if="!$ctrl.mediaList[$index + 3].mediaFileType && !$ctrl.mediaList[$index + 3].path.original"></div>                        
+
+                        <div class="img-controls">
+                            <i class="fa fa-times delete-photo" ng-click="$ctrl.DeleteMedia($ctrl.mediaList[$index + 3] , $event)"></i>
+                        </div><!-- img controls -->
+
+                        <div class="confirm-delete">
+                            <p>Remove this file?</p>
+                            <button class="remove-photo" ng-click ="$ctrl.ConfirmDelete('DELETE_STORY' , $ctrl.mediaList[$index + 3] , $event)">Yes, Remove</button>
+                            <button class="cancel-delete" ng-click ="$ctrl.ConfirmDelete('CANCEL_ACTION' , $ctrl.mediaList[$index + 3] , $event)">Cancel</button>
+                        </div>
+                    </div><!-- img-container -->
+                </div>
+            </div>           
+            <p id="add-photosh-videos-p"><span><br/>Add Photos/Videos to your story from -<br/></span></p>
+            <div class="buttons-group">
+                <button class="story-blue-btn upload-gall-btn" ng-click="$ctrl.ImportMediaFromDevice($event)"><span class="upload-screen-icon"></span>Upload</button>
+                <button class="story-blue-btn storyThat-gall-btn" ng-click="$ctrl.ImportMediaFromGallery($event)"><span class="storythat-gallery-icon-modal"></span>StoryThat Gallery</button>
+                <button class="story-blue-btn fb-btn" ng-click="$ctrl.ImportMediaFromFB()"><span class="fb-icon"></span>Facebook</button>
+            </div><!-- buttons group-->
+            <form>
+                <label>Add from a link</label>
+                <input class="std-input" id="photo-upload-link" placeholder="http://" type="text" ng-model="$ctrl.media_link" >
+                <span class="upload-link-arrow"><i class="fa fa-arrow-right" ng-click="$ctrl.uploadLink($event)"></i></span>
+
+            </form>
+        </div><!-- modal body-->
+        <div class="modal-footer"><!-- modal footer -->
+            <a class="btn-story-that-small-light fl" ng-click="$ctrl.Close($event)">CANCEL</a>
+            <span>{{$ctrl.mediaList.length}} Photos/Videos added</span>
+            <a class="btn-story-that-small-light fr" ng-click="$ctrl.SaveButton()">SAVE</a>
+
+        </div><!-- modal footer-->
+
+    </div><!-- modal content-->
+</div><!-- create-new-story -->

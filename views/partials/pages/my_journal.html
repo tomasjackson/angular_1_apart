@@ -1,0 +1,114 @@
+<div class="browse_by_calendar my-journal-page">
+        <div class="row my-journal-static-row">
+            <div class="col-md-6 calendar-breadcrumb">
+                <span class="page-header-title"><i class="fa fa-book" aria-hidden="true"></i>My Journal: {{$ctrl.sinceDate}}</span>
+            </div>
+            <div class="col-md-6 ">
+                <div class="drop-filter">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" data-toggle="dropdown" type="button">
+                            <span class="dropdown-toggle-label">{{$ctrl.filter_description}}</span>&nbsp;<i class="sprite-dropdown"></i>
+                        </button>
+                        <div class="dropdown-menu st-dropdown" aria-labelledby="name-privacy" role="menu">
+                            <button class="story-clear-btn filter-elements" ng-click="$ctrl.changeFilter($event, 0)">All Stories<span class="pull-right">{{$ctrl.count_journal}}</span></button>
+                            <button class="story-clear-btn filter-elements" ng-click="$ctrl.changeFilter($event, 1)">My Stories<span class="pull-right">{{$ctrl.count_mine}}</span></button>
+                            <button class="story-clear-btn filter-elements" ng-click="$ctrl.changeFilter($event, 2)">Added Stories<span class="pull-right">{{$ctrl.count_journal-$ctrl.count_mine}}</span></button>
+                            <button class="story-clear-btn filter-elements" ng-click="$ctrl.changeFilter($event, 3)">My Favorites<span class="pull-right">{{$ctrl.count_favorite}}</span></button>
+                        </div><!-- dropdown-menu st-dropdown -->
+                    </div><!-- dropdown -->
+                </div><!-- drop-filter -->
+            </div><!-- col-md-6 -->
+        </div><!-- row my-journal-static-row -->
+        <div class="clearfix">
+        </div>
+        <div infinite-scroll='loadMore()' infinite-scroll-distance='0' class="story-listing filter-wrapper">
+<!--         <div class="story-listing filter-wrapper" dw-loading="loading-story" style="min-height: 600px"> -->
+            <div class="validation-wrap">
+              <p class="error-message" ng-if="$ctrl.noResult">{{$ctrl.ErrorMessage}} </p>
+              <p class="success-message" ng-if="SuccessMessage">{{SuccessMessage}} </p>
+            </div>
+
+            <div id="appendid1" class="journal-story my-story big-image" ng-repeat = "story in $ctrl.my_journal">
+                <div class="story-inner" ng-class="{'options-open' : story.expanded}" ng-if="story.filtered">
+                    <div class="story-heading clearfix" ng-click = "$ctrl.appendEdit($event , '' , story)">
+                        <div class="story-title-wrapper col-xs-8">
+                            <a ui-sref="mainPage.singleStory({id:story.id})" ng-click="$event.stopPropagation()">
+                              <h4 class="story-title">
+                                <i class="fa fa-lock" ng-class="{'fa fa-globe': story.privacy.scope.id !== 2}"></i>{{$ctrl.TitleWrapper(story.title)}}
+                              </h4>
+                            </a>
+                        </div>
+                        <div class="story-author col-xs-4">
+                            <div ng-class="{'private-author': $ctrl.CheckStoryAuthor(story)}">
+                                <div class="story-avatar"><img ng-src="{{story.user.avatar}}" ng-if="!$ctrl.CheckStoryAuthor(story)"></div>
+                                <a ui-sref="mainPage.otherUser({id:story.user.id,username:story.user.username})" ng-if="!$ctrl.CheckStoryAuthor(story)"><span class="story-username">{{story.user.username}}</span></a>
+
+                                <span class="private-text"></span>
+                                <a class="journal-story bookmark" tooltip-placement="left" uib-tooltip="expand"><i class="fa fa-bookmark-o" aria-hidden="true" ng-click = "$ctrl.appendEdit($event , '' , story)"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-content clearfix" ng-class="{'gradient-bottom' : story.expanded}">
+                        <div class="story-image col-xs-4 col-xs-push-8" ng-if="story.mediaFiles.length" ng-class="{'h315' : story.mediaFiles[0].mediaFileType && story.expanded}">
+
+                            <iframe width="100%" height="100%" ng-class="{'h-345' : story.expanded}" ng-if="story.mediaFiles[0].mediaFileType && story.mediaFiles[0].embeddedVideoUrl" ng-src="{{trustSrc(story.mediaFiles[0].path + '?autostart=0')}}" frameborder="0" allowfullscreen></iframe>
+                            <video width="100%" height="100%" ng-if="story.mediaFiles[0].mediaFileType && !story.mediaFiles[0].embeddedVideoUrl" controls>
+                                <source ng-src="{{trustSrc(story.mediaFiles[0].path)}}">
+                            </video>
+
+                            <div class="img-journal" ng-style="{'background-image' : 'url(' + story.mediaFiles[0].path.t2 + ')'}" ng-if="!story.mediaFiles[0].mediaFileType && !story.expanded && story.mediaFiles[0].path.t2"></div>
+                            <div class="img-journal" ng-style="{'background-image' : 'url(' + story.mediaFiles[0].path + ')'}" ng-if="!story.mediaFiles[0].mediaFileType && !story.expanded && !story.mediaFiles[0].path.t2"></div>
+
+
+                            <img ng-src="{{story.mediaFiles[0].path.t3}}" ng-if="!story.mediaFiles[0].mediaFileType && story.expanded && story.mediaFiles[0].path.t3">
+                            <img ng-src="{{story.mediaFiles[0].path}}" ng-if="!story.mediaFiles[0].mediaFileType && story.expanded && !story.mediaFiles[0].path.t3">
+
+                        </div>
+                        <div class="story-main-content" ng-class="{'col-xs-12' : !story.mediaFiles.length , 'col-xs-8 col-xs-pull-4' : story.mediaFiles.length}">
+                            <div class="ribbon-icon-gradient">
+                                <span class="date">{{$ctrl.parseDateTime(story.userDate).date}}</span>
+                                <span class="time">{{$ctrl.parseDateTime(story.userDate).time}}</span>
+                            </div>
+                            <p class="story-text">{{$ctrl.PrintDescription(story.description)}}</p>
+                            <div class="story-location">
+                                <i class="location-pin"></i>
+                                <span class="location-place">{{story.location}}</span>
+                                <a class="journal-story-open-options three-dots-icon-big"  ng-click = "$ctrl.appendEdit($event , '' , story)"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id = "edit-story-append" class="story-options">
+                        <a class="journal-story-button btn-story-that-light" ng-click="$ctrl.openManagePrivacyModal(story)" ng-if="$ctrl.CheckStoryAuthor(story)"><i class="fa fa-unlock-alt"></i> Manage Privacy</a>
+                        <a class="btn-story-that-light st-add-note" ng-if="!$ctrl.CheckStoryAuthor(story)" ng-click="$ctrl.AddNote($event, story)"><i class="fa fa-comment-o" aria-hidden="true"></i> Add Note</a>
+                        <a href="#" class="journal-story-button btn-story-that-light" ng-click = "$ctrl.openEditModal($event , story)" ng-if="$ctrl.CheckStoryAuthor(story)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+                        <a href="#" class="journal-story-button btn-story-that-light" ng-click="$ctrl.ShareThisStory($event , story)" ng-if="$ctrl.CheckStoryAuthor(story)"><i class="fa fa-share-alt" aria-hidden="true"></i>Share</a>
+                        <a class="journal-story-button btn-story-that-light remove-story-jour" ng-click="!$ctrl.RemoveFromJournal(story, $index)" ng-if="!$ctrl.CheckStoryAuthor(story)">
+                            <i class="fa fa-calendar-minus-o" aria-hidden="true"></i><span>Remove from Journal</span>
+                            <ul>
+                                <li><i class="fa fa-calendar-plus-o"></i> Add to Journal</li>
+                                <li><i class="fa fa-user-secret"></i> Add to Journal (incognito)</li>
+                            </ul>
+                        </a>
+                        <a class="journal-story-button btn-story-that-light delete-story-btn" ng-click="$ctrl.DeleteThisStory(story.id , $event)" ng-if="$ctrl.CheckStoryAuthor(story)"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</a>
+                        <div class="comments-likes fr">
+                            <p><span class="comment-num">{{story.notesCount}}<i class="fa fa-comment-o" aria-hidden="true"></i></span> <span data-toggle="tooltip" data-placement="top" data-original-title="Add to Favorites" class="like-number" ng-class="{'active':story.favorite}">{{story.favoriteBy}}<i ng-click="$ctrl.SetAsFavorite($event, story)"></i></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="confirm-prompt-dialog" id="delete-journal-story">
+
+                    <message>
+                        <p class>This action will delete this Story.</p>
+                        <p>Are you sure?</p>
+
+                        <button class="btn-story-that-small-light" ng-click ="$ctrl.ConfirmDelete('CANCEL_ACTION' , story , $event)">CANCEL</button>
+                        <button class="btn-story-that-small-light" ng-click ="$ctrl.ConfirmDelete('DELETE_STORY' , story , $event)">DELETE</button>
+                    </message>
+
+                </div>
+            </div>
+        </div> <!-- story-listing filter-wrapper -->
+        <div class="fetching-progress" dw-loading="fetching" dw-loading-options="{ className: 'fetching-bar' , text: 'Loading more stories' , spinnerOptions: {top: 'auto'}}">
+        </div>
+</div> <!-- browse by calendar - my journal page -->

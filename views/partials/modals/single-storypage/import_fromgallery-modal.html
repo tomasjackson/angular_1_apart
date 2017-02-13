@@ -1,0 +1,81 @@
+<div class="uploading-photo-modal" id="import-media-from-storythat" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close-modal" ng-click="$ctrl.CloseModal()" aria-hidden="true">×</button>
+            <div class="modal-title">
+                <span>Add from your StoryThat Gallery</span>
+            </div>
+        </div>
+        <div class="modal-body fb-images-container">
+            <input class="std-input" type="text" placeholder="Search photos" ng-model="$ctrl.keyword" ng-keydown="$ctrl.SearchKeydown($event)">
+            <div class="gallery-panel">
+                <div ng-repeat="media in $ctrl.mediaList" ng-if="$index % 4 == 0" class="row">
+                    <div class="col-md-3">
+                        <div class="img-container" ng-class="{'img-container-selected': media.selected}" ng-click="$ctrl.selectImage(media)">
+
+                            <video width="140px" height="140px" ng-if="media.mediaFileType && !media.embeddedVideoUrl" controls>
+                                <source ng-src="{{trustSrc(media.path)}}">
+                            </video>
+
+                            <div class="img" ng-style="{'background-image' : 'url(' + media.path.t2 + ')'}" ng-if="!media.mediaFileType && media.path.original"></div>
+
+                            <iframe width="150px" height="140px" ng-if="media.mediaFileType && media.embeddedVideoUrl" ng-src="{{trustSrc(media.path + '?autostart=0')}}" frameborder="0" allowfullscreen></iframe>
+
+                            <div class="img" ng-style="{'background-image' : 'url(' + media.path + ')'}" ng-if="!media.mediaFileType && !media.path.original"></div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3" ng-if="$ctrl.mediaList.length > ($index + 1)">
+                        <div class="img-container" ng-class="{'img-container-selected': $ctrl.mediaList[$index + 1].selected}" ng-click="$ctrl.selectImage($ctrl.mediaList[$index + 1])">
+
+                            <iframe width="150px" height="140px" ng-if="$ctrl.mediaList[$index + 1].mediaFileType && $ctrl.mediaList[$index + 1].embeddedVideoUrl" ng-src="{{trustSrc($ctrl.mediaList[$index + 1].path + '?autostart=0')}}" frameborder="0" allowfullscreen></iframe>
+
+                            <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 1].path + ')'}" ng-if="!$ctrl.mediaList[$index + 1].mediaFileType && !$ctrl.mediaList[$index + 1].path.original"></div>
+
+                            <video width="150px" height="140px" ng-if="$ctrl.mediaList[$index + 1].mediaFileType && !$ctrl.mediaList[$index + 1].embeddedVideoUrl" controls>
+                                <source ng-src="{{trustSrc($ctrl.mediaList[$index + 1].path)}}">
+                            </video>
+                            <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 1].path.t2 + ')'}" ng-if="!$ctrl.mediaList[$index + 1].mediaFileType && $ctrl.mediaList[$index + 1].path.original"></div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3" ng-if="$ctrl.mediaList.length > ($index + 2)">
+                        <div class="img-container" ng-class="{'img-container-selected': $ctrl.mediaList[$index + 2].selected}" ng-click="$ctrl.selectImage($ctrl.mediaList[$index + 2])">
+
+                            <iframe width="150px" height="140px" ng-if="$ctrl.mediaList[$index + 2].mediaFileType && $ctrl.mediaList[$index + 2].embeddedVideoUrl" ng-src="{{trustSrc($ctrl.mediaList[$index + 2].path + '?autostart=0')}}" frameborder="0" allowfullscreen></iframe>
+
+                            <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 2].path + ')'}" ng-if="!$ctrl.mediaList[$index + 2].mediaFileType && !$ctrl.mediaList[$index + 2].path.original"></div>
+
+                            <video width="150px" height="140px" ng-if="$ctrl.mediaList[$index + 2].mediaFileType && !$ctrl.mediaList[$index + 2].embeddedVideoUrl" controls>
+                               <source ng-src="{{trustSrc($ctrl.mediaList[$index + 2].path)}}">
+                            </video>
+
+                            <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 2].path.t2 + ')'}" ng-if="!$ctrl.mediaList[$index + 2].mediaFileType && $ctrl.mediaList[$index + 2].path.original"></div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-3" ng-if="$ctrl.mediaList.length > ($index + 3)">
+                        <div class="img-container" ng-class="{'img-container-selected': $ctrl.mediaList[$index + 3].selected}" ng-click="$ctrl.selectImage($ctrl.mediaList[$index + 3])">
+
+                            <iframe width="150px" height="140px" ng-if="$ctrl.mediaList[$index + 3].mediaFileType && $ctrl.mediaList[$index + 3].embeddedVideoUrl" ng-src="{{trustSrc($ctrl.mediaList[$index + 3].path + '?autostart=0')}}" frameborder="0" allowfullscreen></iframe>
+
+                            <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 3].path + ')'}" ng-if="!$ctrl.mediaList[$index + 3].mediaFileType && !$ctrl.mediaList[$index + 3].path.original"></div>
+
+                            <video width="150px" height="140px" ng-if="$ctrl.mediaList[$index + 3].mediaFileType && !$ctrl.mediaList[$index + 3].embeddedVideoUrl" controls>
+                               <source ng-src="{{trustSrc($ctrl.mediaList[$index + 3].path)}}">
+                            </video>
+                            <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 3].path.t2 + ')'}" ng-if="!$ctrl.mediaList[$index + 3].mediaFileType && $ctrl.mediaList[$index + 3].path.original"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- modal-body -->
+        <div class="modal-footer">
+            <button class="btn-story-that-small-light fl show-prev-modal" ng-click="$ctrl.CloseModal()" >BACK</button>
+            <span>{{$ctrl.selectedCount}} Photos/Videos selected</span>
+            <button class="btn-story-that-small-light fr" ng-click="$ctrl.SaveButton()" >SAVE</button>
+        </div><!-- modal footer-->
+    </div> <!--modal content-->
+</div><!-- import-media-from-storythat -->

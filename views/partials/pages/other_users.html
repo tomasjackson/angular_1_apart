@@ -1,0 +1,347 @@
+<div class="other-user-page">
+  <div class="row public-profile-top">
+    <div class="col-md-12" dw-loading="loading-content" dw-loading-options=" {
+                                  text: '',
+                                  spinnerOptions: {
+                                    lines: 12,
+                                    radius: 3,
+                                    width: 2,
+                                    length: 5,
+                                    speed: 1
+                                  }
+                             }">
+      <img class="profile-img" ng-src="{{$ctrl.user.avatar}}">
+      <div class="button-controlls">
+        <h1 class="public-name">{{$ctrl.user.username}}</h1>
+        <a class="journal-story-button btn-story-that-light" ng-class="{'active':$ctrl.viewMode == 'ABOUT'}" ng-click="$ctrl.viewMode = 'ABOUT'"><i class="open-story-icon"></i>ABOUT</a>
+        <a class="journal-story-button btn-story-that-light" ng-class="{'active':$ctrl.viewMode == 'STORY'}" ng-click="$ctrl.viewMode = 'STORY'"><i class="open-story-icon"></i>STORIES</a>
+        <a class="journal-story-button btn-story-that-light" ng-class="{'active':$ctrl.viewMode == 'GALLERY'}" ng-click="$ctrl.viewMode = 'GALLERY'"><i class="open-story-icon"></i>GALLERY</a>
+      </div>
+
+      <div class="public-profile-actions fr">
+        <span class="group-contacts-btn del-group-contact-btn" ng-if="!$ctrl.user.areFriends"
+              ng-click="$ctrl.addContact($ctrl.user)" tooltip-placement="top" uib-tooltip="Add Contact">
+            <span><i class="fa fa-user" aria-hidden="true"></i></span>
+        </span>
+        <span class="group-contacts-btn del-group-contact-btn checked" ng-if="$ctrl.user.areFriends"
+              ng-click="$ctrl.removeContact($ctrl.user)" tooltip-placement="top" uib-tooltip="Remove Contact">
+            <span><i class="fa fa-user" aria-hidden="true"></i></span>
+        </span>
+        <span class="group-contacts-btn del-group-contact-btn" ng-if="!$ctrl.user.isFavorite"
+              ng-click="$ctrl.addFavorite($ctrl.user)" tooltip-placement="top" uib-tooltip="Add Favorite">
+            <span><i class="fa fa-star" aria-hidden="true"></i></span>
+        </span>
+        <span class="group-contacts-btn del-group-contact-btn checked" ng-if="$ctrl.user.isFavorite"
+              ng-click="$ctrl.removeFavorite($ctrl.user)" tooltip-placement="top" uib-tooltip="Remove Favorite">
+            <span><i class="fa fa-star" aria-hidden="true"></i></span>
+        </span>
+        <span class="group-contacts-btn del-group-contact-btn" ng-class="{'checked': $ctrl.user.groups.length}"
+              ng-click="$ctrl.addGroup($ctrl.user)" tooltip-placement="top" uib-tooltip="Add Group">
+            <span><i class="fa fa-plus" aria-hidden="true"></i></span>
+        </span>
+        <!--<span class="group-contacts-btn" data-placement="top" uib-tooltip="Block User">
+          <span data-target="#block-user-acc" data-toggle="collapse" class=" remove-group-contact" >
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </span>Block feature to be worked on after the soft launch-->
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="dashed-line">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div id="block-user-acc" class="collapse fly-out-menu">
+        <div class="arrow-up"></div>
+
+        <div class="del-acc-header">
+          <button type="button" data-target="#block-user-acc" data-toggle="collapse" class="delete-acc-close fr" aria-hidden="true">×</button>
+          <div class="modal-title">Block User?</div>
+        </div>
+
+        <div class="text-holder">
+          <p>Blocked users will not able to contact you or write a note on any of your stories or notes. <br><br>Are you sure you want to block this user?</p>
+        </div>
+
+        <div> class="buttons-footer">
+          <button class="btn-story-that-light" type="button">BLOCK</button>
+          <button class="btn-story-that-light" type="button" data-target="#block-user-acc" data-toggle="collapse">CANCEL</button>
+        </div>
+      </div>
+
+      <div id="gallery-tab" class="tab-panel browse_by_calendar my-gallery-page active" ng-if="$ctrl.viewMode == 'GALLERY'">
+        <div class="row ">
+          <div class="col-md-6 calendar-breadcrumb">
+            <span class="page-header-title"><i class="fa fa-picture-o" aria-hidden="true"></i> All Photos/Videos:</span> <span class="page-header-title">{{$ctrl.sinceDate}}</span>
+          </div>
+
+          <div class="col-md-6">
+            <div class="drop-filter"></div>
+          </div>
+        </div>
+
+        <div class="row gallery-main-content-wrapp" style="padding-top: 0px">
+          <ul class="dynamic-grid" angular-grid="$ctrl.medias" grid-width="200" gutter-size="10" angular-grid-id="medias" refresh-on-img-load="true" ng-if="$ctrl.medias.length" style="list-style-type: none;overflow : visible;">
+                <li data-ng-repeat="media in $ctrl.medias" class="grid" style="overflow:visible" >
+
+                  <div class="gallery-item-box all-accounts-photos account-owner favorites-photos" ng-class="{'expanded-content' : media.expanded}">
+                    <div data-toggle="modal" class="gall-img-cont" ng-click="$ctrl.OpenDetailModal($event , media)">
+                      <video width="100%"" height="100%" ng-if="media.mediaFileType && !media.embeddedVideoUrl" controls>
+                      <source ng-src="{{trustSrc(media.path)}}">
+                      </video>
+
+                      <iframe width="100%" height="100%" ng-if="media.mediaFileType && media.embeddedVideoUrl" ng-src="{{trustSrc(media.path)}}" frameborder="0" allowfullscreen></iframe>
+
+                      <img ng-src="{{media.path.t2}}" alt="gallery img" ng-if="!media.mediaFileType && media.path.original">
+                      <img ng-src="{{media.path}}" alt="gallery img" ng-if="!media.mediaFileType && !media.path.original">
+                      <div class="ribbon-icon-trans" ng-show="media.expanded">
+                        <span class="date">{{$ctrl.parseDateTime(media.userDate).date}}</span>
+                        <span class="time">{{$ctrl.parseDateTime(media.userDate).time}}</span>
+                      </div><!-- ribbon-icon-trans -->
+                    </div><!-- gall-img-cont-->
+                    <div class="content-cont">
+                      <div class="content-box" ng-show="media.expanded">
+                        <img class="item-arrow-box" src="assets/icons/item-box-arrow-up.png" alt="arrow">
+                        <div class="item-box-body">
+                          <p>{{media.description}}</p>
+                        </div><!-- item-box-body-->
+                        <div class="gall-footer-options">
+                          <a class="star-gall" tooltip-placement="top" uib-tooltip="Add to Favorites" ng-click="$ctrl.SetAsFavoriteMedia(media)" ng-class="{'active': media.favorite}">
+                              <i class="fa fa-star-o" aria-hidden="true"></i>
+                              <i class="fa fa-star" aria-hidden="true"></i>
+                           </a>
+                          <a class="delete-gall" tooltip-placement="top" uib-tooltip="Delete"><i class="fa fa-trash-o" ng-click="$ctrl.DeleteThisMedia($event , media)"></i></a>
+                        </div><!--gall-footer-options-->
+                      </div><!-- content box -->
+                      <div class="item-footer" ng-click="$ctrl.expandMedia($event , media)">
+                        <h3 ng-click="$ctrl.OpenDetailModal($event , media)">{{media.title}}</h3>
+                        <a class="story-open-options three-dots-icon-big" href="#" ng-click="$ctrl.expandMedia($event , media)"></a>
+                      </div><!-- item footer -->
+                    </div><!-- content-cont -->
+                    <div class="confirm-prompt-dialog delete-picture-prompt show-section" ng-if="media.confirm_delete">
+                      <message>
+                        <p>This action will permanently delete this photo.</p>
+                        <p>Are you sure?</p>
+                        <button class="btn-story-that-small-light" ng-click ="$ctrl.ConfirmDelete('DELETE_MEDIA' , media , $event , $index)">YES, DELETE</button>
+                        <button class="btn-story-that-small-light" ng-click ="$ctrl.ConfirmDelete('CANCEL_ACTION' , media , $event , $index)">CANCEL</button>
+                      </message>
+                    </div>
+                  </div><!--gallery-item-box shared-photos all-accounts-photos-->
+
+                </li>
+              </ul>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+
+      <div id="shared-stories-tab" class="tab-panel active" ng-if="$ctrl.viewMode == 'STORY'">
+        <div class="browse_by_calendar">
+          <div class="row ">
+            <div class="col-md-6 calendar-breadcrumb">
+              <span class="page-header-title">
+                <i class="fa fa-file-o" aria-hidden="true"></i>All Stories: {{$ctrl.sinceDate}}
+              </span>
+            </div>
+
+            <div class="col-md-6 ">
+              <div class="drop-filter">
+                <div class="dropdown">
+                  <button class="dropdown-toggle" data-toggle="dropdown" type="button">
+                    <span class="dropdown-toggle-label">All Stories</span>&nbsp;<i class="sprite-dropdown"></i>
+                  </button>
+                  <div class="dropdown-menu st-dropdown" aria-labelledby="name-privacy" role="menu">
+                    <button class="story-clear-btn filter-elements" data-filter=".my-story">All Stories</button>
+                    <button class="story-clear-btn filter-elements" data-filter=".journal-story">Shared with Me</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-listing clearfix">
+            <ul class="dynamic-grid" angular-grid="$ctrl.stories" grid-width="200" gutter-size="10" angular-grid-id="stories" refresh-on-img-load="true" ng-if="$ctrl.stories.length" style="list-style-type: none;">
+              <li data-ng-repeat="story in $ctrl.stories" class="grid" style="overflow: visible">
+                <div class="story-wrapper">
+                  <div class="story-middle">
+                    <div class="story-inner" ng-class="{'expanded':story.expanded}">
+                      <div data-toggle="modal" class="story-image" ng-if="story.mediaFiles.length" ng-click="$ctrl.OpenDetailModal($event, story)">
+
+                        <iframe width="100%" height="145px" class="video-siz" ng-if="story.mediaFiles[0].mediaFileType && story.mediaFiles[0].embeddedVideoUrl" ng-src="{{trustSrc(story.mediaFiles[0].path)}}" frameborder="0" allowfullscreen></iframe>
+
+                        <video width="100%" height="145px" class="video-siz" ng-if="story.mediaFiles[0].mediaFileType && !story.mediaFiles[0].embeddedVideoUrl" controls>
+                          <source ng-src="{{trustSrc(story.mediaFiles[0].path)}}">
+                        </video>
+                        <img ng-src="{{story.mediaFiles[0].path.t2}}" alt="gallery img" ng-if="!story.mediaFiles[0].mediaFileType && story.mediaFiles[0].path.original">
+                        <img ng-src="{{story.mediaFiles[0].path}}" alt="gallery img" ng-if="!story.mediaFiles[0].mediaFileType && !story.mediaFiles[0].path.original">
+
+                      </div>
+                      <div class="story-author" ng-click="$ctrl.expandView($event , story)">
+                        <div class="story-avatar"><img ng-src="{{story.user.avatar}}"></div>
+                        <a>
+                          <span class="story-username">{{story.user.username}}</span></a>
+                        <!--<i class="fa fa-angle-down pull-right" aria-hidden="true"></i>-->
+                      </div>
+                      <div class="story-content">
+                        <a ui-sref="mainPage.singleStory({id:story.id})"><h4 class="story-title">{{story.title}}</h4></a>
+                        <p class="story-text">{{story.description}}</p>
+                      </div>
+                      <div class="story-footer">
+                        <div class="story-footer-date gradient-bottom clearfix" ng-show="!story.expanded">
+                          <div class="ribbon-icon">
+                            <span class="date">{{$ctrl.parseDateTime(story.userDate).date}}</span>
+                            <span class="time">{{$ctrl.parseDateTime(story.userDate).time}}</span>
+                          </div>
+                          <a class="story-open-options three-dots-icon-big" ng-click="$ctrl.expandView($event , story)"></a>
+                        </div>
+                        <div class="story-footer-options gradient-top clearfix" ng-show="story.expanded">
+                          <a class="add-note-gal" ng-click="$ctrl.AddNote($event, story)"><i class="fa fa-comment-o" aria-hidden="true" tooltip-placement="top" uib-tooltip="Add a Note"></i></a>
+                          <a class="star-gall" ng-click="$ctrl.SetAsFavorite($event, story)" tooltip-placement="top" uib-tooltip="Add to Favorites" ng-class="{'active': story.favorite}">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                          </a>
+                          <a data-toggle="modal" class="addtojournal-gal" ng-class="{'removed':!story.journal}" tooltip-placement="topleft" uib-tooltip="{{$ctrl.GetToolTip(story.journal)}}"><i class="fa" ng-class="{'fa-calendar-plus-o':!story.journal, 'fa-calendar-minus-o': story.journal}" aria-hidden="true" ng-click="$ctrl.RemoveFromJournal($event, story)"></i>
+                            <ul>
+                              <li ng-click="$ctrl.AddToJournal($event, story)"><i class="fa fa-calendar-plus-o"></i> Add to Journal</li>
+                              <li><i class="fa fa-user-secret"></i> Add to Journal (incognito)</li>
+                            </ul>
+                          </a>
+                          <a class="delete-gall" ng-click="$ctrl.HideSharedStory($event, story)"><i class="fa fa-trash-o" tooltip-placement="top" uib-tooltip="Hide"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="confirm-prompt-dialog delete-shared-story">
+                    <message>
+                      <p>This action will permanently delete this story.</p>
+                      <p>Are you sure?</p>
+                      <button data-dismiss="modal" class="btn-story-that-small-light">CONFIRM</button>
+                      <button data-dismiss="modal" class="btn-story-that-small-light">CANCEL</button>
+                    </message>
+                  </div>
+                  <!-- confirm delete shared story -->
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="about-tab" class="tab-panel active" ng-if="$ctrl.viewMode == 'ABOUT'" dw-loading="loading-content" dw-loading="loading-content" dw-loading-options=" {
+                                  text: '',
+                                  spinnerOptions: {
+                                    lines: 12,
+                                    radius: 3,
+                                    width: 2,
+                                    length: 5,
+                                    speed: 1
+                                  }
+                             }">
+        <div class="row profile_section">
+          <h4 class="row my-account-header">
+            <i class="my-account-about-icon"></i><i class="mid-dots">· · ·</i>
+            <strong> About</strong>
+          </h4>
+          <div class="clearfix"></div>
+
+          <div class="col-md-6">
+            <div class="access-col public-about">
+              <div class="row" ng-if="$ctrl.user.firstname">
+                <p>
+                  <label class="col-md-4">First Name:</label>
+                  <span class="col-md-8">{{$ctrl.user.firstname}}</span>
+                </p>
+              </div>
+              <div class="row" ng-if="$ctrl.user.lastname">
+                <p>
+                  <label class="col-md-4">Last Name:</label>
+                  <span class="col-md-8">{{$ctrl.user.lastname}}</span>
+                </p>
+              </div>
+              <div class="row" ng-if="$ctrl.user.email">
+                <p>
+                  <label class="col-md-4">Email:</label>
+                  <span class="col-md-8">{{$ctrl.user.email}}</span>
+                </p>
+              </div>
+              <div class="row" ng-if="$ctrl.user.profession">
+                <p>
+                  <label class="col-md-4">Profession:</label>
+                  <span class="col-md-8">{{$ctrl.user.profession}}</span>
+                </p>
+              </div>
+              <div class="row" ng-if="$ctrl.user.phone">
+                <p>
+                  <label class="col-md-4">Phone:</label>
+                  <span class="col-md-8">{{$ctrl.user.phone}}</span>
+                </p>
+              </div>
+              <div class="row" ng-if="$ctrl.user.birthdate">
+                <p>
+                  <label class="col-md-4">Birthday:</label>
+                  <span class="col-md-8">{{birthdayLabel}}</span>
+                </p>
+              </div>
+              <div class="row" ng-if="$ctrl.user.website">
+                <p>
+                  <label class="col-md-4">Website:</label>
+                  <span class="col-md-8">{{$ctrl.user.website}}</span>
+                </p>
+              </div>
+<!--
+              <div class="row public-social-icons">
+                <label class="public-social-icons col-md-4">Social:</label>
+                  <span class="public-social-icons-profile col-md-8">
+                        <a href={{$ctrl.user.social.facebook}} target="_blank" class="social-my-account"><i class="social-facebook_icon"></i></a>
+                        <a href={{$ctrl.user.social.twitter}} target="_blank" class="social-my-account"><i class="social-twitter_icon"></i></a>
+                        <a href={{$ctrl.user.social.google}} target="_blank" class="social-my-account"><i class="social-google_icon"></i></a>
+                        <a href={{$ctrl.user.social.tumblr}} target="_blank" class="social-my-account"><i class="social-tumblr_icon"></i></a>
+                        <a href={{$ctrl.user.social.linkedin}} target="_blank" class="social-my-account"><i class="social-linkedin_icon"></i></a>
+                        <a href={{$ctrl.user.social.pinterest}} target="_blank" class="social-my-account"><i class="social-pinterest_icon"></i></a>
+                  </span>
+              </div>
+-->
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="access-col public-about">
+              <div class="row">
+                <p ng-if="$ctrl.user.numOfStories && $ctrl.user.stories >= 0">
+                  <label class="col-md-8">No. of Stories: </label>
+                  <span class="col-md-4">{{$ctrl.user.stories}}</span>
+                </p>
+              </div>
+              <div class="row">
+                <p ng-if="$ctrl.user.numOfPictures && $ctrl.user.photos >= 0">
+                  <label class="col-md-8">No. of Pictures: </label>
+                  <span class="col-md-4">{{$ctrl.user.photos}}</span>
+                </p>
+              </div>
+              <div class="row">
+                <p ng-if="$ctrl.user.numOfVideos && $ctrl.user.videos >= 0">
+                  <label class="col-md-8">No. of Videos: </label>
+                  <span class="col-md-4">{{$ctrl.user.videos}}</span>
+                </p>
+              </div>
+              <div class="row">
+                <p ng-if="$ctrl.user.numOfFavoriteUsers && $ctrl.user.favorite_users >= 0">
+                  <label class="col-md-8">Favorite Users: </label>
+                  <span class="col-md-4">{{$ctrl.user.favorite_users}}</span>
+                </p>
+              </div>
+              <div class="row">
+                <p ng-if="$ctrl.user.favoriteBy && $ctrl.user.favorite_by >= 0">
+                  <label class="col-md-8">Favorited By: </label>
+                  <span class="col-md-4">{{$ctrl.user.favorite_by}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

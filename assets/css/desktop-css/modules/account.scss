@@ -1,0 +1,623 @@
+.my-account-top{
+    padding-left: 10px;
+    h1{
+        display: inline-block;
+        margin: 0 10px;
+        font-size: 25px;
+        color: #4a4a49;
+        position:relative;
+        top: 7px;
+    }
+    .perm-blue-btn{
+        margin-left: 20px;
+        height:35px;
+        @include box-shadow(0, 4px, 0, #1f719a);
+
+        .edit-pencil{
+            @include scaleSprite(40,-201px, -2px, 40px, 40px );
+        }
+    }
+}
+#save-edit-profile{
+    width: 145px;
+    i.edit-pencil{
+        margin-right: 5px;
+    }
+}
+.my-account-avatar{
+    @include box-shadow(0, 4px, 7px, #c2c2c2);
+    @include border-radius(50%);
+    border: 5px solid #ffffff;
+    height: 73px;
+    width: 73px;
+    display: inline-block;
+}
+
+.my-account-header {
+    color: #4a4a49;
+    font-size: 22px;
+    margin: 0;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    position: relative;
+    top: 2px;
+}
+
+.privacy-switch{
+    color: #000000;
+    font-size: 14px;
+    padding: 0px;
+    &.public{color: #000000;}
+    &.private{color: #9a9a9a;}
+}
+.access-col{
+    padding-left: 25px;
+    font-size: 16px;
+    label{
+        font-weight:normal;
+        color:#9a9a9a;
+    }
+    & > .row{
+        margin-bottom: 5px;
+    }
+}
+.social-icons{
+    margin-top: -20px;
+}
+.social-icons-profile{
+    display:inline-block;
+    position:relative;
+    top: 13px;
+}
+
+.notifications-section{
+    margin-top:20px;
+    .notification-setting{
+        color: #595959;
+        font-size: 16px;
+        height: 30px;
+        margin-bottom: 15px;
+        .col-md-9{
+            text-indent:100px;
+            line-height:35px;
+            color:#595959;
+            font-size: 16px;
+            padding: 0;
+        }
+        .radioContainer{
+            padding: 0 20px 0 0;
+        }
+    }
+
+}
+
+//PRICING SECTION
+
+.pricing-section{
+    padding-left:65px;
+
+    .price-plan {
+        text-align: center;
+        width: 220px;
+
+        h3 {
+            font-family: 'bree_rgregular';
+            color: #595959;
+            font-size: 19px;
+            margin:20px 0 ;
+            text-align: center;
+            span {
+                color: #000000;
+            }
+        }
+
+        .story-blue-btn {
+            width: 145px;
+            font-size: 18px;
+        }
+
+        &.low-plan{
+            float:left;
+            width:210px;
+        }
+
+        &.mid-plan{
+            @extend .vertical-gradient;
+            float:left;
+            width: 235px;
+        }
+
+        &.high-plan{
+            @extend .vertical-gradient;
+            float:left;
+            text-align:right;
+            padding: 0;
+            width: 240px;
+
+            h3{
+                text-indent:30px;
+            }
+            .story-blue-btn {
+                width: 196px;
+                margin-bottom: 15px;
+            }
+        }
+
+    }
+}
+
+.edit-profile-completed{
+    position: relative;
+    left: 10px;
+
+    width: 225px;
+    border-radius: 15px;
+    height: 35px;
+    box-shadow: inset 0 4px 8px -6px #000;
+
+    .progress-bar {
+        box-shadow: inset 0 4px 15px -6px #000;
+        background-color: #7ec1e5;
+    }
+}
+.available-space{
+    text-align: right;
+    color: #595959;
+    line-height: 35px;
+    height: 35px;
+    font-size: 22px;
+
+    strong{ color: #389bd0;}
+}
+
+
+
+.billing-wrap{
+    @extend .radial-gradient;
+    width: 100%;
+    padding-top: 30px;
+    .my-account-header{
+        padding-left: 29px;
+    }
+    .my-account-cogwheel-icon{
+        margin-left: 12px;
+        position: relative;
+        top:4px;
+    }
+}
+
+.mid-dots{
+    color:#d9d9d9;
+    font-size: 18px;
+    width:30px;
+    display:inline-block;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+.profile_section{
+    .my-account-about-icon,.my-account-notification-icon{
+        margin-left: 12px;
+        position:relative;
+        top:8px;
+    }
+
+    .mid-dots{
+        margin-left:4px;
+    }
+
+}
+.quick-plan-info{
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+.access-col{
+    .mid-dots{
+        color: #727272;
+    }
+}
+
+.social-my-account{
+    display:inline-block;
+    position:relative;
+    top:5px;
+    i{ //regular social sprite
+        &.social-facebook{
+            @extend .my-account-facebook-btn;
+        }
+        &.social-twitter{
+            @extend .my-account-tumblr-btn;
+        }
+        &.social-t{
+            @extend .my-account-twitter-btn;
+        }
+    }
+    &:hover{
+        i{ //hovered social sprite
+            &.social-facebook{
+                @extend .my-account-facebook-btn-hover;
+                position:relative;
+                top: -1px;
+                left:-1px;
+            }
+            &.social-twitter{
+                @extend .my-account-tumblr-btn-hover;
+                position:relative;
+                top: -1px;
+                left:-1px;
+            }
+            &.social-t{
+                @extend .my-account-twitter-btn-hover;
+                position:relative;
+                top: -1px;
+                left:-1px;
+            }
+        }
+    }
+}
+
+
+
+//EDIT PROFILE
+.account-edit-username {
+    width: 155px;
+    height: 40px;
+    border: 1px dashed #ebebeb;
+    border-radius: 0px;
+    font-size: 20px;
+    text-indent:20px;
+    font-family: bree_ltlight;
+    color: #4a4a49!important;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.privacy-switch-btn{
+    border-radius: 0;
+    background: #ffffff;
+    color: #46a5d6;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0 4px;
+    border: 1px dashed #ebebeb;
+}
+
+.account-edit-fields {
+    width: 175px;
+    height: 33px;
+    border: 1px dashed #ebebeb;
+    border-radius: 0px;
+    font-size: 16px;
+    font-family: bree_ltlight;
+    color: #000000!important;
+    display: inline-block;
+    text-align: right;
+    float:right;
+    padding-right: 10px;
+}
+
+.privacy-switch-edit{
+    height: 33px;
+    line-height: 33px;
+    margin-bottom: 10px;
+
+    .dropdown{
+        margin-left:10px;
+        display:inline-block;
+        height: 25px;
+        &.open{
+            .collapse-arrow-small{
+                @extend .expand-arrow-small;
+            }
+        }
+    }
+
+    & > label{
+        display:inline-block;
+        width: 90px;
+        font-size: 16px;
+        font-family: 'bree_ththin';
+    }
+}
+
+.birthday-picker {
+    display: inline-block;
+    width: 184px;
+    text-align: right;
+    select{
+        margin-left: 5px;
+        border: 1px dashed #ebebeb;
+        height: 33px;
+        width:55px
+    }
+}
+
+.birth-year{margin-right:-5px;}
+.birth-month{width: 50px;}
+.birth-day{width: 49px;}
+
+.edit-description {
+    font-family: 'bree_ltlight';
+    color: #9a9a9a;
+    font-size: 16px;
+    line-height: 33px;
+    margin-bottom: 10px;
+    text-indent: 25px;
+}
+
+.edit-account-button {
+    width: 80px;
+    height: 34px;
+    background-color: #777777;
+    text-shadow: 2px 2px #676767;
+    border-radius: 2px;
+    border: 1px solid #f0faf9;
+    font-family: 'bree_ltlight';
+    color: #ffffff;
+    font-size: 15px;
+    float: right;
+    position:relative;
+    top:-8px;
+    right: -12px;
+    .pen-edit-white{
+        position:relative;
+        left:-10px;
+    }
+}
+
+.edit-account-button span {
+    color: #ffffff;
+}
+
+.edit-account-details {
+    padding: 20px 25px;
+    border: 1px dashed #ebebeb;
+    border-radius: 3px;
+    background-color: #ffffff;
+    font-family: bree_ltlight;
+    color: #1f1f1f;
+    height: 100%;
+    font-size: 16px;
+}
+
+
+.dummy-div {
+    text-indent: 49px;
+    display: inline-block;
+}
+
+.socials-profile{
+    display: inline-block;
+    width: 170px;
+    height: 100%;
+    position: relative;
+    float:right;
+}
+.social-input {
+    position:relative;
+
+    width: 170px;
+    height: 33px;
+    margin-bottom: 10px;
+    input{
+        font-size: 16px;
+        font-family: 'bree_ltlight';
+        color: #000000;
+        background-color: #ffffff;
+        border-radius: 3px;
+        border: 1px solid #dbdbdb;
+        width: 170px;
+        padding:0 20px 0 10px;
+        height: 33px;
+        line-height: 20px;
+    }
+
+    button{
+        position:absolute;
+        right: 5px;
+        top:   6px;
+    }
+
+    label{
+        position:absolute;
+        height: 30px;
+        top:1px;
+        line-height:30px;
+        width:140px;
+        color: #000000;
+        background-color: #ffffff;
+        left:1px;
+        text-indent: 10px;
+        font-family: 'bree_ltlight';
+        font-weight: 200;
+        cursor :text;
+    }
+}
+
+.added-socials-button {
+    position: absolute;
+    bottom: 0px;
+    right: -134px;
+    height: 33px;
+}
+
+
+.remove-social{
+    @extend .remove-sm-circle;
+}
+
+
+.select-social{
+    @include border-radius(3px);
+    background-color: #ffffff;
+    border:none;
+    border-top: 2px solid #e3e3e3;
+    border-bottom: 2px solid #e3e3e3;
+    width: 170px;
+    height: 35px;
+    margin-bottom:20px;
+    position:absolute;
+    top:0;
+    left:0;
+
+    .glyphicon{
+        float:right;
+        margin-top:8px;
+        margin-right:8px;
+    }
+
+    .select-value{
+        width:150px;
+        padding-left:10px;
+        cursor:pointer;
+    }
+
+    &:hover{
+        .options-wrapper{display:block;}
+    }
+
+}
+
+.options-wrapper{
+    background-color: #ffffff;
+    display:none;
+    position:absolute;
+    z-index:10;
+    top:27px;
+    left:0;
+    width:170px;
+
+    button{
+        padding-left:10px;
+        cursor:pointer;
+        height:30px;
+        line-height:30px;
+        width:100%;
+        display:inline-block;
+        background-color: #ffffff;
+        border:none;
+        text-align:left;
+        &:hover{
+            background-color: #48A7D8;
+            color:#ffffff;
+        }
+    }
+}
+
+.new-social-input-wrap{
+    width: 300px;
+    position:absolute;
+    top:0;
+    left:0;
+    display:none;
+
+    input{
+        border:none;
+        border-top: 2px solid #d1d1d1;
+        height:30px;
+        padding: 0 5px;
+        width: 170px;
+        margin-right:10px;
+        line-height:20px;
+    }
+    .add-network{
+        @extend .story-blue-btn;
+        @include box-shadow(0, 2px, 0, #1f719a);
+        background-color: #48a7d8;
+        border: 1px solid #9dcce5;
+        color: #ffffff;
+        text-shadow: 1px 1px #3a8eb9;
+        height: 30px;
+        width: 95px;
+        text-transform: uppercase;
+        line-height: 28px;
+        span{
+            font-weight: bold;
+        }
+        .ok-icon-blue-small{
+            position:relative;
+            top:2px;
+        }
+    }
+}
+
+.add-more-social{
+    @extend .story-blue-btn;
+    color: #8c8c8c;
+    width: 170px;
+    height: 32px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height:32px;
+
+    &:hover{color: #ffffff;}
+
+}
+
+.add-social-profile{
+    margin-top:20px;
+    position:relative;
+    width:250px;
+    height:40px;
+
+    .add-more-social{display:block;}
+    .select-social{display:none;}
+    .new-social-input-wrap{display:none;}
+
+    &.step-1{
+        .add-more-social{display:none;}
+        .select-social{display:block;}
+    }
+    &.step-2{
+        .add-more-social{display:none;}
+        .select-social{display:none;}
+        .new-social-input-wrap{display:block;}
+    }
+}
+ul.privacy-dropdown{
+    min-width: 59px;
+    padding:0;
+    border-radius: 0;
+    border: 1px dashed #ebebeb;
+    border-top:none;
+    box-shadow: none;
+    li{
+        height: 20px;
+        line-height: 20px;
+        label{
+            width:100%;
+            font-weight:200;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            color: #46a5d6;
+            cursor:pointer;
+
+            &:hover{
+                background-color: #46a5d6;
+                color:#FFFFFF;
+            }
+        }
+    }
+}
+
+.account-input-label{
+    display:inline-block;
+    width: 110px;
+    height:20px;
+    line-height:20px;
+    color: #9a9a9a;
+    .mid-dots{
+        height:20px;
+        line-height:20px;
+        width: 25px;
+        margin-left:0;
+    }
+}
+.public-name{
+    line-height: 49px !important;
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 25px;
+    color: #4a4a49;
+}

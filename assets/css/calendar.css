@@ -1,0 +1,178 @@
+/* Calendar Page
+----------------------------------------------------------------------------------------------------------------------*/
+div.calendar-page {
+    background: #4b4b4a;
+}
+.top-calendar {
+    color: #ffffff;
+}
+.top-calendar .calendar-year{
+    font-size: 35px;
+}
+.calendar-view-type, .calendar-view-type a {
+    font-size:18px;
+    text-align: right;
+    color: #ffffff;
+}
+.calendar-holder {
+    margin-top: 15px;
+    background: #ffffff;
+    padding: 30px 35px;
+}
+/* Calendar
+----------------------------------------------------------------------------------------------------------------------*/
+/* Month View Table */
+#months-view{
+}
+#months-view thead tr th{
+    color: #8c8c8c;
+    font-size:18px;
+    font-weight: normal;
+}
+
+#months-view tbody tr td{
+
+    width: 14.28%;
+}
+#months-view tbody tr td .calendar-entry{
+    width:100%;
+    height: 120px;
+    overflow: hidden;
+    padding: 9px;
+
+}
+
+#months-view tbody td {
+    border-right:1px solid #d9d9d9;
+    border-top:1px solid #d9d9d9;
+}
+#months-view tbody tr td:last-of-type {
+    border-right: none;
+}
+
+#months-view tbody tr td .calendar-entry .top{
+
+    width:100%;
+    color: #d1d1d1;
+    line-height:20px;
+    padding: 0 8px;
+    font-size: 22px;
+}
+#months-view tbody tr td .calendar-entry .bottom{
+    width:100%;
+    font-family: 'bree_rgregular';
+    color: #8c8c8c;
+    padding: 5px 0px;
+    font-size:14px;
+    min-height:90px;
+}
+#months-view tbody tr td .calendar-entry .bottom .month-day-entry{
+    display:none;
+    padding: 1px 8px;
+}
+#months-view tbody tr td .calendar-entry .bottom .month-day-entry:first-child{
+    display:block;
+}
+
+#months-view tbody tr td .calendar-entry .bottom .more-stories{
+    color:#1f1f1f;
+    font-size:16px;
+    margin-top: 6px;
+    padding: 0 8px;
+}
+/* Hover effects */
+
+#months-view tbody tr td:hover .calendar-entry, .calendar-entry.active {
+    background-color: #fafafa;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow:    0px 1px 6px 0px rgba(0, 0, 0, 0.2);
+    box-shadow:         0px 1px 6px 0px rgba(0, 0, 0, 0.2);
+}
+#months-view tbody tr td:hover .more-entries .top{
+
+    /*border-radius:0px 0px 0px 0px;*/
+}
+#months-view tbody tr td:hover .more-entries .bottom{
+    color:#000000;
+    background-color: #fafafa;
+    /*border-radius:0px 0px 0px 0px;*/
+}
+#months-view tbody tr td:hover .more-entries .bottom .more-stories{
+    display:none;
+}
+#months-view tbody tr td:hover .more-entries .month-day-entry{
+    border-bottom: 1px solid #000;
+}
+#months-view tbody tr td:hover .more-entries .month-day-entry:last-child{
+    border-bottom: none;
+}
+#months-view tbody tr td:hover .calendar-entry .bottom .month-day-entry{
+    display:block;
+}
+#months-view tbody tr td:hover .more-entries .bottom{
+    height:auto;
+    position:absolute;
+}
+#months-view tbody tr td:hover .more-entries{
+    overflow: visible;
+    position: relative;
+}
+#months-view tbody tr td:hover .more-entries a.story-action{
+    visibility: visible;
+}
+/* End hover effects -------------------------------------------------*/
+.months-list{
+    padding: 0 25px;
+}
+.months-list div a{
+    color:#acacac;
+    font-size: 19px;
+}
+.months-list div a.current{
+    color:#ffffff;
+}
+.calendar-entry a.story-action{
+    visibility: hidden;
+    color:#A24400;
+}
+#months-view tbody tr td .more-entries .top .popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1010;
+    display: none;
+    min-width: 350px;
+    padding: 1px;
+    text-align: left;
+    white-space: normal;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+}
+
+#months-view tbody tr td .more-entries .top .popover .arrow {
+    left: 50%!important;
+}
+
+#months-view tbody tr td .more-entries .popover-title {
+    padding: 8px 14px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 18px;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #ebebeb;
+    border-radius: 5px 5px 0 0;
+    color:#ED9758;
+}
+.popover {
+    /*visibility: hidden !important;*/
+}
+#months-view tbody tr td:hover .popover{
+    visibility: visible !important;
+}

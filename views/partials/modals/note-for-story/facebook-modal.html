@@ -1,0 +1,53 @@
+<div class="uploading-photo-modal" id="create-new-story" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close-modal" data-dismiss="modal" ng-click="$ctrl.closeModal()" aria-hidden="true">×</button>
+        <div class="modal-title">
+          <span>Import From Facebook</span>
+        </div>
+      </div>
+      <div class="modal-body fb-images-container">
+        <div class="gallery-panel">
+          <div ng-repeat="media in allMedias" ng-if="$index % 4 == 0" class="row">
+            <div class="col-md-3">
+              <div class="img-container" ng-class="{'img-container-selected': media.selected}" ng-click="$ctrl.selectImage(media)">
+                <video width="140px" height="140px" ng-if="media.type" controls>
+                  <source ng-src="{{trustSrc(media.url)}}">
+                </video>
+                <div class="img" ng-style="{'background-image' : 'url(' + media.url + ')'}" ng-if="!media.type"></div>
+              </div>
+            </div>
+            <div class="col-md-3" ng-if="allMedias.length > ($index + 1)">
+              <div class="img-container" ng-class="{'img-container-selected': allMedias[$index + 1].selected}" ng-click="$ctrl.selectImage(allMedias[$index + 1])">
+                <video width="140px" height="140px" ng-if="allMedias[$index + 1].type" controls>
+                  <source ng-src="{{trustSrc(allMedias[$index + 1].url)}}">
+                </video>
+                <div class="img" ng-style="{'background-image' : 'url(' + allMedias[$index + 1].url + ')'}" ng-if="!allMedias[$index + 1].type"></div>
+              </div>
+            </div>
+            <div class="col-md-3" ng-if="allMedias.length > ($index + 2)">
+              <div class="img-container" ng-class="{'img-container-selected': allMedias[$index + 2].selected}" ng-click="$ctrl.selectImage(allMedias[$index + 2])">
+                <video width="140px" height="140px" ng-if="allMedias[$index + 2].type" controls>
+                  <source ng-src="{{trustSrc(allMedias[$index + 2].url)}}">
+                </video>
+                <div class="img" ng-style="{'background-image' : 'url(' + allMedias[$index + 2].url + ')'}" ng-if="!allMedias[$index + 2].type"></div>
+              </div>
+            </div>
+            <div class="col-md-3" ng-if="allMedias.length > ($index + 3)">
+              <div class="img-container" ng-class="{'img-container-selected': allMedias[$index + 3].selected}" ng-click="$ctrl.selectImage(allMedias[$index + 3])">
+                <video width="140px" height="140px" ng-if="allMedias[$index + 3].type" controls>
+                  <source ng-src="{{trustSrc(allMedias[$index + 3].url)}}">
+                </video>
+                <div class="img" ng-style="{'background-image' : 'url(' + allMedias[$index + 3].url + ')'}" ng-if="!allMedias[$index + 3].type"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- modal body -->
+      <div class="modal-footer">
+        <button class="btn-story-that-small-light fl show-prev-modal" data-dismiss="modal" ng-click="$ctrl.BackButton()">BACK</button>
+        <span>{{$ctrl.SumOfSelectedFile}} Photos/Videos selected</span>
+        <button class="btn-story-that-small-light fr" ng-disabled="!$ctrl.SumOfSelectedFile" data-dismiss="modal" ng-click="$ctrl.NextButton()" >NEXT</button>
+      </div> <!-- modal-footer -->
+    </div> <!-- modal-content -->
+</div><!-- import-media-from-fb -->

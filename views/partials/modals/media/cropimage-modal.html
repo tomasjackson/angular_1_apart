@@ -1,0 +1,19 @@
+<div class="" tabindex="-1" id="crop-photo" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+    <div class="modal-content">
+        <div class="modal-header">
+			<img id="imageid" ng-src="{{$ctrl.aaa}}">        
+            <button type="button" class="close-modal" ng-click="$ctrl.CloseModal()" aria-hidden="true">×</button><!-- button close-->
+            <div class="modal-title">Crop</div>
+        </div>
+        <div class="modal-body">           
+          <div class="cropArea">
+            <img-crop image="$ctrl.currentImg" result-image="$ctrl.croppedImage" area-type ="square"></img-crop>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-story-that-small-light fl show-prev-modal" ng-click="$ctrl.CloseModal()">BACK</button>
+            <button class="btn-story-that-small-light fr" ng-click="$ctrl.applyCropping()">APPLY</button>
+        </div><!--modal footer close-->
+    </div><!-- modal content end-->
+</div><!-- crop-photo -->

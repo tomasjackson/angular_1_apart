@@ -1,0 +1,826 @@
+<div class="calendar-main-wrap monthly">
+    <div class="container">
+        <div class="cal-header row">
+            <a class="prev-month pull-left" ng-click="$ctrl.CalendarNavigating($event, 'PREV')"><img src="assets/icons/month-prev.png" alt="arrow"></a>
+                <div class="dropdown">
+                    <button id="current-month-btn" class="dropdown-toggle" data-toggle="dropdown">{{$ctrl.selected_date.month_string + ' ' + $ctrl.selected_date.year}}<span class="month-arrow"></span></button>
+                    <div class="dropdown-menu" id="pick-month">
+                        <span id="bordered-arrow"></span>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <div class="days-border left">
+                                    <div class="row">
+                                        <a class="cal-day pull-left" ng-repeat="month in $ctrl.month_display" ng-class="{'pull-left':$even , 'pull-right':$odd, 'current': month.current}" ng-click="$ctrl.MonthClick($event , $index)">{{month.month}}</a>
+                                    </div>
+                                    <button>Today</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6 padding-left">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a class="cal-year" ng-repeat="year in $ctrl.year_list" ng-if="$index < 5" ng-class="{'current' : year.current}" ng-click="$ctrl.YearClick($event , year)">{{year.year}}</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a class="cal-year" ng-repeat="year in $ctrl.year_list" ng-if="$index > 4" ng-class="{'current' : year.current}" ng-click="$ctrl.YearClick($event , year)">{{year.year}}</a>
+                                    </div>
+                                    <div class="year-nav">
+                                        <a class="prev-years" ng-click="$ctrl.YearPage($event, 'PREV')"><img src="assets/icons/left-cal-nav.png" alt="arrow"></a>
+                                        <a class="next-years" ng-click="$ctrl.YearPage($event, 'NEXT')"><img src="assets/icons/right-cal-nav.png" alt="arrow"></a>
+                                    </div>
+                                    <button>Select</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <a class="prev-month pull-right" ng-click="$ctrl.CalendarNavigating($event, 'NEXT')"><img src="assets/icons/month-next.png" alt="arrow"></a>
+        </div>
+        <div class="calendar-body row">
+            <div class="monthly-body-wrap">
+                <table class="top-calendar-table monthly-table ">
+                    <thead>
+                        <tr>
+                            <th>Sun</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="monthly-calendar-days">
+                        <tr>
+                            <td ng-repeat="cal in $ctrl.calendar_info.week_1" ng-class="{'other-month':!cal.cal_info, 'day-has-story':cal.stories.length}" ng-click="$ctrl.fnAppendStoriesBox($event, cal)" dw-loading="loading-calendar">
+                                <div class="day-info" ng-if="cal.cal_info">
+                                    <div class="day-top">
+                                        <span>{{cal.date}}</span>
+                                    </div>
+
+                                    <div class="day-stories" ng-if="!cal.stories.length">
+                                        <p class="no-story-day">A day without a story.<br><span class="blue-text" ng-click="$ctrl.AddNewStory(cal , 0)">Add one? </span></p>
+                                    </div>
+                                    <p ng-if="cal.stories.length">
+                                        {{cal.stories[0].title}}<br>{{cal.stories[1].title}}<br>{{cal.stories[2].title}}
+                                        <a ng-if="(cal.stories.length - 3) > 0">+ {{cal.stories.length-3}} stories</a>
+                                    </p>
+
+                                    <a class="read-more-day" href="javascript:void(0);"></a>
+                                </div>
+                                <div class="stories-box" ng-if="cal.append_flag" ng-class="{'position-right': $index > 4}">
+                                    <div class="stories-box-header">
+                                        <span class="note-date">{{cal.date + ' ' + $ctrl.selected_date.month_string + ' ' + $ctrl.selected_date.year}}</span>
+                                        <button type="button" class="add-2-day"><img src="assets/icons/add-story-plus.png" alt="png"></button>
+                                    </div>
+                                    <div class="stories-box-body">
+                                    <!--<div class="story-cont">
+                                            <div class="row body-top">
+                                                <img src="assets/img/notification-denis.png" alt="avatar">
+                                                <span class="story-box-username">Username</span>
+                                                <span class="pull-right story-box-time">04:23 AM</span>
+                                            </div>
+                                            <div class="body-content">
+                                                <img src="assets/img/story-img-3.jpg" class="pull-left" alt="story">
+                                                <div class="text-holder">
+                                                    <p class="title">Rom volutpat nula et nibh convallis</p>
+                                                    <span>Curabitur ut orci suscipit, eleifend elit ut, tincidunt nisi...</span>
+                                                </div>
+                                                <a class="story-open-options three-dots-icon-big" href="#"></a>
+                                            </div>
+                                            <div class="story-footer-options gradient-top clearfix">
+                                                <a href="#" class="share-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                                                <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+
+                                                <a class="star-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Favorites">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div> -->
+                                        <div class="story-cont gray" ng-repeat="story in cal.stories">
+                                            <div class="row body-top">
+                                            <!--<img ng-src="{{story.user.avatar}}" alt="avatar"> -->
+                                                <span class="story-box-username">My private story</span>
+                                                <span class="pull-right story-box-time">{{story.user.userDate}}</span>
+                                            </div>
+                                            <div class="body-content">
+                                                <img src="assets/img/story-img-3.jpg" class="pull-left" alt="story">
+                                                <div class="text-holder">
+                                                    <p class="title">{{story.title}}</p>
+                                                    <span>{{$ctrl.GetSubString(story.description)}}</span>
+                                                </div>
+                                                <a class="story-open-options three-dots-icon-big" href="#"></a>
+                                            </div>
+                                            <div class="story-footer-options gradient-top clearfix">
+                                                <a href="#" class="share-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                                                <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+
+                                                <a class="star-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Favorites">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td ng-repeat="cal in $ctrl.calendar_info.week_2" ng-class="{'other-month':!cal.cal_info, 'day-has-story':cal.stories.length}" ng-click="$ctrl.fnAppendStoriesBox($event, cal)" dw-loading="loading-calendar">
+                                <div class="day-info" ng-if="cal.cal_info">
+                                    <div class="day-top">
+                                        <span>{{cal.date}}</span>
+                                    </div>
+
+                                    <div class="day-stories" ng-if="!cal.stories.length">
+                                        <p class="no-story-day">A day without a story.<br><span class="blue-text" ng-click="$ctrl.AddNewStory(cal , 1)">Add one? </span></p>
+                                    </div>
+                                    <p ng-if="cal.stories.length">
+                                        {{cal.stories[0].title}}<br>{{cal.stories[1].title}}<br>{{cal.stories[2].title}}
+                                        <a ng-if="(cal.stories.length - 3) > 0">+ {{cal.stories.length-3}} stories</a>
+                                    </p>
+
+                                    <a class="read-more-day" href="javascript:void(0);"></a>
+                                </div>
+                                <div class="stories-box" ng-if="cal.append_flag" ng-class="{'position-right': $index > 4}">
+                                    <div class="stories-box-header">
+                                        <span class="note-date">{{cal.date + ' ' + $ctrl.selected_date.month_string + ' ' + $ctrl.selected_date.year}}</span>
+                                        <button type="button" class="add-2-day">
+
+                                            <img ng-src="assets/icons/add-story-plus.png" alt="png">
+
+                                        </button>
+                                    </div>
+                                    <div class="stories-box-body">
+                                    <!--<div class="story-cont">
+                                            <div class="row body-top">
+                                                <img src="assets/img/notification-denis.png" alt="avatar">
+                                                <span class="story-box-username">Username</span>
+                                                <span class="pull-right story-box-time">04:23 AM</span>
+                                            </div>
+                                            <div class="body-content">
+                                                <img src="assets/img/story-img-3.jpg" class="pull-left" alt="story">
+                                                <div class="text-holder">
+                                                    <p class="title">Rom volutpat nula et nibh convallis</p>
+                                                    <span>Curabitur ut orci suscipit, eleifend elit ut, tincidunt nisi...</span>
+                                                </div>
+                                                <a class="story-open-options three-dots-icon-big" href="#"></a>
+                                            </div>
+                                            <div class="story-footer-options gradient-top clearfix">
+                                                <a href="#" class="share-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                                                <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+
+                                                <a class="star-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Favorites">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div> -->
+                                        <div class="story-cont gray" ng-repeat="story in cal.stories">
+                                            <div class="row body-top">
+                                            <!--<img ng-src="{{story.user.avatar}}" alt="avatar"> -->
+                                                <span class="story-box-username">My private story</span>
+                                                <span class="pull-right story-box-time">{{story.user.userDate}}</span>
+                                            </div>
+                                            <div class="body-content">
+
+                                                <iframe width="100%" height="61px" ng-if="story.mediaFiles[0].mediaFileType && story.mediaFiles[0].embeddedVideoUrl" ng-src="{{trustSrc(story.mediaFiles[0].path + '?autostart=0')}}" frameborder="0" allowfullscreen style="float:left;margin-left:50px;margin-right:5px;"></iframe>
+                                                <video width="80px" height="61px" style="float:left;margin-left:50px;margin-right:5px;" ng-if="story.mediaFiles[0].mediaFileType && !story.mediaFiles[0].embeddedVideoUrl" controls>
+                                                    <source ng-src="{{trustSrc(story.mediaFiles[0].path)}}">
+                                                </video>
+
+<!--                                                 <div class="img-journal" ng-style="{'background-image' : 'url(' + story.mediaFiles[0].path.t2 + ')'}" ng-if="!story.mediaFiles[0].mediaFileType && !story.expanded && story.mediaFiles[0].path.t2"></div>
+                                                <div class="img-journal" ng-style="{'background-image' : 'url(' + story.mediaFiles[0].path + ')'}" ng-if="!story.mediaFiles[0].mediaFileType && !story.expanded && !story.mediaFiles[0].path.t2"></div>
+ -->
+
+                                                <img ng-src="{{story.mediaFiles[0].path.t1}}" ng-if="!story.mediaFiles[0].mediaFileType && story.mediaFiles[0].path.t1" style="height: 61px;float:left;">
+                                                <img ng-src="{{story.mediaFiles[0].path}}" ng-if="!story.mediaFiles[0].mediaFileType && !story.mediaFiles[0].path.t1" style="height: 61px;float:left;">
+
+
+
+                                                <div class="text-holder">
+                                                    <p class="title">{{story.title}}</p>
+                                                    <span>{{story.description}}</span>
+                                                </div>
+                                                <a class="story-open-options three-dots-icon-big" href="#"></a>
+                                            </div>
+                                            <div class="story-footer-options gradient-top clearfix">
+                                                <a href="#" class="share-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                                                <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+
+                                                <a class="star-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Favorites">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td ng-repeat="cal in $ctrl.calendar_info.week_3" ng-class="{'other-month':!cal.cal_info, 'day-has-story':cal.stories.length}" ng-click="$ctrl.fnAppendStoriesBox($event, cal)" dw-loading="loading-calendar">
+                                <div class="day-info" ng-if="cal.cal_info">
+                                    <div class="day-top">
+                                        <span>{{cal.date}}</span>
+                                    </div>
+
+                                    <div class="day-stories" ng-if="!cal.stories.length">
+                                        <p class="no-story-day">A day without a story.<br><span class="blue-text" ng-click="$ctrl.AddNewStory(cal , 2)">Add one? </span></p>
+                                    </div>
+                                    <p ng-if="cal.stories.length">
+                                        {{cal.stories[0].title}}<br>{{cal.stories[1].title}}<br>{{cal.stories[2].title}}
+                                        <a ng-if="(cal.stories.length - 3) > 0">+ {{cal.stories.length-3}} stories</a>
+                                    </p>
+
+                                    <a class="read-more-day" href="javascript:void(0);"></a>
+                                </div>
+                                <div class="stories-box" ng-if="cal.append_flag" ng-class="{'position-right': $index > 4}">
+                                    <div class="stories-box-header">
+                                        <span class="note-date">{{cal.date + ' ' + $ctrl.selected_date.month_string + ' ' + $ctrl.selected_date.year}}</span>
+                                        <button type="button" class="add-2-day"><img src="assets/icons/add-story-plus.png" alt="png"></button>
+                                    </div>
+                                    <div class="stories-box-body">
+                                    <!--<div class="story-cont">
+                                            <div class="row body-top">
+                                                <img src="assets/img/notification-denis.png" alt="avatar">
+                                                <span class="story-box-username">Username</span>
+                                                <span class="pull-right story-box-time">04:23 AM</span>
+                                            </div>
+                                            <div class="body-content">
+                                                <img src="assets/img/story-img-3.jpg" class="pull-left" alt="story">
+                                                <div class="text-holder">
+                                                    <p class="title">Rom volutpat nula et nibh convallis</p>
+                                                    <span>Curabitur ut orci suscipit, eleifend elit ut, tincidunt nisi...</span>
+                                                </div>
+                                                <a class="story-open-options three-dots-icon-big" href="#"></a>
+                                            </div>
+                                            <div class="story-footer-options gradient-top clearfix">
+                                                <a href="#" class="share-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                                                <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+
+                                                <a class="star-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Favorites">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div> -->
+                                        <div class="story-cont gray" ng-repeat="story in cal.stories">
+                                            <div class="row body-top">
+                                            <!--<img ng-src="{{story.user.avatar}}" alt="avatar"> -->
+                                                <span class="story-box-username">My private story</span>
+                                                <span class="pull-right story-box-time">{{story.user.userDate}}</span>
+                                            </div>
+                                            <div class="body-content">
+                                                <img src="assets/img/story-img-3.jpg" class="pull-left" alt="story">
+                                                <div class="text-holder">
+                                                    <p class="title">{{story.title}}</p>
+                                                    <span>{{$ctrl.GetSubString(story.description)}}</span>
+                                                </div>
+                                                <a class="story-open-options three-dots-icon-big" href="#"></a>
+                                            </div>
+                                            <div class="story-footer-options gradient-top clearfix">
+                                                <a href="#" class="share-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                                                <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+
+                                                <a class="star-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Favorites">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td ng-repeat="cal in $ctrl.calendar_info.week_4" ng-class="{'other-month':!cal.cal_info, 'day-has-story':cal.stories.length}" ng-click="$ctrl.fnAppendStoriesBox($event, cal)" dw-loading="loading-calendar">
+                                <div class="day-info" ng-if="cal.cal_info">
+                                    <div class="day-top">
+                                        <span>{{cal.date}}</span>
+                                    </div>
+
+                                    <div class="day-stories" ng-if="!cal.stories.length">
+                                        <p class="no-story-day">A day without a story.<br><span class="blue-text" ng-click="$ctrl.AddNewStory(cal , 3)">Add one? </span></p>
+                                    </div>
+                                    <p ng-if="cal.stories.length">
+                                        {{cal.stories[0].title}}<br>{{cal.stories[1].title}}<br>{{cal.stories[2].title}}
+                                        <a ng-if="(cal.stories.length - 3) > 0">+ {{cal.stories.length-3}} stories</a>
+                                    </p>
+
+                                    <a class="read-more-day" href="javascript:void(0);"></a>
+                                </div>
+                                <div class="stories-box" ng-if="cal.append_flag" ng-class="{'position-right': $index > 4}">
+                                    <div class="stories-box-header">
+                                        <span class="note-date">{{cal.date + ' ' + $ctrl.selected_date.month_string + ' ' + $ctrl.selected_date.year}}</span>
+                                        <button type="button" class="add-2-day"><img src="assets/icons/add-story-plus.png" alt="png"></button>
+                                    </div>
+                                    <div class="stories-box-body">
+                                    <!--<div class="story-cont">
+                                            <div class="row body-top">
+                                                <img src="assets/img/notification-denis.png" alt="avatar">
+                                                <span class="story-box-username">Username</span>
+                                                <span class="pull-right story-box-time">04:23 AM</span>
+                                            </div>
+                                            <div class="body-content">
+                                                <img src="assets/img/story-img-3.jpg" class="pull-left" alt="story">
+                                                <div class="text-holder">
+                                                    <p class="title">Rom volutpat nula et nibh convallis</p>
+                                                    <span>Curabitur ut orci suscipit, eleifend elit ut, tincidunt nisi...</span>
+                                                </div>
+                                                <a class="story-open-options three-dots-icon-big" href="#"></a>
+                                            </div>
+                                            <div class="story-footer-options gradient-top clearfix">
+                                                <a href="#" class="share-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                                                <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+
+                                                <a class="star-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Favorites">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div> -->
+                                        <div class="story-cont gray" ng-repeat="story in cal.stories">
+                                            <div class="row body-top">
+                                            <!--<img ng-src="{{story.user.avatar}}" alt="avatar"> -->
+                                                <span class="story-box-username">My private story</span>
+                                                <span class="pull-right story-box-time">{{story.user.userDate}}</span>
+                                            </div>
+                                            <div class="body-content">
+                                                <img src="assets/img/story-img-3.jpg" class="pull-left" alt="story">
+                                                <div class="text-holder">
+                                                    <p class="title">{{story.title}}</p>
+                                                    <span>{{$ctrl.GetSubString(story.description)}}</span>
+                                                </div>
+                                                <a class="story-open-options three-dots-icon-big" href="#"></a>
+                                            </div>
+                                            <div class="story-footer-options gradient-top clearfix">
+                                                <a href="#" class="share-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                                                <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+
+                                                <a class="star-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Favorites">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td ng-repeat="cal in $ctrl.calendar_info.week_5" ng-class="{'not-this-month':!cal.cal_info, 'day-has-story':cal.stories.length}" ng-click="$ctrl.fnAppendStoriesBox($event, cal)" dw-loading="loading-calendar">
+                                <div class="day-info" ng-if="cal.cal_info">
+                                    <div class="day-top">
+                                        <span>{{cal.date}}</span>
+                                    </div>
+
+                                    <div class="day-stories" ng-if="!cal.stories.length">
+                                        <p class="no-story-day">A day without a story.<br><span class="blue-text" ng-click="$ctrl.AddNewStory(cal , 4)">Add one? </span></p>
+                                    </div>
+                                    <p ng-if="cal.stories.length">
+                                        {{cal.stories[0].title}}<br>{{cal.stories[1].title}}<br>{{cal.stories[2].title}}
+                                        <a ng-if="(cal.stories.length - 3) > 0">+ {{cal.stories.length-3}} stories</a>
+                                    </p>
+
+                                    <a class="read-more-day" href="javascript:void(0);"></a>
+                                </div>
+                                <div class="stories-box" ng-if="cal.append_flag" ng-class="{'position-right': $index > 4}">
+                                    <div class="stories-box-header">
+                                        <span class="note-date">{{cal.date + ' ' + $ctrl.selected_date.month_string + ' ' + $ctrl.selected_date.year}}</span>
+                                        <button type="button" class="add-2-day"><img src="assets/icons/add-story-plus.png" alt="png"></button>
+                                    </div>
+                                    <div class="stories-box-body">
+                                    <!--<div class="story-cont">
+                                            <div class="row body-top">
+                                                <img src="assets/img/notification-denis.png" alt="avatar">
+                                                <span class="story-box-username">Username</span>
+                                                <span class="pull-right story-box-time">04:23 AM</span>
+                                            </div>
+                                            <div class="body-content">
+                                                <img src="assets/img/story-img-3.jpg" class="pull-left" alt="story">
+                                                <div class="text-holder">
+                                                    <p class="title">Rom volutpat nula et nibh convallis</p>
+                                                    <span>Curabitur ut orci suscipit, eleifend elit ut, tincidunt nisi...</span>
+                                                </div>
+                                                <a class="story-open-options three-dots-icon-big" href="#"></a>
+                                            </div>
+                                            <div class="story-footer-options gradient-top clearfix">
+                                                <a href="#" class="share-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                                                <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+
+                                                <a class="star-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Favorites">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div> -->
+                                        <div class="story-cont gray" ng-repeat="story in cal.stories">
+                                            <div class="row body-top">
+                                            <!--<img ng-src="{{story.user.avatar}}" alt="avatar"> -->
+                                                <span class="story-box-username">My private story</span>
+                                                <span class="pull-right story-box-time">{{story.user.userDate}}</span>
+                                            </div>
+                                            <div class="body-content">
+                                                <img src="assets/img/story-img-3.jpg" class="pull-left" alt="story">
+                                                <div class="text-holder">
+                                                    <p class="title">{{story.title}}</p>
+                                                    <span>{{$ctrl.GetSubString(story.description)}}</span>
+                                                </div>
+                                                <a class="story-open-options three-dots-icon-big" href="#"></a>
+                                            </div>
+                                            <div class="story-footer-options gradient-top clearfix">
+                                                <a href="#" class="share-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                                                <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+
+                                                <a class="star-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Favorites">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td ng-repeat="cal in $ctrl.calendar_info.week_6" ng-class="{'not-this-month':!cal.cal_info, 'day-has-story':cal.stories.length}" ng-if="$ctrl.calendar_info.week_6[0].cal_info" ng-click="$ctrl.fnAppendStoriesBox($event, cal)">
+                                <div class="day-info" ng-if="cal.cal_info" dw-loading="loading-calendar">
+                                    <div class="day-top">
+                                        <span>{{cal.date}}</span>
+                                    </div>
+
+                                    <div class="day-stories" ng-if="!cal.stories.length">
+                                        <p class="no-story-day">A day without a story.<br><span class="blue-text" ng-click="$ctrl.AddNewStory(cal , 5)">Add one? </span></p>
+                                    </div>
+                                    <p ng-if="cal.stories.length">
+                                        {{cal.stories[0].title}}<br>{{cal.stories[1].title}}<br>{{cal.stories[2].title}}
+                                        <a ng-if="(cal.stories.length - 3) > 0">+ {{cal.stories.length-3}} stories</a>
+                                    </p>
+
+                                    <a class="read-more-day" href="javascript:void(0);"></a>
+                                </div>
+                                <div class="stories-box" ng-if="cal.append_flag" ng-class="{'position-right': $index > 4}">
+                                    <div class="stories-box-header">
+                                        <span class="note-date">{{cal.date + ' ' + $ctrl.selected_date.month_string + ' ' + $ctrl.selected_date.year}}</span>
+                                        <button type="button" class="add-2-day"><img src="assets/icons/add-story-plus.png" alt="png"></button>
+                                    </div>
+                                    <div class="stories-box-body">
+                                    <!--<div class="story-cont">
+                                            <div class="row body-top">
+                                                <img src="assets/img/notification-denis.png" alt="avatar">
+                                                <span class="story-box-username">Username</span>
+                                                <span class="pull-right story-box-time">04:23 AM</span>
+                                            </div>
+                                            <div class="body-content">
+                                                <img src="assets/img/story-img-3.jpg" class="pull-left" alt="story">
+                                                <div class="text-holder">
+                                                    <p class="title">Rom volutpat nula et nibh convallis</p>
+                                                    <span>Curabitur ut orci suscipit, eleifend elit ut, tincidunt nisi...</span>
+                                                </div>
+                                                <a class="story-open-options three-dots-icon-big" href="#"></a>
+                                            </div>
+                                            <div class="story-footer-options gradient-top clearfix">
+                                                <a href="#" class="share-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                                                <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+
+                                                <a class="star-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Favorites">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div> -->
+                                        <div class="story-cont gray" ng-repeat="story in cal.stories">
+                                            <div class="row body-top">
+                                            <!--<img ng-src="{{story.user.avatar}}" alt="avatar"> -->
+                                                <span class="story-box-username">My private story</span>
+                                                <span class="pull-right story-box-time">{{story.user.userDate}}</span>
+                                            </div>
+                                            <div class="body-content">
+                                                <img src="assets/img/story-img-3.jpg" class="pull-left" alt="story">
+                                                <div class="text-holder">
+                                                    <p class="title">{{story.title}}</p>
+                                                    <span>{{$ctrl.GetSubString(story.description)}}</span>
+                                                </div>
+                                                <a class="story-open-options three-dots-icon-big" href="#"></a>
+                                            </div>
+                                            <div class="story-footer-options gradient-top clearfix">
+                                                <a href="#" class="share-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                                                <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+
+                                                <a class="star-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Add to Favorites">
+                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="top" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="weekly-body-wrap">
+                    <div class="weekly-scrollable-enable">
+
+                        <table class="top-calendar-table monthly-table">
+                            <thead>
+                                <tr>
+                                    <th> &nbsp; </th>
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                    <th>Sun</th>
+                                </tr>
+                            </thead>
+                            <tbody class="weekly-calendar-days">
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>00 AM</strong></td>
+                                    <td class="first-day"><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);">Lorem ipsum dolor sit amen</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div><!-- weekly scrollable enable -->
+                </div> <!-- weekly body wrap-->
+            </div>
+        </div>
+    </div>
+</div> <!-- calendar-main-wrap monthly-->

@@ -1,0 +1,133 @@
+<div class="uploading-photo-modal" id="edit-story" role="dialog" aria-hidden="true">
+<!--     <div class="modal-content"> -->
+        <div class="modal-header">
+            <button type="button" class="close-modal" ng-click="$ctrl.CloseModal()" aria-hidden="true">×</button>
+            <div class="modal-title">
+                <span>Edit your Story</span>
+            </div>
+        </div>
+        <div class="modal-body" dw-loading="loading">
+            <div ng-repeat="media in $ctrl.mediaList" ng-if="$index % 4 == 0" class="row">
+                <div class="col-md-3">
+                    <div class="img-container">
+
+                        <video width="140px" height="140px" ng-if="media.mediaFileType && !media.embeddedVideoUrl" controls>
+                            <source ng-src="{{trustSrc(media.path)}}">
+                        </video>
+                        <iframe width="140px" height="140px" ng-if="media.mediaFileType && media.embeddedVideoUrl" ng-src="{{trustSrc(media.path + '?autostart=0')}}" frameborder="0" allowfullscreen></iframe>
+
+                        <div class="img" ng-style="{'background-image' : 'url(' + media.path.t2 + ')'}" ng-if="!media.mediaFileType && media.path.t2"></div>
+                        <div class="img" ng-style="{'background-image' : 'url(' + media.path + ')'}" ng-if="!media.mediaFileType && !media.path.t2"></div>
+
+                        <div class="img-controls">
+                            <i class="fa fa-pencil" ng-click="$ctrl.EditMedia(media, $event)"></i>
+                            <i class="fa fa-crop" ng-click="$ctrl.CropMedia(media , $event)"></i>
+                            <i class="fa fa-times delete-photo" ng-click="$ctrl.DeleteMedia(media , $event)"></i>
+                        </div>
+                        <!-- img controls -->
+                        <div class="confirm-delete">
+                            <p>Remove this file
+                                ?</p>
+                            <button class="remove-photo" ng-click ="$ctrl.ConfirmDelete('DELETE_STORY' , media , $event)">Yes, Remove</button>
+                            <button class="cancel-delete" ng-click ="$ctrl.ConfirmDelete('CANCEL_ACTION' , media , $event)">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" ng-if="$ctrl.mediaList.length > ($index + 1)">
+                    <div class="img-container">
+
+                        <video width="140px" height="140px" ng-if="$ctrl.mediaList[$index + 1].mediaFileType && !$ctrl.mediaList[$index + 1].embeddedVideoUrl" controls>
+                            <source ng-src="{{trustSrc($ctrl.mediaList[$index + 1].path)}}">
+                        </video>
+                        <iframe width="140px" height="140px" ng-if="$ctrl.mediaList[$index + 1].mediaFileType && $ctrl.mediaList[$index + 1].embeddedVideoUrl" ng-src="{{trustSrc($ctrl.mediaList[$index + 1].path + '?autostart=0')}}" frameborder="0" allowfullscreen></iframe>
+
+                        <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 1].path.t2 + ')'}" ng-if="!$ctrl.mediaList[$index + 1].mediaFileType && $ctrl.mediaList[$index + 1].path.t2"></div>
+                        <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 1].path + ')'}" ng-if="!$ctrl.mediaList[$index + 1].mediaFileType && !$ctrl.mediaList[$index + 1].path.t2"></div>
+
+
+                        <div class="img-controls">
+                            <i class="fa fa-pencil" ng-click="$ctrl.EditMedia($ctrl.mediaList[$index + 1] , $event)"></i>
+                            <i class="fa fa-crop" ng-click="$ctrl.CropMedia($ctrl.mediaList[$index + 1] , $event)"></i>
+                            <i class="fa fa-times delete-photo" ng-click="$ctrl.DeleteMedia($ctrl.mediaList[$index + 1] , $event)"></i>
+                        </div>
+                        <!-- img controls -->
+                        <div class="confirm-delete">
+                            <p>Remove this file?</p>
+                            <button class="remove-photo" ng-click ="$ctrl.ConfirmDelete('DELETE_STORY' , $ctrl.mediaList[$index + 1] , $event)">Yes, Remove</button>
+                            <button class="cancel-delete" ng-click ="$ctrl.ConfirmDelete('CANCEL_ACTION' , $ctrl.mediaList[$index + 1] , $event)">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" ng-if="$ctrl.mediaList.length > ($index + 2)">
+                    <div class="img-container">
+<!--                    <div class="gall-img-cont video-pl">
+                            <video src="" poster="assets/img/photo-upload-11.jpg"></video>
+                        </div> -->
+                        <video width="140px" height="140px" ng-if="$ctrl.mediaList[$index + 2].mediaFileType && !$ctrl.mediaList[$index + 2].embeddedVideoUrl" controls>
+                            <source ng-src="{{trustSrc($ctrl.mediaList[$index + 2].path)}}">
+                        </video>
+                        <iframe width="140px" height="140px" ng-if="$ctrl.mediaList[$index + 2].mediaFileType && $ctrl.mediaList[$index + 2].embeddedVideoUrl" ng-src="{{trustSrc($ctrl.mediaList[$index + 2].path + '?autostart=0')}}" frameborder="0" allowfullscreen></iframe>
+
+                        <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 2].path.t2 + ')'}" ng-if="!$ctrl.mediaList[$index + 2].mediaFileType && $ctrl.mediaList[$index + 2].path.t2"></div>
+                        <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 2].path + ')'}" ng-if="!$ctrl.mediaList[$index + 2].mediaFileType && !$ctrl.mediaList[$index + 2].path.t2"></div>                     
+                        <div class="img-controls">
+                            <i class="fa fa-pencil" ng-click="$ctrl.EditMedia($ctrl.mediaList[$index + 2] , $event)"></i>
+                            <i class="fa fa-crop" ng-click="$ctrl.CropMedia($ctrl.mediaList[$index + 2] , $event)"></i>
+                            <i class="fa fa-times delete-photo" ng-click="$ctrl.DeleteMedia($ctrl.mediaList[$index + 2] , $event)"></i>
+                        </div>
+                        <!-- img controls -->
+                        <div class="confirm-delete">
+                            <p>Remove this file?</p>
+                            <button class="remove-photo" ng-click ="$ctrl.ConfirmDelete('DELETE_STORY' , $ctrl.mediaList[$index + 2] , $event)">Yes, Remove</button>
+                            <button class="cancel-delete" ng-click ="$ctrl.ConfirmDelete('CANCEL_ACTION' , $ctrl.mediaList[$index + 2] , $event)">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" ng-if="$ctrl.mediaList.length > ($index + 3)">
+                    <div class="img-container">
+                        <video width="140px" height="140px" ng-if="$ctrl.mediaList[$index + 3].mediaFileType && !$ctrl.mediaList[$index + 3].embeddedVideoUrl" controls>
+                            <source ng-src="{{trustSrc($ctrl.mediaList[$index + 3].path)}}">
+                        </video>
+                        <iframe width="140px" height="140px" ng-if="$ctrl.mediaList[$index + 3].mediaFileType && $ctrl.mediaList[$index + 3].embeddedVideoUrl" ng-src="{{trustSrc($ctrl.mediaList[$index + 3].path + '?autostart=0')}}" frameborder="0" allowfullscreen></iframe>
+
+                        <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 3].path.t2 + ')'}" ng-if="!$ctrl.mediaList[$index + 3].mediaFileType && $ctrl.mediaList[$index + 3].path.t2"></div>
+                        <div class="img" ng-style="{'background-image' : 'url(' + $ctrl.mediaList[$index + 3].path + ')'}" ng-if="!$ctrl.mediaList[$index + 3].mediaFileType && !$ctrl.mediaList[$index + 3].path.t2"></div>                       
+                        <div class="img-controls">
+                            <i class="fa fa-pencil" ng-click="$ctrl.EditMedia($ctrl.mediaList[$index + 3] , $event)"></i>
+                            <i class="fa fa-crop" ng-click="$ctrl.CropMedia($ctrl.mediaList[$index + 3] , $event)"></i>
+                            <i class="fa fa-times delete-photo" ng-click="$ctrl.DeleteMedia($ctrl.mediaList[$index + 3] , $event)"></i>
+                        </div><!-- img controls -->
+
+                        <div class="confirm-delete">
+                            <p>Remove this file?</p>
+                            <button class="remove-photo" ng-click ="$ctrl.ConfirmDelete('DELETE_STORY' , $ctrl.mediaList[$index + 3] , $event)">Yes, Remove</button>
+                            <button class="cancel-delete" ng-click ="$ctrl.ConfirmDelete('CANCEL_ACTION' , $ctrl.mediaList[$index + 3] , $event)">Cancel</button>
+                        </div>
+                    </div><!-- img-container -->
+                </div>
+            </div>
+            <div class="row">
+              <form id="add-details-form">
+                  <input type="text" class="std-input" ng-model="$ctrl.story.title" placeholder="Give a title to your story">
+                  <label class="float-left" for="date-input"> Date</label>
+                  <em id="date-input" class="std-input float-left" ng-click="$ctrl.openDatepicker()" uib-datepicker-popup="yyyy/MM/dd" ng-model="$ctrl.storyDate" is-open="$ctrl.flag_datepicker_opend" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="yyyy/MM/dd">{{$ctrl.storyDate | date:'fullDate' }}</em>
+<!--                <input type="text" class="std-input" placeholder="date" id="date-input" ng-model="$ctrl.story.date"> -->
+                  <label for="time-input">Time</label>
+                  <input ui-timepicker ng-model="storytime" class = "std-input" id = "time-input">
+
+<!--                <input id="time-input" class="std-input md-input" mdc-datetime-picker="" date="false" time="true" type="text" id="time2" placeholder="12:35" min-date="minDate" format="HH:mm" ng-model="$ctrl.storyTime"> -->
+<!--                <input id="time-input" type="text" class="std-input" ng-model="$ctrl.story.time" placeholder="12:35"> -->
+                  <input type="text" id="location-input" class="std-input fr input-half-width" ng-model="$ctrl.story.location" placeholder="Add Location (Optional)">
+                  <tags-input ng-model="$ctrl.story.keywords" class="std-input tagsinput" display-property="keyword"></tags-input>
+<!--                <input id="tags2" type="text" class="std-input" placeholder="Keywords *commas to separate* (optional)"> -->
+                  <textarea ng-model="$ctrl.story.description" class="std-input" placeholder="Add Text (Optional)"></textarea>
+              </form>
+          </div>
+        </div>
+        <!-- modal body -->
+        <div class="modal-footer">
+            <a class="btn-story-that-small-light fl" ng-click="$ctrl.CloseModal()">BACK</a>
+            <a class="btn-story-that-small-light fr" ng-click="$ctrl.EditSave()">SAVE</a>
+        </div>
+<!--     </div> -->
+</div><!-- edit-story -->

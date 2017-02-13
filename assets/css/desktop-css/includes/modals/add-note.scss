@@ -1,0 +1,79 @@
+
+.private-note-option{text-indent:10px;}
+
+.private-note-option .lock-icon{
+    position:relative;
+    top: 15px;
+    left: -5px;
+}
+.action-description{
+    color: #b3b3b3;
+    font-size: 16px;
+    padding-left: 29px;
+}
+.single-checkbox{cursor: pointer;}
+.action-name{
+    font-size: 18px;
+    color: #4a4a49;
+}
+label[for="private_note"]{
+    margin-top: 10px;
+}
+.add-photo-wrap{
+    margin: 20px 0;
+    text-align:center;
+    min-height: 60px;
+}
+
+.photo-upload-choice{
+    text-align:center;
+    padding: 50px 0;
+    margin: 0 40px;
+    border-bottom: 5px dotted #dbdbdb;
+}
+.photo-upload-choice button{margin: 0;}
+
+.direct-link{
+    padding: 40px 0;
+    margin: 0 40px;
+}
+.direct-link label{
+    color: #4a4a49;
+    font-weight: 300;
+}
+.direct-link input.std-input{
+    width: 65%;
+}
+.note-description{
+    padding: 0 30px;
+    color:#8e8e8e;
+    font-size: 16px;
+}
+.removable-picture{
+    padding: 5px;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 5px #CACACA;
+    position:relative;
+    float: left;
+    margin: 0 25px 10px 0px;
+}
+button.remove-picture{
+    border-radius: 22px;
+    border: none;
+    position:absolute;
+    top: 12px;
+    right: 10px;
+    display: none;
+}
+.added-photos-summary{
+    border-bottom: 5px dotted #dbdbdb;
+    padding-bottom: 20px;
+}
+.added-photos-summary h2{
+    color:#4a4a49;
+    font-size: 18px;
+    margin: 20px;
+}
+.removable-picture:hover button.remove-picture{
+    display:block;
+}

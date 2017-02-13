@@ -1,0 +1,55 @@
+.jcrop-handle{
+    width: 16px;
+    height: 16px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    opacity: 1.0 !important;
+    border: 1px solid #F3F3F3;
+
+    &.ord-sw{
+        margin-bottom: -8px;
+        margin-left: -8px;
+    }
+
+    &.ord-se{
+        margin-bottom: -8px;
+        margin-right: -8px;
+    }
+
+    &.ord-ne {
+        margin-right: -8px;
+        margin-top: -8px;
+    }
+
+    &.ord-nw{
+        margin-left: -8px;
+        margin-top: -8px;
+    }
+
+    &.ord-w{
+        margin-left: -8px;
+        margin-top: -8px;
+    }
+
+    &.ord-e{
+        margin-right: -8px;
+        margin-top: -8px;
+    }
+
+    &.ord-s{
+        margin-bottom: -8px;
+        margin-left: -8px;
+    }
+
+    &.ord-n{
+        margin-left: -8px;
+        margin-top: -8px;
+    }
+}
+
+.jcrop-holder{
+    max-width: 870px !Important;
+    img, img.jcrop-preview{
+        max-width: 870px !important;
+    }
+}

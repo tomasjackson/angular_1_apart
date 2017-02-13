@@ -1,0 +1,60 @@
+<div class="browse_by_calendar all-notification-page">
+
+    <div class="row ">
+        <div class="col-md-12 calendar-breadcrumb">
+            <span class="page-header-title"><i class="fa fa-bell-o" aria-hidden="true"></i> All Notifications:</span>
+            <span class="page-header-title">{{$ctrl.sinceDate}}</span>
+        </div>
+    </div>
+
+    <div infinite-scroll='LoadMoreNotifications()' class="row all-not-wrap" dw-loading="initial-loading">
+           <div class="col-md-12">
+                <div class="notification" ng-repeat="notification in $ctrl.notifications">
+                    <div class="notification-header">
+                        <div class="fl">
+                            <div class="not-avatar"><img class="img-circle" alt="avatar" ng-src="{{notification.byUser.avatar}}"></div>
+                            <a ui-sref="mainPage.otherUser({id:notification.byUser.id,username:notification.byUser.username})"><span class="from-name">{{notification.byUser.username}}</span></a>
+                            <span class="from-type" ng-if="$ctrl.NotificationType(notification) != 'USER_CONTACT_REQUEST' && $ctrl.NotificationType(notification) !='ACCEPTED_CONTACT_REQUEST'">
+                              <i class="added-to-favorites" ng-if="$ctrl.NotificationType(notification) == 'USER_FAVORITE'"></i>
+                              {{notification.notification.message}}
+                            </span>
+                            <span class="from-type" ng-if="$ctrl.NotificationType(notification) == 'USER_CONTACT_REQUEST'">
+                              requested contact
+                            </span>
+                            <span class="from-type" ng-if="$ctrl.NotificationType(notification) == 'ACCEPTED_CONTACT_REQUEST'">
+                              requested contact and You accepted.
+                            </span>
+                            <span></span>
+                            <!--<button class="btn-story-that-light" ng-if="$ctrl.NotificationType(notification) == 'USER_CONTACT_REQUEST'" ng-click="$ctrl.acceptContactRequest(notification, false)"><i></i> IGNORE</button>-->
+                            <button class="btn-story-that-light" ng-if="$ctrl.NotificationType(notification) == 'USER_CONTACT_REQUEST'" ng-click="$ctrl.acceptContactRequest(notification, true)"><i></i> ACCEPT</button>
+                        </div>
+                        <div class="notification-time"><i class="clock-not-icon"></i>{{$ctrl.ConvertTime(notification.createdDate)}}</div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="notification-body">
+                        <div class="img-story-cont" ng-if="notification.contentType=='story' || notification.contentType=='note'">
+
+                            <img ng-src="{{notification.content.mediaFiles[0].path.t2}}" ng-if="notification.content.mediaFiles.length && !notification.content.mediaFiles[0].embeddedVideoUrl && notification.content.mediaFiles[0].path.t2 && !notification.content.mediaFiles[0].mediaFileType">
+
+                            <img ng-src="{{notification.content.mediaFiles[0].path}}" ng-if="notification.content.mediaFiles.length && !notification.content.mediaFiles[0].embeddedVideoUrl && !notification.content.mediaFiles[0].path.t2 && !notification.content.mediaFiles[0].mediaFileType">
+
+                            <iframe width="100px" height="145px" ng-if="notification.content.mediaFiles.length && notification.content.mediaFiles[0].embeddedVideoUrl && notification.content.mediaFiles[0].mediaFileType" ng-src="{{trustSrc(notification.content.mediaFiles[0].path + '?autostart=0')}}" frameborder="0" allowfullscreen></iframe>
+
+                            <video width="100px" height="145px" ng-if="notification.content.mediaFiles.length && notification.content.mediaFiles[0].mediaFileType && !notification.content.mediaFiles[0].embeddedVideoUrl" controls>
+                                <source ng-src="{{trustSrc(notification.content.mediaFiles[0].path)}}">
+                            </video>
+
+                            <div class="text-cont">
+                                <a ui-sref="mainPage.singleStory({id:notification.content.id})"><span class="text-title">{{$ctrl.StoryTitle(notification)}}</span></a>
+                                <span class="text-content">{{$ctrl.DescriptionWrapper(notification)}}</span>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>
+    <div class="clearfix"></div>

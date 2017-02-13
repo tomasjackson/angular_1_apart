@@ -1,0 +1,213 @@
+<div class="navbar" role="navigation">
+    <div class="container">
+        <div>
+            <div class="fr nav-options-wrap">
+                <div class="create-your-story-wrapper">
+                    <button title="" data-original-title="" type="button" class="create-story-dropdown btn-story-that-big-light" ng-click="$ctrl.OpenCreateStory()"><span>+</span>  Create your story</button>
+                </div>
+                <button class="nav-calendar" type="button" tooltip-placement="bottom" uib-tooltip="My Journal on Calendar" ng-click="$ctrl.ToggleCalendar($event)"><span class="top-calendar"></span></button>
+                <button class="nav-upload-gallery" type="button"  data-toggle="modal" data-dismiss="modal" data-target="#upload-media-to-gallery" tooltip-placement="bottom" uib-tooltip="Upload to Gallery" ng-click="$ctrl.OpenUploadDialog()"><span class="top-upload"></span></button>
+                <div class="notification-toggler">
+                    <button type="button" class="dropdown-toggle navbar-notifications" data-toggle="dropdown" ng-click="$ctrl.OnBellClicked($event)">
+                        <span class="bell-icon"></span><span class="count">{{$ctrl.unread_notification_count}}</span>
+                    </button>
+                    <div class="dropdown-menu notifications-wrap">
+                        <div class="arrow-up"></div>
+                        <div class="notification-relative" dw-loading="loading-notification" style="min-height: 60px"
+                             dw-loading-options=" {
+                                  text: '',
+                                  spinnerOptions: {
+                                    lines: 12,
+                                    radius: 3,
+                                    width: 2,
+                                    length: 5
+                                  }
+                             }">
+                            <div class="notification-container">
+                                    <div class="notification" ng-repeat="notification in $ctrl.notifications">
+                                        <div class="notification-header">
+                                            <img class="notify-avatar" alt="avatar" ng-src="{{notification.byUser.avatar}}" width="30" height="30"> &nbsp;
+                                            <span class="name">{{notification.byUser.username}}</span>
+                                            <span class="action">{{notification.notification.message}}</span>
+                                        </div>
+
+                                        <div class="notification-shared-content" ng-if="notification.contentType=='story'">
+                                            <!--<div class="notification-picture fl">
+                                                <img ng-src="{{notification.content.mediaFiles[0].path.t2}}" ng-if="notification.content.mediaFiles.length && !notification.content.mediaFiles[0].embeddedVideoUrl && notification.content.mediaFiles[0].path.t2 && !notification.content.mediaFiles[0].mediaFileType" alt="pic" width="75" height="50">
+                                                <img ng-src="{{notification.content.mediaFiles[0].path}}" ng-if="notification.content.mediaFiles.length && !notification.content.mediaFiles[0].embeddedVideoUrl && !notification.content.mediaFiles[0].path.t2 && !notification.content.mediaFiles[0].mediaFileType" alt="pic" width="75" height="50">
+
+                                                <iframe width="75px" height="50px" ng-if="notification.content.mediaFiles.length && notification.content.mediaFiles[0].embeddedVideoUrl && notification.content.mediaFiles[0].mediaFileType" ng-src="{{trustSrc(notification.content.mediaFiles[0].path + '?autostart=0')}}" frameborder="0" allowfullscreen></iframe>
+
+                                                <video width="75px" height="50px" ng-if="notification.content.mediaFiles.length && notification.content.mediaFiles[0].mediaFileType && !notification.content.mediaFiles[0].embeddedVideoUrl" controls>
+                                                  <source ng-src="{{trustSrc(notification.content.mediaFiles[0].path)}}">
+                                                </video>
+                                            </div> Thumbs not showing properly need to leave it for the next stage-->
+
+                                            <div class="notification-story">
+                                              <a ui-sref="mainPage.singleStory({id:notification.content.id})"><h2>{{notification.content.title}}</h2></a>
+                                                <p>{{$ctrl.DescriptionWrapper(notification.content.description)}}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="top-clock"><i class="clock-not-icon"></i>{{$ctrl.GetDuration(notification.createdDate)}}</div>
+                                    </div>
+
+                                     <!--<div class="notification starred-by">-->
+                                        <!--<div class="notification-header">-->
+                                            <!--<img class="notify-avatar" alt="avatar" src="assets/img/notification-user-2.png" width="30" height="30">-->
+                                            <!--<span class="name">Username2 <i class="starred-notification"></i></span>-->
+                                        <!--</div>-->
+                                        <!--<div class="notification-shared-content">-->
+                                            <!--<span class="action">is now following your stories</span>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="top-clock"><i class="clock-not-icon"></i>1 hour ago</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="notification contact-request top-req">-->
+                                        <!--<div class="notification-header">-->
+                                            <!--<img class="notify-avatar" alt="avatar" src="assets/img/notification-user-2.png" width="30" height="30">-->
+                                            <!--<span class="name">username </span>-->
+                                            <!--<span class="action">requested contact</span>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="notification-content">-->
+
+                                            <!--<div class="contact-actions-wrap">-->
+                                                <!--<button class="contact-request-ignore contact-request-btn" data-contact-action="accept" data-contact-id="1">-->
+                                                    <!--<i></i> IGNORE-->
+                                                <!--</button>-->
+                                                <!--<button class="contact-request-accept contact-request-btn" data-contact-action="accept" data-contact-id="1">-->
+                                                    <!--<i></i> ACCEPT-->
+                                                <!--</button>-->
+
+                                            <!--</div>-->
+
+                                            <!--<div class="accepted-contact-actions top-accepted">-->
+                                                <!--<p class="notification-system-message">Contact added to contact list</p>-->
+
+                                                <!--<div class="clearfix"></div>-->
+
+                                                <!--<div class="add-to-contacts-dropdown">-->
+                                                    <!--<span class="action-descr-add">Add to Group </span>-->
+                                                    <!--<button data-toggle="dropdown"> Choose a group <i class="sprite-dropdown"></i></button>-->
+                                                    <!--<ul class="dropdown-menu">-->
+                                                        <!--<li><a href="#"><i class="public-profile-icon inline-block"></i>Usercreatedgroup1</a></li>-->
+                                                        <!--<li><a href="#"><i class="help-suport-icon inline-block"></i>usercreatedgroup2</a></li>-->
+                                                        <!--<li><a href="#"><i class="terms-of-use-icon inline-block"></i>usercreatedgroup3</a></li>-->
+                                                        <!--<li><a href="#"><i class="privacy-policies inline-block"></i>usercreatedgroup4</a></li>-->
+                                                    <!--</ul>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="clearfix"></div>-->
+                                        <!--</div>-->
+                                        <!--<div class="top-clock"><i class="clock-not-icon"></i>13 hours and 13 minutes ago</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="notification">-->
+                                        <!--<div class="notification-header">-->
+                                            <!--<img class="notify-avatar" alt="avatar" src="assets/img/notification-user-2.png" width="30" height="30"> &nbsp;-->
+                                            <!--<span class="name">Username </span>-->
+                                            <!--<span class="action">requested contact</span>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="notification-shared-content">-->
+                                                <!--<button class="user-added">USER ADDED TO YOUR CONTACTS LIST</button>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="top-clock"><i class="clock-not-icon"></i>23 hours and 12 minutes ago</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="notification">-->
+                                        <!--<div class="notification-header">-->
+                                            <!--<img class="notify-avatar" alt="avatar" src="assets/img/notification-denis.png" width="30" height="30">-->
+                                            <!--<span class="name">Username</span>-->
+                                            <!--<span class="action">shared your story</span>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="notification-shared-content">-->
+                                            <!--<div class="notification-picture fl">-->
+                                                <!--<img src="assets/img/notification-user-1.jpg" alt="pic" width="50" height="50">-->
+                                            <!--</div>-->
+
+                                            <!--<div class="notification-story">-->
+                                                <!--<h4>Title goes here</h4>-->
+                                                <!--<p>Curabitur ut orci suscipit, eleifend elit ut, tincidunt nisi... </p>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="top-clock"><i class="clock-not-icon"></i>On 5 Dec 2013 at 05:00 PM</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="clear"></div>-->
+                            </div>
+
+                        </div>
+
+                        <a href="all_notifications.html" class="see-all-not">All Notifications</a>
+                    </div>
+                </div>
+
+                <div class="dropdown navbar-user-menu">
+                    <button data-toggle="dropdown">
+                        <span class="navbar-username">{{userName}}</span>
+                        <i class="sprite-dropdown"></i>
+                        <div class="navbar-avatar">
+                            <img ng-src={{userAvatar}}>
+                        </div>
+                    </button>
+                    <ul class="dropdown-menu menu-notifications">
+                    <li><a ui-sref="mainPage.publicProfile"><i class="fa fa-user pull-left" aria-hidden="true"></i> My Public Profile</a></li>
+                    <li><a ui-sref="mainPage.myGroups"><i class="fa fa-users pull-left" aria-hidden="true"></i> User Groups</a></li>
+                    <li><a ui-sref="mainPage.myAccount"><i class="fa fa-cog pull-left" aria-hidden="true"></i>Account</a></li>
+                    <li><a href="#"><i class="pull-left fa fa-question-circle-o" aria-hidden="true"></i> Help &amp; Support</a></li>
+                    <li><a ui-sref="mainPage.termsOfUse"><i class="fa fa-file-text-o pull-left" aria-hidden="true"></i> Terms of Use and Policies</a></li>
+                    <li><a ng-click="$ctrl.doLogout()"><i class="pull-left fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+          <form class="fr search-form" role="search" ng-keydown="$ctrl.SearchKeydown($event)">
+            <div dw-loading="searching" dw-loading-options="{text: '' ,spinnerOptions: {radius: 5 , length: 3 , width: 2}}">
+
+            <div class="dropdown">
+              <!--<button class="cat-selected" data-toggle="dropdown">-->
+              <button ng-if="$ctrl.pageName === ''" class="search-arrow" data-toggle="dropdown">
+                <i class="fa"></i>
+                <!--<i class="fa" value="1"></i>-->
+              </button>
+              <button ng-if="$ctrl.pageName !== ''" class="cat-selected" data-toggle="dropdown">
+                <i class="fa" ng-class="{'fa-book':$ctrl.pageName=='Journal', 'fa-files-o':$ctrl.pageName=='Story',
+                'fa-comment-o':$ctrl.pageName=='Note', 'fa-picture-o':$ctrl.pageName=='Gallery',
+                'fa-user':$ctrl.pageName=='User'}"></i>
+                <!--<i class="fa" value="1"></i>-->
+              </button>
+              <ul class="dropdown-menu">
+                <li class="search-journal" ng-click="$ctrl.chooseSearchCategory('Journal')">
+                  <span data-category="JournalJournal">My Journal</span>
+                  <i class="pull-left fa fa-book" aria-hidden="true" data-value="1"></i>
+                </li>
+                <li class="search-shared-stories" ng-click="$ctrl.chooseSearchCategory('Story')">
+                  <span data-category="Shared Stories">Shared Stories</span>
+                  <i class="fa fa-files-o pull-left" aria-hidden="true"></i>
+                </li>
+                <li class="search-notes" ng-click="$ctrl.chooseSearchCategory('Note')">
+                  <span data-category="Notes">Notes</span>
+                  <i class="fa fa-comment-o pull-left" aria-hidden="true"></i>
+                </li>
+                <li class="search-gallery" ng-click="$ctrl.chooseSearchCategory('Gallery')">
+                  <span data-category="Gallery">Gallery</span>
+                  <i class="pull-left fa fa-picture-o" aria-hidden="true"></i>
+                </li>
+                <li class="search-users" ng-click="$ctrl.chooseSearchCategory('User')">
+                  <span data-category="Users">Users</span>
+                  <i class="fa fa-user pull-left" aria-hidden="true"></i>
+                </li>
+              </ul>
+            </div>
+            <button class="search_button fr" ng-click="$ctrl.Search($event)"><i class="" ng-class="{'close-small-icon' : $ctrl.searchState , 'search-icon' : !$ctrl.searchState}"></i></button>
+            <input class="header_search fr" placeholder="Search {{$ctrl.pageName}}" type="text" ng-model="$ctrl.searchQuery.query">
+            </div>
+          </form> <!-- search-form -->
+        </div>
+    </div>
+</div> <!-- navbar -->

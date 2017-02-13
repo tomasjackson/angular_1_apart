@@ -1,0 +1,89 @@
+<div id="created-story" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
+        <div class="modal-content details-media">
+            <button class="close-modal" type="button" ng-click="$ctrl.closeModal()" aria-hidden="true">×</button><!--close button-->
+            <div>
+                <div class="journal-story-wrapper">
+                    <div id="appendid1" class="journal-story other-story my-story big-image">
+                        <div class="story-inner">
+                            <div class="story-heading clearfix" ng-click="$ctrl.appendEdit($event)">
+                                <div class="story-title-wrapper col-xs-8">
+                                    <a href="single_story.html"><h4 class="story-title"><i class="fa fa-lock" >
+                                    </i> {{$ctrl.story.title}}</h4></a>
+                                </div><!--story-title-wrapper-->
+                                <div class="story-author col-xs-4">
+                                    <div class="private-author">
+                                        <span class="private-text"></span>
+                                        <a class="journal-story bookmark" data-toggle="tooltip" data-placement="left" data-original-title="expand"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a>
+                                    </div><!--private author-->
+                                </div><!-- story author col xs 4-->
+                            </div><!-- story heading-->
+                            <div class="story-content clearfix">
+                                <div class="story-image col-xs-4 col-xs-push-8" ng-if="$ctrl.story.mediaFiles.length" ng-class="{'h315' : $ctrl.story.mediaFiles[0].mediaFileType && $ctrl.story.selected}">
+
+                                    <iframe width="100%" height="100%" ng-if="$ctrl.story.mediaFiles[0].mediaFileType && $ctrl.story.mediaFiles[0].path.length" ng-src="{{trustSrc($ctrl.story.mediaFiles[0].path)}}" frameborder="0" allowfullscreen></iframe>
+
+                                    <div class="img-journal" ng-style="{'background-image' : 'url(' + $ctrl.story.mediaFiles[0].path.t2 + ')'}" ng-if="!$ctrl.story.mediaFiles[0].mediaFileType && !$ctrl.story.selected && $ctrl.story.mediaFiles[0].path.t2"></div>
+                                    <div class="img-journal" ng-style="{'background-image' : 'url(' + $ctrl.story.mediaFiles[0].path + ')'}" ng-if="!$ctrl.story.mediaFiles[0].mediaFileType && !$ctrl.story.selected && !$ctrl.story.mediaFiles[0].path.t2"></div>
+
+                                    <img ng-src="{{$ctrl.story.mediaFiles[0].path.t3}}" ng-if="!$ctrl.story.mediaFiles[0].mediaFileType && $ctrl.story.selected && $ctrl.story.mediaFiles[0].path.t3">
+                                    <img ng-src="{{$ctrl.story.mediaFiles[0].path}}" ng-if="!$ctrl.story.mediaFiles[0].mediaFileType && $ctrl.story.selected && !$ctrl.story.mediaFiles[0].path.t3">
+
+
+                                </div>                                
+                                <div class="story-main-content" ng-class="{'col-xs-12' : !$ctrl.story.mediaFiles.length , 'col-xs-8 col-xs-pull-4' : $ctrl.story.mediaFiles.length}">
+                                    <div class="ribbon-icon-gradient">
+                                        <span class="date">{{$ctrl.str_displayDate.date}}</span>
+                                        <span class="time">{{$ctrl.str_displayDate.time}}</span>
+                                    </div>
+                                    <div class="story-text">
+                                        <p>{{$ctrl.story.description}}</p>
+                                    </div>
+                                    <div class="story-location">
+                                        <i class="location-pin"></i>
+                                        <span class="location-place">{{$ctrl.story.location}}</span>
+                                        <a class="journal-story-open-options three-dots-icon-big" ng-click="$ctrl.appendEdit($event)"></a>
+                                    </div>
+                                </div><!-- story main content col xs 8 col xs pull 4-->
+                            </div><!-- story content clearfix-->
+                            <div id = "edit-story-append" class="story-options">
+                                <button class="journal-story-button btn-story-that-light" data-toggle="modal" data-dismiss="modal" data-target="#manage-privacy-story"><i class="fa fa-unlock-alt"></i>Manage Privacy</button>
+                                <button class="journal-story-button btn-story-that-light" ng-click="$ctrl.openEditModal()"><i class="fa fa-pencil-square-o"></i>Edit</button>
+                                <button class="journal-story-button btn-story-that-light delete-story-btn" ng-click="$ctrl.DeleteCreatedStory($event)"><i class="fa fa-trash-o"></i>Delete</button>
+                                <div class="comments-likes fr">
+                                    <p>
+                                        <span data-toggle="tooltip" data-placement="top" data-original-title="Notes on this Story" class="comment-num">0 <i class="fa fa-comment-o" aria-hidden="true"></i></span>
+                                        <span data-toggle="tooltip" data-placement="top" data-original-title="Add to Favorites" class="like-number ">0<i></i></span>
+                                    </p>
+                                </div>
+                            </div><!-- story options -->
+                        </div><!-- story inner -->
+                        <div class="confirm-prompt-dialog" id="delete-journal-story">
+                            <message>
+                                <p>This action will delete this Story.</p>
+                                <p>Are you sure?</p>
+                                <button class="btn-story-that-small-light" ng-click ="$ctrl.ConfirmDelete('CANCEL_ACTION' , media , $event)">CANCEL</button>
+                                <button class="btn-story-that-small-light" ng-click ="$ctrl.ConfirmDelete('DELETE_STORY' , media , $event)">DELETE</button>
+                            </message>
+                        </div><!-- delete journal story -->
+                    </div><!-- journal story other story my story big image end -->
+                </div><!-- journal story wrapper end -->
+                <div class="modal-body" ng-hide="$ctrl.loggedIn == true"><!-- (lower half )-->
+                    <div>
+                        <p>Congratulations! You have just created your first story.<br/><br/>
+                            Register or login to add this to your private Journal.<br/>
+                            Add more stories from the past, plan for the future. Browse your journal in a calendar.<br/>
+                        </p><br/>
+                        <div class="buttons-group">
+                            <button class="story-blue-btn storyThat-gall-btn" ng-click="$ctrl.openRegisterModal()"><span class="storythat-gallery-icon-modal"></span>Register</button>
+                            <button class="story-blue-btn fb-btn" ng-click="$ctrl.facebookLogin()"><span class="fb-icon"></span>Facebook</button>
+                            <button class="story-blue-btn fb-btn" ng-click="$ctrl.googleLogin()"><span class="fb-icon"></span>Google+</button>
+                        </div><!-- buttons group-->
+                    </div>
+                    <div class="clearfix"></div>
+                </div><!-- modal body (lower half )-->
+                <div class="modal-footer">
+                    <button class="btn-story-that-small-light" type="button" class="close-modal" ng-click="$ctrl.closeModal()" aria-hidden="true">CLOSE</button>
+                </div>
+            </div><!--no class before journal-story-wrapper-->
+        </div><!-- modal content details media end -->
+</div><!-- created story-->

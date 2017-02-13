@@ -1,0 +1,285 @@
+//TOP NOTIFICATONS
+.notifications-wrap{
+    width: 350px;
+    left: 153px !Important;
+    top: 60px;
+    min-height: 100%;
+
+    .arrow-up{
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 10px 15px 10px;
+        border-color: transparent transparent #ffffff transparent;
+        position:absolute;
+        top:-10px;
+        left: 50%;
+    }
+}
+.notification-container{
+    overflow:hidden;
+
+    .notification{
+        border-bottom: 1px solid #ededed;
+        padding: 10px;
+        &:hover{
+            background-color: #f6f6f6;
+            .story-grey-btn{
+                background-color: #FFFFFF;
+                &:hover{
+                    background-color: #48a7d8;
+                }
+            }
+        }
+    }
+
+}
+
+
+.notification-header{
+    font-size:15px;
+
+    .notify-avatar{
+        @include border-radius(50%);
+        border: 3px solid #efefef;
+        display:inline-block;
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+        float:left;
+    }
+    .name{
+        vertical-align: middle;
+        display:inline-block;;
+        color: #4a4a49;
+        float:left;
+        margin: 0 5px;
+        font-size: 15px;
+        font-weight:600;
+        line-height:40px;
+    }
+
+    .action{
+        line-height:40px;
+        font-size: 15px;
+        float:left;
+        vertical-align: middle;
+        display:inline-block;
+        color : #b3b3b3;
+    }
+
+    .notification-star{
+        position:relative;
+        top: 5px;
+    }
+}
+
+
+.story-picture-wrap{
+    @include box-shadow(0, 2px, 0, #d9d9d9);
+    width: 60px;
+    height: 60px;
+    padding: 3px;
+    text-align:center;
+    border: 1px solid #f5f5f5;
+
+    img{
+        width:50px;
+        height:50px;
+    }
+}
+
+.notification-story{
+    float:left;
+    height:75px;
+    overflow: hidden;
+    width:160px;
+    margin-left: 20px;
+    h4{
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+
+    p{
+        color: #787878;
+        font-size: 14px;
+        max-height:30px;
+    }
+}
+
+.notification-time{
+    font-size:14px;
+    color: #b3b3b3;
+    margin-left: 0;
+    margin-top: 5px;
+}
+
+.notification-system-message{
+    color: #49a8d9;
+    background-color: #FFFFFF;
+    border: 2px solid #49a7d9;
+    border-radius: 5px;
+    text-align:center;
+    text-transform: uppercase;
+    line-height: 35px;
+    padding: 0 5px;
+    font-size: 14px;
+    width:230px;
+    display:inline-block;
+}
+
+.see-all-not{
+    &:active,&:link,&:visited{
+        display:block;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        border-top: 2px solid #e3e3e3;
+        color: #6b6b6b;
+        font-size: 16px;
+        background-color: #ededed;
+        text-align:center;
+    }
+    &:hover{
+        color: #6b6b6b;
+        text-decoration:none;
+    }
+}
+
+
+
+.navbar-form{width: 100%;}
+
+//ALL NOTIFICATONS
+.all-notifications-wrapper{
+    .notification{
+        background-color: #ffffff;
+        padding:10px;
+        &:hover{background-color: #f6f6f6;}
+    }
+
+    .notification-content{
+        display:inline-block;
+        margin-left: 10px;
+        margin-right: 15px;
+    }
+
+    .notification-header{
+        line-height:35px;
+        color: #4a4a49;
+        font-size:16px;
+        margin-top: 5px;
+        height: 40px;
+
+        .navbar-avatar img{
+            width:35px;
+            height:35px;
+        }
+
+        .from-name{
+            font-size:15px;
+            color:#4a4a49;
+            font-weight:bold;
+        }
+
+        .from-type{
+            color:#adadad;
+            margin-left:2px;
+            display:inline-block;
+        }
+
+        .story-grey-btn{
+            font-size:14px;
+            font-weight:600;
+            padding: 0 15px;
+        }
+
+        .contact-actions-wrap{
+            display:inline-block;
+            margin-top:-5px;
+            .contact-action{
+                padding: 0 20px;
+            }
+
+            .perm-blue-btn{
+                @include box-shadow(0, 4px, 0, #1f719a);
+                font-weight:bold;
+                i{top:2px;}
+            }
+        }
+    }
+
+
+
+    .notification-time{
+        display:inline-block;
+        span{position:relative; top: -2px;}
+    }
+
+    .notification-action-type{color:#adadad;}
+
+    .choose-group-notification{
+        color:#4a4a49;
+        line-height:47px;
+        font-size:16px;
+    }
+
+    .story-grey-btn{
+        color:#4a4a49;
+        padding: 0 10px;
+        margin: 0 10px;
+        &:hover{
+            color:#ffffff;
+            span{color:#ffffff;}
+        }
+    }
+
+    .contact-action{
+        margin-right:15px;
+    }
+
+    .story-title{
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0 15px;
+        display:inline-block;
+        color:#4a4a49;
+        position:relative;
+        top: -4px;
+    }
+}
+
+.accepted-contact-actions{
+    display:none;
+    height:40px;
+
+    .notification-system-message{
+        float:left;
+        margin:0;
+    }
+
+    .add-to-contacts-dropdown {
+        font-size: 16px;
+        outline:none;
+        position:absolute;
+        color:#4a4a49;
+        display:inline-block;
+        button{
+            color:#4a4a49;
+            background: none;
+            border: none;
+            line-height: 36px;
+            font-weight: 600;
+        }
+
+        &:focus,&:active{
+            outline: none;
+            border:none;
+            box-shadow: none;
+        }
+
+        &.open{//caret toggle
+            .sprite-dropdown{ @extend .sprite-dropdown-up;}
+        }
+    }
+}

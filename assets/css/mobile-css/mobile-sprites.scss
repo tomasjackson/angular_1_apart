@@ -1,0 +1,442 @@
+
+/* Sprites */
+$fullW: 496px;
+$fullH: 835px;
+
+$halfW: $fullW / 2;
+$halfH: $fullH / 2;
+
+@mixin background-size($percentage) {
+  background-size: $fullW * $percentage/100 $fullH * $percentage/100 ;
+}
+
+@mixin background-position($x, $y , $op) {
+  background-position: $x * $op / 100 $y * $op / 100;
+}
+
+@mixin scaled-width($x,$op) {
+  width:  $x * $op/100 ;
+}
+
+@mixin scaled-height($x,$op) {
+  height: $x * $op/100 ;
+}
+@mixin scaleSprite($percentage, $xpos, $ypos, $width,$height){
+  @include background-size($percentage);
+  @include background-position($xpos, $ypos , $percentage);
+  @include scaled-width($width, $percentage);
+  @include scaled-height($height, $percentage);
+}
+
+
+.gallery-icon-white-large,.chat-bubble-full,.gallery-icon-dark-small,.stories-icon-small,.group-icon-2, .group-icon-3,.stories-icon, .story-gallery-blue, .support-icon, .black-star, .tumblr, .twitter, .twitter-share, .upgrade-icon, .user-blue-icon, .about-icon, .add-bubble, .add-bubble-white, .add-contact-grey, .add-note-icon-white, .add-to-group-round, .back-blue, .big-star-active, .big-star-off, .blockx, .calendar-icon-top, .calendar-white, .camera-white, .check,.small-clock, .clock, .collapse-grey, .collapse-up-blue, .delete-icon, .edit-icon-grey, .edit-profile-icon, .email-closed-icon, .facebook, .facebook-share, .facebook-source, .favourite-star-grey, .forward-blue,.gallery-icon-dark, .gallery-icon-white, .google-plus, .group-greyed, .group-icon, .group-white-blue, .icon-calendar-heading, .icon-favourite-active, .left-arrow, .location-marker-grey, .login-icon, .login-icon-white, .logout-icon-round, .map-marker, .mobile-gallery, .more, .more-blue, .notification-active, .notification-grey, .notification-small-icon, .open-email-icon, .options-left, .privacy-eye, .register-icon, .register-icon-white, .remove-contact, .reply-arrow, .right-arrow, .searchicon, .searchicon-light, .settings-icon, .starred-grey, .more-active{
+    background: url(../../sprites/mobile_sprites.optimized.png) no-repeat;
+    display:inline-block;
+    @include background-size(50);
+}
+
+
+.searchicon{
+  @include scaleSprite(40,0, -452px, 64px, 68px );
+}
+
+.more{
+  @include scaleSprite(40,0, -757px, 20px, 78px );
+  position:relative;
+  top: 5px;
+}
+
+.more-active{
+  @include scaleSprite(40,21px, -757px, 20px, 78px );
+}
+
+.notification-active{
+  @include scaleSprite(40,-246px, -360px, 67px, 73px );
+  position:relative;
+  top: 5px;
+}
+
+
+//.notification-grey{
+//  @include scaleSprite(30,0, 0, 129px, 137px );
+//} replaced by below code
+
+.toggle-notifications-button-wrap.open .notification-active{
+  @include scaleSprite(40,0, 0, 129px, 137px );
+  position: relative;
+  top: -7px;
+  left: -13px;
+}
+.toggle-notifications-button-wrap.open .count{
+  right: 35px;
+}
+
+
+.clock{
+  @include scaleSprite(50,-384px, -594px, 30px, 32px );
+}
+.small-clock{
+  @include scaleSprite(30,-384px, -594px, 30px, 36px );
+}
+
+.starred-grey{
+  @include scaleSprite(30,-100px, -594px, 45px, 51px );
+  position: relative;
+  top: 3px;
+}
+
+.black-star{
+  @include scaleSprite(30,-128px, -658px, 42px, 46px );
+  position:relative;
+  top: 1px;
+}
+
+
+.group-icon{
+  @include scaleSprite(40,-212px, -658px, 40px, 43px );
+  position:relative;
+  top: 3px;
+}
+
+.group-icon-3{
+  @include scaleSprite(35,-212px, -658px, 40px, 50px );
+  position:relative;
+  top: 3px;
+}
+.group-icon-2{
+  @include scaleSprite(25,-212px, -658px, 40px, 50px );
+  position:relative;
+  top: 1px;
+}
+
+.right-arrow{
+  @include scaleSprite(40,-362px, -521px, 59px, 47px );
+}
+
+.left-arrow{
+  @include scaleSprite(40,-302px, -521px, 59px, 47px );
+}
+
+
+.add-bubble{
+  @include scaleSprite(40,-78px, -708px, 40px, 34px );
+  position: relative;
+  top: 1px;
+}
+
+
+.calendar-white{
+  @include scaleSprite(25, 0, -594px, 49px, 68px );
+  height: 16px;
+}
+
+
+.add-bubble-white{
+  @include scaleSprite(25, -196px, -452px, 67px, 59px);
+  position: relative;
+  top:3px;
+}
+
+.gallery-icon-white{
+  @include scaleSprite(25, -243px, -521px, 58px, 59px);
+  position: relative;
+  top:2px;
+}
+
+.gallery-icon-white-large{
+  @include scaleSprite(30, -243px, -521px, 58px, 59px);
+  position: relative;
+  top: 2px;
+}
+
+.back-blue{
+  @include scaleSprite(40, -66px, -452px, 66px, 70px);
+}
+
+.forward-blue{
+  @include scaleSprite(40, -131px, -452px, 66px, 70px);
+}
+.login-icon{
+  @include scaleSprite(40, -39px, -708px, 38px, 37px);
+}
+
+.register-icon{
+  @include scaleSprite(40, -376px, -658px, 40px, 42px);
+}
+
+.register-icon-white{
+  @include scaleSprite(35, -171px, -658px, 40px, 46px);
+  position:relative;
+  top: 2px;
+}
+
+.searchicon-light{
+  @include scaleSprite(30, -331px, -452px, 56px, 56px);
+}
+
+.login-icon-white{
+  @include scaleSprite(40, -335px , -658px, 40px, 40px);
+  position:relative;
+  top: 1px;
+}
+
+.calendar-icon-top{
+  @include scaleSprite(40, -50px , -594px, 49px, 55px);
+}
+
+.icon-calendar-heading{
+  @include scaleSprite(40, -185px , -521px, 57px, 66px);
+  position: relative;
+  top: 10px;
+}
+
+.map-marker{
+  @include scaleSprite(30, 0 , -708px, 38px, 48px);
+}
+
+.location-marker-grey{
+  @include scaleSprite(35, -160px , -708px, 30px, 38px);
+  position: relative;
+  top: 1px;
+}
+
+.stories-icon{
+//    @include scaleSprite(35, -457px , -360px, 42px, 51px);
+    background-size: 173.6px 292.25px;
+    background-position: -160px -126px;
+    width: 14px;
+    height: 18px;
+}
+
+.stories-icon-small{
+  @include scaleSprite(20, -457px , -360px, 42px, 51px);
+  background-position: -91.8px -72px;
+  position:relative;
+  top:2px;
+}
+
+.gallery-icon-dark{
+  @include scaleSprite(40,-118px, -708px, 34px, 34px );
+  width: 14.2px;
+  height: 15.2px;
+  position: relative;
+  top: 1px;
+}
+
+.gallery-icon-dark-small{
+  @include scaleSprite(30,-118px, -708px, 38px, 38px );
+  position: relative;
+  top: 2px;
+}
+.chat-bubble-full{
+  @include scaleSprite(30,-455px, -417px, 40px, 30px );
+  position: relative;
+  top: 1px;
+}
+.edit-profile-icon{
+  @include scaleSprite(30,-312px, -360px, 62px, 74px );
+  position: relative;
+  top: 7px;
+}
+.settings-icon{
+  @include scaleSprite(30,-124px, -521px, 60px, 72px );
+  position: relative;
+  top: 7px;
+}
+.support-icon{
+  @include scaleSprite(30,-62px, -521px, 61px, 72px );
+  position: relative;
+  top: 7px;
+}
+.logout-icon-round{
+  @include scaleSprite(30,0, -521px, 61px, 72px );
+  position: relative;
+  top: 7px;
+}
+
+.about-icon{
+//  @include scaleSprite(30,0, -658px, 38px, 55px );
+    background-size: 148.8px 250.5px;
+    background-position: 0 -197.4px;
+    width: 12px;
+    height: 15px;
+}
+.upgrade-icon{
+  @include scaleSprite(30,-422px, -521px, 52px, 46px );
+}
+
+.group-white-blue{
+  @include scaleSprite(40,-453px, -452px, 42px, 44px );
+  position: relative;
+  top: 2px;
+}
+
+.add-note-icon-white{
+//    @include scaleSprite(40,-39px, -658px, 45px, 41px );
+
+    background-size: 198.4px 334px;
+    background-position: -16.6px -263.2px;
+    width: 18px;
+    height: 16px;
+    position: relative;
+    top: 3px;
+}
+
+.big-star-active{
+  @include scaleSprite(40,-104px, -138px, 103px, 116px );
+
+}
+
+.big-star-off{
+  @include scaleSprite(40,0, -138px, 103px, 116px );
+}
+
+
+.reply-arrow{
+  @include scaleSprite(40,-146px, -594px, 43px, 52px );
+}
+
+
+.add-contact-grey{
+  @include scaleSprite(40,-344px, 0, 106px, 115px );
+}
+
+.add-to-group-round{
+  @include scaleSprite(40,-237px, 0, 106px, 115px );
+}
+
+.favourite-star-grey{
+  @include scaleSprite(40,-130px, 0, 106px, 115px );
+}
+
+
+.camera-white{
+  @include scaleSprite(40,-264px, -452px, 66px, 56px );
+  position: relative;
+  top: 3px;
+}
+
+
+.mobile-gallery{
+  @include scaleSprite(40,-311px, -138px, 110px, 105px );
+
+}
+
+.story-gallery-blue{
+  @include scaleSprite(40,0 , -255px, 106px, 110px );
+}
+
+
+.facebook-source{
+//   @include scaleSprite(40, -108px, -255px, 105px, 106px);
+
+    background-size: 198.4px 334px;
+    background-position: -42.2px -102px;
+    width: 42px;
+    height: 42.4px;
+}
+
+.privacy-eye{
+  @include scaleSprite(40, -287px, -594px, 50px, 34px);
+}
+
+.notification-small-icon{
+  @include scaleSprite(40, -253px, -658px, 40px, 41px);
+}
+
+.user-blue-icon{
+  @include scaleSprite(40, -422px, -138px, 74px, 76px);
+}
+
+.tumblr{
+  @include scaleSprite(40, -404px, -255px, 85px, 94px);
+}
+
+.twitter{
+  @include scaleSprite(40, -318px, -255px, 85px, 94px);
+
+}
+
+.twitter-share{
+  @include scaleSprite(40, -83px, -360px, 85px, 73px);
+}
+
+.facebook-share{
+  @include scaleSprite(40, -451px, 0, 39px, 83px);
+}
+
+.google-plus{
+  @include scaleSprite(35, -209px, -255px, 108px, 95px);
+}
+
+.open-email-icon{
+  @include scaleSprite(40, -169px, -360px, 74px, 74px);
+}
+.edit-icon-grey{
+  @include scaleSprite(30, -455px, -658px, 38px, 35px);
+  padding-top: 2px;
+}
+
+.blockx{
+    background-position: -451px -84px ;
+    width: 31px;
+    height: 31px;
+}
+
+.check{
+    background-position: -388px -452px ;
+    width: 64px;
+    height: 46px;
+}
+
+.collapse-grey{
+    background-position: -338px -594px ;
+    width: 45px;
+    height: 32px;
+}
+
+.collapse-up-blue{
+    background-position: -233px -594px ;
+    width: 53px;
+    height: 36px;
+}
+
+.delete-icon{
+    background-position: -415px -658px ;
+    width: 39px;
+    height: 37px;
+}
+
+.email-closed-icon{
+    background-position: -375px -360px ;
+    width: 81px;
+    height: 56px;
+}
+
+.facebook{
+    background-position: 0 -360px ;
+    width: 82px;
+    height: 91px;
+}
+.group-greyed{
+    background-position: -294px -658px ;
+    width: 40px;
+    height: 41px;
+}
+.icon-favourite-active{
+    background-position: -208px -138px ;
+    width: 102px;
+    height: 116px;
+}
+.options-left{
+    background-position: -190px -594px ;
+    width: 42px;
+    height: 51px;
+}
+
+.remove-contact{
+    background-position: -85px -658px ;
+    width: 42px;
+    height: 42px;
+}
+/* END Sprites */

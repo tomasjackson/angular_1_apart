@@ -1,0 +1,35 @@
+<div class="group-modal modal-contacts" id="share-story" role="dialog" aria-hidden="true">
+    <!-- share-story-->
+        <div class="modal-content" dw-loading="share-media">
+            <div class="modal-header">
+                <button type="button" class="close-modal" ng-click="$ctrl.Close()" aria-hidden="true">×</button>
+                <div class="modal-title">
+                    <i class="shared-notes-icon"></i> Share your media
+                </div>
+            </div>
+            <div class="modal-body">
+                <div>
+                <label class="st-checkbox" for="all-contacts-share" ng-class="{'checked': $ctrl.opt.mode_all}" ng-click="$ctrl.SelectMode($event , 'MODE_ALL')"><span>Search/Choose contacts to share your media or share with all your contacts by selecting this  -</span><i class="checkbox-icon"></i></label>
+                <input class="hide" type="checkbox" name="all-contacts-share" id="all-contacts-share" value="yes">
+                </div>
+                <input type="text" placeholder="Search Contacts" class="std-input">
+                <div class="show-area" dw-loading="loading_contact" style="min-height: 180px; overflow-y:auto;overflow-x:hidden;">
+                    <div class="group-contacts">
+                        <div class="contact" ng-repeat="account in $ctrl.my_contact" ng-class="{'group-member' : account.selected}">
+                            <a class="avatar" ng-click="$ctrl.SelectContact($event , account)">
+                                <img class="img-circle" ng-src="{{account.avatar}}" alt="" width="100%" height="100%">
+                            </a>
+                            <div class="contactInfo">
+                                <a class="contact-name">{{account.username}}</a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+               <a class="btn-story-that-small-light fl" ng-click="$ctrl.Close()">CANCEL</a>
+               <a data-dismiss="modal" class="btn-story-that-small-light fr" ng-click="$ctrl.ShareThisMedia($event)">SHARE</a>
+            </div>
+        </div>
+</div><!-- share story -->

@@ -1,0 +1,51 @@
+<div class="uploading-photo-modal" id="upload-medias-to-gallery" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="close-modal" type="button" aria-hidden="true" ng-click="$ctrl.CloseModal()">×</button>
+            <div class="modal-title">
+                <i class="upload-photos-video-icon"></i><span>Upload</span>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="modal-body fb-images-container">
+                <div class="file-container">
+                    <div>
+                        <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="" ngf-pattern="">
+                            <span>Drop your files here <br> OR </span>
+                            <div class="buttons-group">                           
+                                <button class="story-blue-btn storyThat-gall-btn" ng-click="$ctrl.onUploadFromDeviceButtonClick()"><span class="upload-screen-icon"></span>Select from your Device</button>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+                <hr></hr>
+                <div class="row" dw-loading="loading-media" style="min-height: 140px">
+                    <div class="col-md-3" ng-repeat="item in $ctrl.media_list">
+                        <div class="img-container">
+                            <video width="150px" height="140px" ng-if="item.mediaFileType" controls>
+                                <source ng-src="{{trustSrc(item.path)}}">
+                            </video>
+                            <div class="img" ng-style="{'background-image' : 'url(' + item.path.t2 + ')'}" ng-if="!item.mediaFileType"></div>
+                            <div class="img-controls">
+<!--                                 <i class="fa fa-pencil" ng-click="$ctrl.EditMedia(item , $event)"></i> -->
+<!--                                 <i class="fa fa-crop" ng-click="$ctrl.CropPhoto(item , $event)" ng-if="!item.mediaFileType"></i> -->
+                                <i class="fa fa-times delete-photo" ng-click="$ctrl.DeleteMedia(item)"></i>
+                            </div>
+                            <!-- img controls -->
+                            <div class="confirm-delete">
+                                <p>Remove this photo?</p>
+                                <button class="remove-photo">Yes, Remove</button>
+                                <button class="cancel-delete">Cancel</button>
+                            </div>
+                        </div>
+                    </div>        
+                </div><!-- row -->
+            </div><!-- modal-body fb images container -->
+        </div><!-- modal body -->
+        <div class="modal-footer">
+            <button class="btn-story-that-small-light fl show-prev-modal" ng-click="$ctrl.BackButton()">Back</button>
+            <span>{{$ctrl.mediaCount}} photos/videos added</span>
+            <button class="btn-story-that-small-light fr" ng-click="$ctrl.SaveButton()">Save</button>
+        </div><!-- modal footer-->
+    </div><!-- modal content -->
+</div><!-- import-media-from-device -->

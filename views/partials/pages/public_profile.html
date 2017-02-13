@@ -1,0 +1,621 @@
+<div class="other-user-page">
+    <div class="row public-profile-top">
+      <div class="col-md-12">
+        <img class="profile-img" ng-src={{userInfo.avatar}}>
+        <div class="button-controlls">
+          <h1 class="public-name">{{userInfo.username}}</h1>
+          <a class="journal-story-button btn-story-that-light" ng-class="{'active':$ctrl.viewMode == 'ABOUT'}" ng-click="$ctrl.viewMode = 'ABOUT'"><i class="open-story-icon"></i>ABOUT</a>
+          <a class="journal-story-button btn-story-that-light" ng-class="{'active':$ctrl.viewMode == 'STORY'}" ng-click="$ctrl.viewMode = 'STORY'"><i class="open-story-icon"></i>STORIES</a>
+          <a class="journal-story-button btn-story-that-light" ng-class="{'active':$ctrl.viewMode == 'GALLERY'}" ng-click="$ctrl.viewMode = 'GALLERY'"><i class="open-story-icon"></i>GALLERY</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="dashed-line">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div id="about-tab" class="tab-panel active" ng-if="$ctrl.viewMode == 'ABOUT'">
+          <div class="row profile_section">
+            <h4 class="row my-account-header">
+              <i class="my-account-about-icon"></i><i class="mid-dots">· · ·</i>
+              <strong> About</strong>
+            </h4>
+            <div class="clearfix"></div>
+
+            <div class="col-md-6">
+              <div class="access-col public-about">
+                <div class="row" ng-if="permission.firstname === 'public'">
+                  <p>
+                    <label class="col-md-4">First Name:</label>
+                    <span class="col-md-8">{{userInfo.firstname}}</span>
+                  </p>
+                </div>
+                <div class="row" ng-if="permission.lastname === 'public'">
+                  <p>
+                    <label class="col-md-4">Last Name:</label>
+                    <span class="col-md-8">{{userInfo.lastname}}</span>
+                  </p>
+                </div>
+                <div class="row" ng-if="permission.email === 'public'">
+                  <p>
+                    <label class="col-md-4">Email:</label>
+                    <span class="col-md-8">{{userInfo.email}}</span>
+                  </p>
+                </div>
+                <div class="row" ng-if="permission.profession === 'public'">
+                  <p>
+                    <label class="col-md-4">Profession:</label>
+                    <span class="col-md-8">{{userInfo.profession}}</span>
+                  </p>
+                </div>
+                <div class="row" ng-if="permission.phone === 'public'">
+                  <p>
+                    <label class="col-md-4">Phone:</label>
+                    <span class="col-md-8">{{userInfo.phone}}</span>
+                  </p>
+                </div>
+                <div class="row" ng-if="permission.birthdate === 'public'">
+                  <p>
+                    <label class="col-md-4">Birthday:</label>
+                    <span class="col-md-8">{{birthdayLabel}}</span>
+                  </p>
+                </div>
+                <div class="row" ng-if="permission.website === 'public'">
+                  <p>
+                    <label class="col-md-4">Website:</label>
+                    <span class="col-md-8">{{userInfo.website}}</span>
+                  </p>
+               </div>
+<!--
+                <div class="row public-social-icons">
+                  <label class="public-social-icons col-md-4">Social:</label>
+                  <span class="public-social-icons-profile col-md-8">
+                        <a href={{userInfo.social.facebook}} target="_blank" class="social-my-account"><i class="social-facebook_icon"></i></a>
+                        <a href={{userInfo.social.twitter}} target="_blank" class="social-my-account"><i class="social-twitter_icon"></i></a>
+                        <a href={{userInfo.social.google}} target="_blank" class="social-my-account"><i class="social-google_icon"></i></a>
+                        <a href={{userInfo.social.tumblr}} target="_blank" class="social-my-account"><i class="social-tumblr_icon"></i></a>
+                        <a href={{userInfo.social.linkedin}} target="_blank" class="social-my-account"><i class="social-linkedin_icon"></i></a>
+                        <a href={{userInfo.social.pinterest}} target="_blank" class="social-my-account"><i class="social-pinterest_icon"></i></a>
+                  </span>
+                </div>
+-->
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="access-col public-about">
+                <div class="row">
+                  <p ng-if="permission.numOfStories === 'public' && userState.stories >= 0">
+                    <label class="col-md-8">No. of Stories: </label>
+                    <span class="col-md-4">{{userState.stories}}</span>
+                  </p>
+                </div>
+                <div class="row">
+                  <p ng-if="permission.numOfPictures === 'public' && userState.photos >= 0">
+                    <label class="col-md-8">No. of Pictures: </label>
+                    <span class="col-md-4">{{userState.photos}}</span>
+                  </p>
+                </div>
+                <div class="row">
+                  <p ng-if="permission.numOfVideos === 'public' && userState.videos >= 0">
+                    <label class="col-md-8">No. of Videos: </label>
+                    <span class="col-md-4">{{userState.videos}}</span>
+                  </p>
+                </div>
+                <div class="row">
+                  <p ng-if="permission.numOfFavoriteUsers === 'public' && userState.favorite_users >= 0">
+                    <label class="col-md-8">Favorite Users: </label>
+                    <span class="col-md-4">{{userState.favorite_users}}</span>
+                  </p>
+                </div>
+                <div class="row">
+                  <p ng-if="permission.favoriteBy === 'public' && userState.favorite_by >= 0">
+                    <label class="col-md-8">Favorited By: </label>
+                    <span class="col-md-4">{{userState.favorite_by}}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="shared-stories-tab" class="tab-panel active" ng-if="$ctrl.viewMode == 'STORY'">
+          <div class="browse_by_calendar">
+            <div class="row ">
+              <div class="col-md-6 calendar-breadcrumb">
+                <span class="page-header-title"><i class="fa fa-file-o" aria-hidden="true"></i>Shared Stories: 11th February 2014</span>
+              </div>
+
+              <div class="col-md-6 ">
+                <div class="drop-filter">
+                  <div class="dropdown">
+                    <button class="dropdown-toggle" data-toggle="dropdown" type="button">
+                      <span class="dropdown-toggle-label">All Stories</span>&nbsp;<i class="sprite-dropdown"></i>
+                    </button>
+                    <div class="dropdown-menu st-dropdown" aria-labelledby="name-privacy" role="menu">
+                      <button class="story-clear-btn filter-elements" data-filter=".my-story">Public Stories</button>
+                      <button class="story-clear-btn filter-elements" data-filter=".journal-story">Shared Stories</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="story-listing clearfix">
+              <div class="story-col col-xs-4">
+                <div class="story-wrapper">
+                  <div class="story-middle">
+                    <div class="story-inner">
+                      <div class="story-author">
+                        <div class="story-avatar">
+                          <img src="assets/img/story-user-1.png">
+                        </div>
+                        <a href="other_users_public_profile.html">
+                          <span class="story-username">Zezovnik Swaragt</span>
+                        </a>
+                      </div>
+
+                      <div class="story-content">
+                        <a href="single_story_visitors_view.html"><h4 class="story-title">This is a story title here</h4></a>
+                        <p class="story-text">
+                          Out believe has request not how comfort evident. Up delight cousins we feeling minutes. Genius has looked end piqued spring. Down has rose feel find man.
+                          <br> <br>Learning day desirous informed expenses material returned six the. She enabled invited exposed him another. Reasonably conviction solicitude me mr at discretion reasonable. Age out full gate bed day lose.
+                        </p>
+                      </div>
+
+                      <div class="story-footer">
+                        <div class="story-footer-date gradient-bottom clearfix">
+                          <div class="ribbon-icon">
+                            <span class="date">11. Feb</span>
+                            <span class="time">21:00</span>
+                          </div>
+                          <a class="story-open-options three-dots-icon-big" href="#"></a>
+                        </div>
+
+                        <div class="story-footer-options gradient-top clearfix">
+                          <a href="#" class="share-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                          <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                          <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-quote-left" aria-hidden="true"></i></a>
+                          <a href="#" class="star-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Favorites">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                          </a>
+                          <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="story-wrapper">
+                  <div class="story-middle">
+                    <div class="story-inner">
+                      <div class="story-author">
+                        <div class="story-avatar">
+                          <img src="assets/img/story-user-3.png">
+                        </div>
+                        <a href="other_users_public_profile.html">
+                          <span class="story-username">Viropiti Johns</span>
+                        </a>
+                      </div>
+
+                      <div class="story-content">
+                        <a href="single_story_visitors_view.html"><h4 class="story-title">Story of something</h4></a>
+                        <p class="story-text"></p>
+                      </div>
+
+                      <div class="story-footer">
+                        <div class="story-footer-date gradient-bottom clearfix">
+                          <div class="ribbon-icon">
+                            <span class="date">11. Feb</span>
+                            <span class="time">21:00</span>
+                          </div>
+
+                          <a class="story-open-options three-dots-icon-big" href="#"></a>
+                        </div>
+                        <div class="story-footer-options gradient-top clearfix">
+                          <a href="#" class="share-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                          <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                          <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-quote-left" aria-hidden="true"></i></a>
+                          <a href="#" class="star-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Favorites">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                          </a>
+                          <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="story-wrapper">
+                  <div class="story-middle">
+                    <div class="story-inner">
+                      <div class="story-author">
+                        <div class="story-avatar">
+                          <img src="assets/img/story-user-4.png">
+                        </div>
+                        <a href="other_users_public_profile.html">
+                          <span class="story-username">Viropiti Johns</span>
+                        </a>
+                      </div>
+
+                      <div class="story-content">
+                        <a href="single_story_visitors_view.html"><h4 class="story-title">This is a story title here</h4></a>
+                        <p class="story-text">Phasellus suscipit ultrices augue sed viverra. Maecenas nec sapien semper tortor porta suscipit. Mauris vehicula fringilla turpis sit amet sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                      </div>
+
+                      <div class="story-footer">
+                        <div class="story-footer-date gradient-bottom clearfix">
+                          <div class="ribbon-icon">
+                            <span class="date">11. Feb</span>
+                            <span class="time">21:00</span>
+                          </div>
+                          <a class="story-open-options three-dots-icon-big" href="#"></a>
+                        </div>
+                        <div class="story-footer-options gradient-top clearfix">
+                          <a href="#" class="share-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                          <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                          <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-quote-left" aria-hidden="true"></i></a>
+
+                          <a href="#" class="star-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Favorites">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                          </a>
+                          <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="story-col col-xs-4">
+                <div class="story-wrapper">
+                  <div class="story-middle">
+                    <div class="story-inner">
+                      <div data-toggle="modal" data-target=".photo-video-modal" class="story-image">
+                        <img src="assets/img/story-img-1.jpg">
+                      </div>
+
+                      <div class="story-author">
+                        <div class="story-avatar">
+                          <img src="assets/img/story-user-2.png">
+                        </div>
+                        <a href="other_users_public_profile.html">
+                          <span class="story-username">Ipsum Loremica</span>
+                        </a>
+                      </div>
+
+                      <div class="story-content">
+                        <a href="single_story_visitors_view.html"><h4 class="story-title">Ispum of lorem</h4></a>
+                        <p class="story-text">Or neglected agreeable of discovery concluded oh it sportsman. Week to time in john. Son elegance use weddings separate.<br> <br>
+                          Ask too matter formed county wicket oppose talent. He immediate sometimes or to dependent in. Everything few frequently discretion surrounded did simplicity decisively.</p>
+                      </div>
+
+                      <div class="story-footer">
+                        <div class="story-footer-date gradient-bottom clearfix">
+                          <div class="ribbon-icon">
+                            <span class="date">11. Feb</span>
+                            <span class="time">21:00</span>
+                          </div>
+                          <a class="story-open-options three-dots-icon-big" href="#"></a>
+                        </div>
+                        <div class="story-footer-options gradient-top clearfix">
+                          <a href="#" class="share-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                          <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                          <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-quote-left" aria-hidden="true"></i></a>
+                          <a href="#" class="star-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Favorites">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                          </a>
+                          <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="story-wrapper">
+                  <div class="story-middle">
+                    <div class="story-inner">
+                      <div class="story-author">
+                        <div class="story-avatar">
+                          <img src="assets/img/story-user-4.png">
+                        </div>
+                        <a href="other_users_public_profile.html">
+                          <span class="story-username">Sardone Vaviali</span>
+                        </a>
+                      </div>
+
+                      <div class="story-content">
+                        <a href="single_story_visitors_view.html"><h4 class="story-title">This is a story title here</h4></a>
+                        <p class="story-text">Phasellus suscipit ultrices augue sed viverra. Maecenas nec sapien semper tortor porta suscipit. Mauris vehicula fringilla turpis sit amet sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                      </div>
+
+                      <div class="story-footer">
+                        <div class="story-footer-date gradient-bottom clearfix">
+                          <div class="ribbon-icon">
+                            <span class="date">11. Feb</span>
+                            <span class="time">21:00</span>
+                          </div>
+                          <a class="story-open-options three-dots-icon-big" href="#"></a>
+                        </div>
+
+                        <div class="story-footer-options gradient-top clearfix">
+                          <a href="#" class="share-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                          <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                          <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-quote-left" aria-hidden="true"></i></a>
+
+                          <a href="#" class="star-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Favorites">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                          </a>
+                          <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="story-col col-xs-4">
+                <div class="story-wrapper">
+                  <div class="story-middle">
+                    <div class="story-inner">
+                      <div class="story-author">
+                        <div class="story-avatar">
+                          <img src="assets/img/story-user-3.png">
+                        </div>
+                        <a href="other_users_public_profile.html">
+                          <span class="story-username">Viropity Johns</span>
+                        </a>
+                      </div>
+
+                      <div class="story-content">
+                        <a href="single_story_visitors_view.html"><h4 class="story-title">Title of 3rd story is here</h4></a>
+                        <p class="story-text">Am finished rejoiced drawings so he elegance. Set lose dear upon had two its what seen. Held she sir how know what such whom. Esteem put uneasy set piqued son depend her others. </p>
+                      </div>
+
+                      <div class="story-footer">
+                        <div class="story-footer-date gradient-bottom clearfix">
+                          <div class="ribbon-icon">
+                            <span class="date">11. Feb</span>
+                            <span class="time">21:00</span>
+                          </div>
+                          <a class="story-open-options three-dots-icon-big" href="#"></a>
+                        </div>
+
+                        <div class="story-footer-options gradient-top clearfix">
+                          <a href="#" class="share-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                          <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                          <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-quote-left" aria-hidden="true"></i></a>
+
+                          <a href="#" class="star-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Favorites">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                          </a>
+                          <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="story-wrapper">
+                  <div class="story-middle">
+                    <div class="story-inner">
+                      <div class="story-image" data-toggle="modal" data-target=".photo-video-modal">
+                        <img src="assets/img/l1.jpg">
+                      </div>
+
+                      <div class="story-author">
+                        <div class="story-avatar"><img src="assets/img/story-user-5.png"></div>
+                        <a href="other_users_public_profile.html">
+                          <span class="story-username">Steven Johnson</span>
+                        </a>
+                      </div>
+
+                      <div class="story-content">
+                        <a href="single_story_visitors_view.html"><h4 class="story-title">Ispum of lorem</h4></a>
+                        <p class="story-text">Phasellus suscipit ultrices augue sed viverra. Maecenas nec sapien semper tortor porta suscipit. Mauris vehicula fringilla turpis sit amet sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                      </div>
+
+                      <div class="story-footer">
+                        <div class="story-footer-date gradient-bottom clearfix">
+                          <div class="ribbon-icon">
+                            <span class="date">11. Feb</span>
+                            <span class="time">21:00</span>
+                          </div>
+                          <a class="story-open-options three-dots-icon-big" href="#"></a>
+                        </div>
+
+                        <div class="story-footer-options gradient-top clearfix">
+                          <a href="#" class="share-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                          <a href="#" class="addtojournal-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Journal"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+                          <a href="#" class="add-note-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add Note"><i class="fa fa-quote-left" aria-hidden="true"></i></a>
+                          <a href="#" class="star-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Favorites">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                          </a>
+                          <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="gallery-tab" class="tab-panel browse_by_calendar my-gallery-page active" ng-if="$ctrl.viewMode == 'GALLERY'">
+          <div class="row">
+            <div class="col-md-6 calendar-breadcrumb">
+              <span class="page-header-title"><i class="fa fa-picture-o" aria-hidden="true"></i> My Gallery:</span>
+              <span class="page-header-title">April 2016</span>
+            </div>
+
+            <div class="col-md-6">
+              <div class="drop-filter">
+              </div>
+            </div>
+          </div>
+
+          <div class="row gallery-main-content-wrapp">
+            <div class="col-xs-4">
+              <div class="gallery-item-box shared-photos all-accounts-photos">
+                <div data-toggle="modal" data-target=".photo-video-modal" class="gall-img-cont">
+                  <img src="assets/img/gallery-img-01.png" alt="gallery img">
+                  <div class="ribbon-icon-trans">
+                    <span class="date">15. Feb</span>
+                    <span class="time">17:00</span>
+                  </div>
+                </div>
+                <!-- image container -->
+                <div class="content-cont">
+                  <div class="content-box">
+                    <img class="item-arrow-box" src="assets/icons/item-box-arrow-up.png" alt="arrow">
+
+                    <div class="item-box-head">
+                      <span class="gall-box-avatar">
+                        <img src="assets/img/story-user-2.png">
+                      </span>
+                      <a href="other_users_public_profile.html">
+                        <span class="gall-item-name"> Authorusername </span>
+                      </a>
+                    </div>
+                    <!-- item box head -->
+                    <div class="item-box-body">
+                      <p>This is a note on the photo by the author.</p>
+                      <p>Author has not allowed further sharing. Two icons visible</p>
+                    </div>
+                    <!-- item box body -->
+                    <div class="gall-footer-options">
+                      <a href="#" class="star-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Favorites">
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <!-- content box -->
+                  <div class="item-footer">
+                    <h3>Photo Title 1</h3>
+                    <a class="story-open-options three-dots-icon-big" href="#"></a>
+                  </div>
+                   <!-- item footer -->
+                </div>
+                <!-- content container -->
+              </div>
+            </div>
+            <!-- col-xs-4 -->
+            <div class="col-xs-4">
+              <div class="gallery-item-box shared-photos all-accounts-photos">
+                <div data-toggle="modal" data-target=".photo-video-modal" class="gall-img-cont">
+                  <img src="assets/img/gallery-img-03.jpg" alt="gallery img">
+                  <div class="ribbon-icon-trans">
+                    <span class="date">14. Feb</span>
+                    <span class="time">17:00</span>
+                  </div>
+                </div>
+                <!-- image container -->
+                <div class="content-cont">
+                  <div class="content-box">
+                    <img class="item-arrow-box" src="assets/icons/item-box-arrow-up.png" alt="arrow">
+                    <div class="item-box-head">
+                      <span class="gall-box-avatar">
+                        <img src="assets/img/story-user-2.png">
+                      </span>
+                      <a href="other_users_public_profile.html">
+                        <span class="gall-item-name">
+                          Authorusername
+                        </span>
+                      </a>
+                    </div>
+                    <!-- item box head -->
+                    <div class="item-box-body">
+                      <p>This is a note on the photo by the author.</p>
+                      <p>Author has not allowed further sharing. Two icons visible</p>
+                    </div>
+                    <!-- item box body -->
+                    <div class="gall-footer-options">
+                      <a href="#" class="share-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                      <a href="#" class="star-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Favorites">
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <!-- content box -->
+                  <div class="item-footer">
+                    <h3>Photo Title 2</h3>
+                    <a class="story-open-options three-dots-icon-big" href="#"></a>
+                  </div>
+                <!-- item footer -->
+                </div>
+                <!-- content container -->
+              </div>
+            </div>
+            <!-- col-xs-4 -->
+            <div class="col-xs-4">
+              <div class="gallery-item-box shared-photos all-accounts-photos">
+                <div data-toggle="modal" data-target=".photo-video-modal" class="gall-img-cont">
+                  <img src="assets/img/gallery-img-0.jpg" alt="gallery img">
+                  <div class="ribbon-icon-trans">
+                    <span class="date">13. Feb</span>
+                    <span class="time">17:00</span>
+                  </div>
+                </div>
+                <!-- image container -->
+                <div class="content-cont">
+                  <div class="content-box">
+                    <img class="item-arrow-box" src="assets/icons/item-box-arrow-up.png" alt="arrow">
+                    <div class="item-box-head">
+                      <span class="gall-box-avatar">
+                        <img src="assets/img/story-user-2.png">
+                      </span>
+                      <a href="other_users_public_profile.html">
+                        <span class="gall-item-name">
+                          Authorusername
+                        </span>
+                      </a>
+                    </div>
+                    <!-- item box head -->
+                    <div class="item-box-body">
+                      <p>This is a note on the photo by the author.</p>
+                      <p>Author has not allowed further sharing. Two icons visible</p>
+                    </div>
+                    <!-- item box body -->
+                    <div class="gall-footer-options">
+                      <a href="#" class="share-gal" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                      <a href="#" class="star-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Add to Favorites">
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                      </a>
+                      <a href="#" class="delete-gall" data-toggle="tooltip" data-placement="bottom" data-animation="false" title="" data-original-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <!-- content box -->
+                  <div class="item-footer">
+                    <h3>Photo Title 3</h3>
+                    <a class="story-open-options three-dots-icon-big" href="#"></a>
+                  </div>
+                <!-- item footer -->
+                </div>
+              <!-- content container -->
+              </div>
+            </div>
+            <!-- col-xs-4 -->
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="confirm_modal">
+    </div>
+  </div>
+
